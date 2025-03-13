@@ -11,6 +11,7 @@ import Services from "./pages/Services";
 import PourquoiViadex from "./pages/PourquoiViadex";
 import APropos from "./pages/APropos";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
@@ -27,7 +28,7 @@ const App = () => (
           <Route path="/pourquoi-viadex" element={<PourquoiViadex />} />
           <Route path="/a-propos" element={<APropos />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/*" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
