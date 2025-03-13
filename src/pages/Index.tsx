@@ -1,141 +1,164 @@
-import { ArrowRight, Check, ChevronDown } from "lucide-react";
-import { useState } from "react";
+
+import { ArrowRight, Check } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      {/* Main content with top padding for navigation */}
       <main className="pt-16">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32">
-          <div className="mx-auto max-w-7xl text-center">
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-primary mb-6">
-              Change the bank account
-              <br />
-              <span className="bg-gradient-to-r from-[#9EE755] to-[#CFDD3C] bg-clip-text text-transparent">
-                you use
-              </span>
-            </h1>
-            <p className="mx-auto max-w-2xl text-lg text-secondary mb-8">
-              Experience banking reimagined. Simple, secure, and designed for the modern world.
-            </p>
-            <div className="flex justify-center gap-4">
-              <button className="px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors">
-                Get Started
-              </button>
-              <button className="px-6 py-3 glass rounded-full hover:bg-white/20 transition-colors flex items-center gap-2">
-                Learn More <ArrowRight className="w-4 h-4" />
-              </button>
+        {/* Section Bannière */}
+        <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
+          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+                L'IA au service des PME & ETI : 
+                <span className="block text-white">
+                  simplifiez votre transformation
+                </span>
+              </h1>
+              <p className="text-lg text-white/80 mb-8 max-w-xl">
+                Viadex accompagne les entreprises dans l'adoption de l'IA, sans complexité technique.
+              </p>
+              <Link to="/contact">
+                <Button className="px-6 py-6 bg-white text-primary hover:bg-white/90 rounded-lg text-lg font-medium">
+                  Prenez un rendez-vous découverte
+                </Button>
+              </Link>
             </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="relative mt-16">
-            <div className="flex justify-center">
-              <img
-                src="https://antimetal.com/images/hero/preview.png"
-                alt="Hero"
-                className="rounded-3xl shadow-2xl max-w-[90%] w-auto h-auto"
+            
+            <div className="md:w-1/2 flex justify-center">
+              <img 
+                src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
+                alt="Viadex Logo" 
+                className="max-w-[80%] w-auto"
               />
             </div>
           </div>
         </section>
 
-        <section className="py-24 bg-surface px-6 lg:px-8">
+        {/* Présentation rapide */}
+        <section className="py-16 px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold text-center mb-16">Features designed for you</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-6">Viadex accompagne les entreprises</h2>
+              <p className="text-xl text-secondary/80 max-w-3xl mx-auto">
+                Notre mission est de vous accompagner dans l'adoption de l'intelligence artificielle, sans complexité technique.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
                 {
-                  title: "Secure Transactions",
-                  description: "Bank-grade encryption for all your transactions",
-                  icon: "🔒",
+                  title: "Diagnostic IA",
+                  description: "Comprenez les opportunités et défis IA spécifiques à votre entreprise.",
+                  icon: "🔍",
                 },
                 {
-                  title: "Real-time Updates",
-                  description: "Get instant notifications for all account activities",
-                  icon: "⚡",
+                  title: "Formation IA",
+                  description: "Développez les compétences nécessaires pour tirer parti de l'IA.",
+                  icon: "📚",
                 },
                 {
-                  title: "Smart Savings",
-                  description: "AI-powered insights to help you save more",
-                  icon: "💡",
+                  title: "Accompagnement Stratégique",
+                  description: "Bénéficiez d'un suivi personnalisé pour votre transformation numérique.",
+                  icon: "🚀",
                 },
-              ].map((feature, index) => (
+              ].map((service, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-2xl bg-background border border-border hover:border-accent transition-colors"
+                  className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background"
                 >
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-secondary">{feature.description}</p>
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                  <p className="text-secondary">{service.description}</p>
                 </div>
               ))}
+            </div>
+            
+            <div className="flex flex-col md:flex-row items-center gap-12 bg-background p-8 rounded-xl">
+              <div className="md:w-1/2">
+                <h3 className="text-2xl font-bold mb-4">Vers l'intelligence en toute confiance</h3>
+                <p className="text-secondary mb-6">
+                  L'IA n'est plus réservée aux grandes entreprises. Chez Viadex, nous vous aidons à exploiter son potentiel de manière simple et efficace, quelles que soient la taille et les ressources de votre entreprise.
+                </p>
+                <Link to="/services">
+                  <Button className="flex items-center gap-2 bg-primary text-white">
+                    Découvrir nos services <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="md:w-1/2">
+                <ContactForm isShort={true} />
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-24 px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="text-3xl font-bold text-center mb-16">Frequently Asked Questions</h2>
-            <div className="space-y-4">
+        {/* Pourquoi Viadex */}
+        <section className="py-16 px-6 lg:px-8 bg-gradient-to-b from-background to-white">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Pourquoi choisir Viadex ?</h2>
+              <p className="text-xl text-secondary/80 max-w-2xl mx-auto">
+                Notre approche unique rend l'IA accessible et efficace pour votre entreprise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
               {[
                 {
-                  question: "How secure is my data?",
-                  answer: "We use bank-level encryption to protect all your data and transactions.",
+                  title: "Sans jargon technique",
+                  description: "Nous parlons votre langage, pas celui des ingénieurs.",
                 },
                 {
-                  question: "What are the fees?",
-                  answer: "We believe in transparent pricing with no hidden fees.",
+                  title: "Solutions accessibles",
+                  description: "Des approches concrètes adaptées à vos besoins réels.",
                 },
                 {
-                  question: "How do I get started?",
-                  answer: "Download our app and follow the simple registration process.",
+                  title: "Accompagnement personnalisé",
+                  description: "Un suivi sur mesure pour votre entreprise.",
                 },
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="border border-border rounded-lg overflow-hidden"
-                >
-                  <button
-                    className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-background/50"
-                    onClick={() => setActiveAccordion(activeAccordion === index ? null : index)}
-                  >
-                    <span className="font-medium">{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform ${
-                        activeAccordion === index ? "transform rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {activeAccordion === index && (
-                    <div className="px-6 py-4 bg-background/50">
-                      <p className="text-secondary">{faq.answer}</p>
-                    </div>
-                  )}
+              ].map((point, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="bg-primary rounded-full p-2 text-white flex-shrink-0 mt-1">
+                    <Check className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">{point.title}</h3>
+                    <p className="text-secondary">{point.description}</p>
+                  </div>
                 </div>
               ))}
+            </div>
+            
+            <div className="text-center">
+              <Link to="/contact">
+                <Button className="px-6 py-3 bg-primary text-white text-lg">
+                  Voyons ensemble comment l'IA peut vous aider
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 bg-primary text-white px-6 lg:px-8">
+        <section className="py-16 bg-primary text-white px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
-            <h2 className="text-3xl sm:text-5xl font-bold mb-8">Ready to get started?</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">Prêt à commencer votre transformation ?</h2>
             <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who have already made the switch.
+              Rejoignez les entreprises qui ont déjà simplifié leur adoption de l'IA avec Viadex.
             </p>
-            <button className="px-8 py-4 bg-accent text-primary rounded-full font-semibold hover:bg-accent/90 transition-colors">
-              Create Account
-            </button>
+            <Link to="/contact">
+              <Button className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg">
+                Prendre un rendez-vous
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

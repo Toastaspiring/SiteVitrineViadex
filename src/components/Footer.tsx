@@ -1,22 +1,23 @@
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const footerSections = [
     {
-      title: "Product",
-      links: ["Features", "Pricing", "Security", "Updates"],
+      title: "Services",
+      links: ["Diagnostic IA", "Accompagnement stratégique", "Formations IA", "Veille IA"],
     },
     {
-      title: "Company",
-      links: ["About", "Blog", "Careers", "Press"],
+      title: "Entreprise",
+      links: ["À Propos", "Notre Mission", "Équipe", "Contact"],
     },
     {
-      title: "Resources",
-      links: ["Documentation", "Help Center", "Contact", "Status"],
+      title: "Ressources",
+      links: ["Blog", "Études de cas", "FAQ", "Glossaire IA"],
     },
     {
-      title: "Legal",
-      links: ["Privacy", "Terms", "Security", "Cookies"],
+      title: "Mentions Légales",
+      links: ["Confidentialité", "Conditions d'utilisation", "Mentions légales", "Cookies"],
     },
   ];
 
@@ -31,7 +32,7 @@ const Footer = () => {
                 {section.links.map((link) => (
                   <li key={link}>
                     <Link
-                      to={`/${link.toLowerCase()}`}
+                      to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
                       className="text-white/70 hover:text-white transition-colors"
                     >
                       {link}
@@ -45,17 +46,17 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/70 text-sm">
-            © 2024 BankApp. All rights reserved.
+            © 2024 Viadex. Tous droits réservés.
           </p>
           <div className="flex items-center space-x-6">
-            <Link to="#" className="text-white/70 hover:text-white transition-colors">
-              Twitter
-            </Link>
             <Link to="#" className="text-white/70 hover:text-white transition-colors">
               LinkedIn
             </Link>
             <Link to="#" className="text-white/70 hover:text-white transition-colors">
-              GitHub
+              Twitter
+            </Link>
+            <Link to="#" className="text-white/70 hover:text-white transition-colors">
+              Contact
             </Link>
           </div>
         </div>

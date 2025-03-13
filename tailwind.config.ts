@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,19 +20,19 @@ export default {
     },
     extend: {
       colors: {
-        primary: "#141413",
-        secondary: "#828179",
-        accent: "#C7FB76",
-        background: "#FAFAF8",
+        primary: "#0047CC", // Bleu Viadex
+        secondary: "#333333", // Texte foncé
+        accent: "#FFFFFF", // Blanc
+        background: "#F5F7FA", // Fond clair
         surface: "#fff",
-        muted: "#C4C3BB",
-        "muted-foreground": "#A3A299",
-        border: "#E6E4DD",
-        input: "#F0EFEA",
-        foreground: "hsl(var(--foreground))",
+        muted: "#64748B",
+        "muted-foreground": "#94A3B8",
+        border: "#E2E8F0",
+        input: "#F1F5F9",
+        foreground: "#1E293B",
       },
       textColor: {
-        foreground: "hsl(var(--foreground))",
+        foreground: "#1E293B",
       },
       fontFamily: {
         sans: ["SF Pro Display", "system-ui", "sans-serif"],
