@@ -27,6 +27,7 @@ const App = () => (
           <Route path="/pourquoi-viadex" element={<PourquoiViadex />} />
           <Route path="/a-propos" element={<APropos />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/*" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
