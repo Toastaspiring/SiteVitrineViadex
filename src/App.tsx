@@ -16,6 +16,10 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import Calendar from "./pages/Calendar";
 import Admin from "./pages/Admin";
+import MentionsLegales from "./pages/MentionsLegales";
+import Confidentialite from "./pages/Confidentialite";
+import ConditionsUtilisation from "./pages/ConditionsUtilisation";
+import Cookies from "./pages/Cookies";
 
 // Context pour l'authentification
 export const AuthContext = createContext<{
@@ -51,6 +55,11 @@ const App = () => {
                 path="/admin/*" 
                 element={isAuthenticated ? <Admin /> : <Navigate to="/" />} 
               />
+              {/* Nouvelles routes pour les pages légales */}
+              <Route path="/mentions-légales" element={<MentionsLegales />} />
+              <Route path="/confidentialité" element={<Confidentialite />} />
+              <Route path="/conditions-d'utilisation" element={<ConditionsUtilisation />} />
+              <Route path="/cookies" element={<Cookies />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>

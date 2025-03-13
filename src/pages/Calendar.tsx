@@ -1,219 +1,305 @@
 
-import { useState } from "react";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar as CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { CalendarIcon, Clock } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { useState } from "react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+
+const timeSlots = [
+  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
+];
 
 const Calendar = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [date, setDate] = useState<Date>();
+  const [timeSlot, setTimeSlot] = useState<string>("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [reason, setReason] = useState("");
+  const [phone, setPhone] = useState("");
+  const [motif, setMotif] = useState("");
+  const [formStep, setFormStep] = useState(0);
 
-  const availableTimes = [
-    "09:00", "10:00", "11:00", 
-    "14:00", "15:00", "16:00"
-  ];
+  // Calculer les dates indisponibles (exemple: week-ends et jours passés)
+  const isPastDay = (day: Date) => {
+    return day < new Date(new Date().setHours(0, 0, 0, 0));
+  };
+  
+  const isWeekend = (day: Date) => {
+    const dayOfWeek = day.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const appointmentDetails = {
-      name,
-      email,
-      date: date ? format(date, 'yyyy-MM-dd') : '',
-      time: selectedTime,
-      reason
-    };
+    if (!date || !timeSlot || !name || !email || !motif) {
+      toast.error("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
     
-    console.log("Rendez-vous programmé:", appointmentDetails);
-    
-    // Dans un environnement de production, envoyer ces données à une API
-    alert("Votre rendez-vous a été programmé avec succès!");
+    // Simuler l'envoi du formulaire
+    toast.success("Rendez-vous réservé avec succès!", {
+      description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", { locale: fr })} à ${timeSlot} a été confirmé.`,
+    });
     
     // Réinitialiser le formulaire
+    setDate(undefined);
+    setTimeSlot("");
     setName("");
     setEmail("");
-    setReason("");
-    setSelectedTime(null);
+    setPhone("");
+    setMotif("");
+    setFormStep(0);
+  };
+
+  const handleNext = () => {
+    if (!date || !timeSlot) {
+      toast.error("Veuillez sélectionner une date et un horaire");
+      return;
+    }
+    setFormStep(1);
+  };
+
+  const handleBack = () => {
+    setFormStep(0);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="flex-grow pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 animate-in fade-in-0">Prenez rendez-vous</h1>
+      <main className="pt-24 pb-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12 animate-in fade-in-0">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Prenez rendez-vous avec nos experts</h1>
+            <p className="text-lg text-secondary/80 max-w-2xl mx-auto">
+              Réservez un créneau pour discuter de vos besoins et découvrir comment l'IA peut transformer votre entreprise.
+            </p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h2 className="text-xl font-semibold">Sélectionnez une date et une heure</h2>
-              <Card className="animate-in fade-in-0 zoom-in-95">
+          <div className="grid md:grid-cols-5 gap-8 animate-in fade-in-0 slide-in-from-bottom-4">
+            <div className="md:col-span-2 space-y-6">
+              <Card>
                 <CardHeader>
-                  <CardTitle>Calendrier</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <LucideBrainCircuit className="h-5 w-5 text-primary" />
+                    Pourquoi nous rencontrer?
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="mb-4">
-                    <CalendarComponent
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                      disabled={(date) => {
-                        // Désactiver les week-ends et les dates passées
-                        const day = date.getDay();
-                        return (
-                          day === 0 || 
-                          day === 6 || 
-                          date < new Date(new Date().setHours(0, 0, 0, 0))
-                        );
-                      }}
-                      locale={fr}
-                      className="pointer-events-auto"
-                    />
+                <CardContent className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <User className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Consultation personnalisée</h3>
+                      <p className="text-sm text-secondary/70">Une approche adaptée à votre activité et vos besoins spécifiques.</p>
+                    </div>
                   </div>
                   
-                  {date && (
-                    <div className="mt-4">
-                      <h3 className="text-lg font-medium mb-2">
-                        <Clock className="inline-block mr-2 h-5 w-5" />
-                        Heures disponibles
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2">
-                        {availableTimes.map((time) => (
-                          <Button
-                            key={time}
-                            variant={selectedTime === time ? "default" : "outline"}
-                            className="transition-all hover:scale-105"
-                            onClick={() => setSelectedTime(time)}
-                          >
-                            {time}
-                          </Button>
-                        ))}
-                      </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <Clock className="h-4 w-4 text-primary" />
                     </div>
-                  )}
+                    <div>
+                      <h3 className="font-medium">Rendez-vous de 45 minutes</h3>
+                      <p className="text-sm text-secondary/70">Le temps d'échanger sur vos enjeux et d'explorer des solutions.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <FileText className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Suivi personnalisé</h3>
+                      <p className="text-sm text-secondary/70">Recevez un compte rendu et des recommandations après votre rendez-vous.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle>Besoin d'aide?</CardTitle>
+                  <CardDescription>Contactez-nous par téléphone ou email</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-primary font-medium">+33 (0)1 23 45 67 89</p>
+                  <p className="text-primary font-medium">contact@viadex.fr</p>
                 </CardContent>
               </Card>
             </div>
             
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Vos informations</h2>
-              <Card className="animate-in fade-in-0 zoom-in-95 delay-100">
-                <CardContent className="pt-6">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-1">
-                        Nom complet
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-1">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="date" className="block text-sm font-medium mb-1">
-                        Date sélectionnée
-                      </label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal"
-                          >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {date ? (
-                              format(date, "EEEE d MMMM yyyy", { locale: fr })
-                            ) : (
-                              <span>Sélectionnez une date</span>
-                            )}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <CalendarComponent
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            disabled={(date) => {
-                              const day = date.getDay();
-                              return (
-                                day === 0 || 
-                                day === 6 || 
-                                date < new Date(new Date().setHours(0, 0, 0, 0))
-                              );
-                            }}
-                            locale={fr}
-                            initialFocus
-                            className="pointer-events-auto"
+            <Card className="md:col-span-3">
+              <CardHeader>
+                <CardTitle>Réserver un créneau</CardTitle>
+                <CardDescription>
+                  {formStep === 0 
+                    ? "Sélectionnez une date et un horaire disponible" 
+                    : "Complétez vos informations pour confirmer"}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {formStep === 0 ? (
+                    <>
+                      <div className="space-y-4">
+                        <div>
+                          <Label htmlFor="date">Date du rendez-vous</Label>
+                          <div className="mt-2">
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  className={cn(
+                                    "w-full justify-start text-left font-normal",
+                                    !date && "text-muted-foreground"
+                                  )}
+                                >
+                                  <CalendarIcon className="mr-2 h-4 w-4" />
+                                  {date ? (
+                                    format(date, "dd MMMM yyyy", { locale: fr })
+                                  ) : (
+                                    <span>Sélectionnez une date</span>
+                                  )}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                  mode="single"
+                                  selected={date}
+                                  onSelect={setDate}
+                                  disabled={(date) => isPastDay(date) || isWeekend(date)}
+                                  locale={fr}
+                                  className="pointer-events-auto"
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
+                        
+                        {date && (
+                          <div>
+                            <Label htmlFor="time">Horaire</Label>
+                            <div className="grid grid-cols-4 gap-2 mt-2">
+                              {timeSlots.map((time) => (
+                                <Button
+                                  key={time}
+                                  type="button"
+                                  variant={timeSlot === time ? "default" : "outline"}
+                                  className={cn(
+                                    "h-10",
+                                    timeSlot === time ? "bg-primary text-white" : ""
+                                  )}
+                                  onClick={() => setTimeSlot(time)}
+                                >
+                                  {time}
+                                </Button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <Button 
+                        type="button" 
+                        className="w-full"
+                        onClick={handleNext}
+                      >
+                        Continuer
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <div className="space-y-4">
+                        <div className="grid gap-2">
+                          <Label htmlFor="name">Nom complet *</Label>
+                          <Input 
+                            id="name" 
+                            value={name} 
+                            onChange={(e) => setName(e.target.value)} 
+                            placeholder="Votre nom et prénom"
+                            required
                           />
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="time" className="block text-sm font-medium mb-1">
-                        Heure sélectionnée
-                      </label>
-                      <input
-                        id="time"
-                        type="text"
-                        value={selectedTime || ""}
-                        readOnly
-                        className="w-full px-3 py-2 border border-border rounded-md bg-muted focus:outline-none"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="reason" className="block text-sm font-medium mb-1">
-                        Motif du rendez-vous
-                      </label>
-                      <textarea
-                        id="reason"
-                        rows={3}
-                        value={reason}
-                        onChange={(e) => setReason(e.target.value)}
-                        required
-                        className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      className="w-full" 
-                      disabled={!date || !selectedTime}
-                    >
-                      Confirmer le rendez-vous
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
+                        </div>
+                        
+                        <div className="grid gap-2">
+                          <Label htmlFor="email">Email *</Label>
+                          <Input 
+                            id="email" 
+                            type="email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            placeholder="votre.email@exemple.com"
+                            required
+                          />
+                        </div>
+                        
+                        <div className="grid gap-2">
+                          <Label htmlFor="phone">Téléphone</Label>
+                          <Input 
+                            id="phone" 
+                            value={phone} 
+                            onChange={(e) => setPhone(e.target.value)} 
+                            placeholder="Votre numéro de téléphone"
+                          />
+                        </div>
+                        
+                        <div className="grid gap-2">
+                          <Label htmlFor="motif">Motif du rendez-vous *</Label>
+                          <Textarea 
+                            id="motif" 
+                            value={motif} 
+                            onChange={(e) => setMotif(e.target.value)} 
+                            placeholder="Décrivez brièvement l'objet de votre demande"
+                            rows={4}
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button 
+                          type="button" 
+                          variant="outline" 
+                          onClick={handleBack}
+                          className="sm:flex-1"
+                        >
+                          Retour
+                        </Button>
+                        <Button 
+                          type="submit" 
+                          className="sm:flex-1"
+                        >
+                          Confirmer le rendez-vous
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </form>
+              </CardContent>
+              {formStep === 0 && date && timeSlot && (
+                <CardFooter className="border-t px-6 py-4">
+                  <p className="text-sm text-center w-full">
+                    Vous avez sélectionné le{" "}
+                    <span className="font-medium">
+                      {format(date, "dd MMMM yyyy", { locale: fr })} à {timeSlot}
+                    </span>
+                  </p>
+                </CardFooter>
+              )}
+            </Card>
           </div>
         </div>
       </main>

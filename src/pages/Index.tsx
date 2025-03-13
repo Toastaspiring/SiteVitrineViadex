@@ -1,5 +1,5 @@
 
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, BrainCircuit, Zap, Network, MicrochipIcon } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
@@ -16,7 +16,12 @@ const Index = () => {
         <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
           <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
+                <div className="absolute -left-16 top-0 flex items-center justify-center animate-pulse">
+                  <BrainCircuit className="h-12 w-12 text-white/80" />
+                  <Network className="h-10 w-10 text-white/60 absolute" />
+                  <Zap className="h-6 w-6 text-white absolute animate-bounce" style={{ animationDuration: '3s' }} />
+                </div>
                 L'IA au service des PME & ETI : 
                 <span className="block text-white">
                   simplifiez votre transformation
@@ -33,11 +38,24 @@ const Index = () => {
             </div>
             
             <div className="md:w-1/2 flex justify-center">
-              <img 
-                src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
-                alt="Viadex Logo" 
-                className="max-w-[80%] w-auto"
-              />
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
+                </div>
+                <div className="relative z-10">
+                  <img 
+                    src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
+                    alt="Viadex Logo" 
+                    className="max-w-[80%] w-auto"
+                  />
+                </div>
+                <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4">
+                  <MicrochipIcon className="h-8 w-8 text-white/40 animate-spin" style={{ animationDuration: '15s' }} />
+                </div>
+                <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4">
+                  <Network className="h-10 w-10 text-white/40 animate-pulse" />
+                </div>
+              </div>
             </div>
           </div>
         </section>

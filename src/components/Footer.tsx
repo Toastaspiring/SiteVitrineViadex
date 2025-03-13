@@ -5,19 +5,39 @@ const Footer = () => {
   const footerSections = [
     {
       title: "Services",
-      links: ["Diagnostic IA", "Accompagnement stratégique", "Formations IA", "Veille IA"],
+      links: [
+        { name: "Diagnostic IA", path: "/services" },
+        { name: "Accompagnement stratégique", path: "/services" },
+        { name: "Formations IA", path: "/services" },
+        { name: "Veille IA", path: "/services" }
+      ],
     },
     {
       title: "Entreprise",
-      links: ["À Propos", "Notre Mission", "Équipe", "Contact"],
+      links: [
+        { name: "À Propos", path: "/a-propos" },
+        { name: "Notre Mission", path: "/a-propos" },
+        { name: "Équipe", path: "/a-propos" },
+        { name: "Contact", path: "/contact" }
+      ],
     },
     {
       title: "Ressources",
-      links: ["Blog", "Études de cas", "FAQ", "Glossaire IA"],
+      links: [
+        { name: "Blog", path: "/blog" },
+        { name: "Études de cas", path: "/blog" },
+        { name: "FAQ", path: "/pourquoi-viadex" },
+        { name: "Glossaire IA", path: "/blog" }
+      ],
     },
     {
       title: "Mentions Légales",
-      links: ["Confidentialité", "Conditions d'utilisation", "Mentions légales", "Cookies"],
+      links: [
+        { name: "Confidentialité", path: "/confidentialité" },
+        { name: "Conditions d'utilisation", path: "/conditions-d'utilisation" },
+        { name: "Mentions légales", path: "/mentions-légales" },
+        { name: "Cookies", path: "/cookies" }
+      ],
     },
   ];
 
@@ -30,12 +50,12 @@ const Footer = () => {
               <h3 className="font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <Link
-                      to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
+                      to={link.path}
                       className="text-white/70 hover:text-white transition-colors"
                     >
-                      {link}
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -49,13 +69,13 @@ const Footer = () => {
             © 2024 Viadex. Tous droits réservés.
           </p>
           <div className="flex items-center space-x-6">
-            <Link to="#" className="text-white/70 hover:text-white transition-colors">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
               LinkedIn
-            </Link>
-            <Link to="#" className="text-white/70 hover:text-white transition-colors">
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
               Twitter
-            </Link>
-            <Link to="#" className="text-white/70 hover:text-white transition-colors">
+            </a>
+            <Link to="/contact" className="text-white/70 hover:text-white transition-colors">
               Contact
             </Link>
           </div>
