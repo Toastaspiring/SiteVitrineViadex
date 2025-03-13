@@ -1,11 +1,14 @@
 
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LoginModal } from "./LoginModal";
+import { AuthContext } from "@/App";
+import { Calendar } from "lucide-react";
 
 const Navigation = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -35,16 +38,30 @@ const Navigation = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Button 
-            variant="ghost" 
-            className="hidden md:inline-flex hover:scale-105 transform transition-all"
-            onClick={() => setShowLoginModal(true)}
-          >
-            Se Connecter
-          </Button>
-          <Button className="bg-primary text-white hover:scale-105 transform transition-all">
-            Prendre RDV
-          </Button>
+          {isAuthenticated ? (
+            <Link to="/admin">
+              <Button 
+                variant="ghost" 
+                className="hidden md:inline-flex hover:scale-105 transform transition-all"
+              >
+                Administration
+              </Button>
+            </Link>
+          ) : (
+            <Button 
+              variant="ghost" 
+              className="hidden md:inline-flex hover:scale-105 transform transition-all"
+              onClick={() => setShowLoginModal(true)}
+            >
+              Se Connecter
+            </Button>
+          )}
+          <Link to="/calendrier">
+            <Button className="bg-primary text-white hover:scale-105 transform transition-all flex items-center gap-2">
+              <Calendar className="h-4 w-4" />
+              Prendre RDV
+            </Button>
+          </Link>
         </div>
       </div>
 

@@ -2,7 +2,10 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@/App";
+import { toast } from "sonner";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -12,11 +15,27 @@ interface LoginModalProps {
 export function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // À implémenter avec l'authentification
-    console.log("Login attempt", { email, password });
+    setIsLoading(true);
+    
+    // Simulation d'authentification - Dans un cas réel, utiliser une API
+    setTimeout(() => {
+      // Identifiants de test (à remplacer par une véritable authentification)
+      if (email === "admin@viadex.fr" && password === "admin") {
+        setIsAuthenticated(true);
+        onClose();
+        toast.success("Connexion réussie");
+        navigate("/admin");
+      } else {
+        toast.error("Identifiants incorrects");
+      }
+      setIsLoading(false);
+    }, 800);
   };
 
   return (
@@ -55,8 +74,11 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
               className="w-full"
             />
           </div>
-          <Button type="submit" className="w-full bg-primary hover:bg-primary/90 transition-colors">
-            Se connecter
+          <div className="text-xs text-muted-foreground">
+            Pour la démonstration, utilisez: admin@viadex.fr / admin
+          </div>
+          <Button type="submit" className="w-full bg-primary hover:bg-primary/90 transition-colors" disabled={isLoading}>
+            {isLoading ? "Connexion en cours..." : "Se connecter"}
           </Button>
         </form>
       </DialogContent>
