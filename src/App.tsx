@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, createContext } from "react";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Pages
 import Index from "./pages/Index";
@@ -42,6 +43,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/services" element={<Services />} />
