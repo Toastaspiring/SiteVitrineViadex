@@ -14,7 +14,7 @@ import APropos from "./pages/APropos";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
-import Calendar from "./pages/Calendar";
+import CalendarPage from "./pages/Calendar";
 import Admin from "./pages/Admin";
 import MentionsLegales from "./pages/MentionsLegales";
 import Confidentialite from "./pages/Confidentialite";
@@ -50,7 +50,7 @@ const App = () => {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/calendrier" element={<Calendar />} />
+              <Route path="/calendrier" element={<CalendarPage />} />
               <Route 
                 path="/admin/*" 
                 element={isAuthenticated ? <Admin /> : <Navigate to="/" />} 

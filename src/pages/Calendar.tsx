@@ -1,5 +1,5 @@
 
-import { Calendar as CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
+import { CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import Navigation from "@/components/Navigation";
@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -20,8 +20,8 @@ const timeSlots = [
   "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
 ];
 
-const Calendar = () => {
-  const [date, setDate] = useState<Date>();
+const CalendarPage = () => {
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const [timeSlot, setTimeSlot] = useState<string>("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -176,7 +176,7 @@ const Calendar = () => {
                                 </Button>
                               </PopoverTrigger>
                               <PopoverContent className="w-auto p-0" align="start">
-                                <Calendar
+                                <CalendarComponent
                                   mode="single"
                                   selected={date}
                                   onSelect={setDate}
@@ -309,4 +309,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default CalendarPage;
