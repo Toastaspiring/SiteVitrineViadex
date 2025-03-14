@@ -100,7 +100,7 @@ const ContactList = () => {
         <h1 className="text-2xl font-bold">Formulaires de contact</h1>
         <Button 
           onClick={exportToCSV}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-white"
         >
           <Download className="h-4 w-4" />
           Exporter en CSV

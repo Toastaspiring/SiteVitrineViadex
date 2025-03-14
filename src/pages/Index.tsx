@@ -17,11 +17,6 @@ const Index = () => {
           <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
-                <div className="absolute -left-16 top-0 flex items-center justify-center animate-pulse">
-                  <BrainCircuit className="h-12 w-12 text-white/80" />
-                  <Network className="h-10 w-10 text-white/60 absolute" />
-                  <Zap className="h-6 w-6 text-white absolute animate-bounce" style={{ animationDuration: '3s' }} />
-                </div>
                 L'IA au service des PME & ETI : 
                 <span className="block text-white">
                   simplifiez votre transformation
@@ -48,12 +43,6 @@ const Index = () => {
                     alt="Viadex Logo" 
                     className="max-w-[100%] w-auto"
                   />
-                </div>
-                <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4">
-                  <MicrochipIcon className="h-8 w-8 text-white/40 animate-spin" style={{ animationDuration: '15s' }} />
-                </div>
-                <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4">
-                  <Network className="h-10 w-10 text-white/40 animate-pulse" />
                 </div>
               </div>
             </div>

@@ -7,21 +7,21 @@ import { Link } from "react-router-dom";
 const APropos = () => {
   const team = [
     {
-      name: "Jean Dupont",
-      role: "Fondateur & CEO",
-      bio: "Expert en stratégie digitale avec plus de 15 ans d'expérience dans l'accompagnement des entreprises en transformation numérique.",
+      name: "Jad Marchoudi",
+      role: "Développeur IA",
+      bio: "Alternant en Bachelor IA à l'EPSI Rennes",
       avatar: "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
-      name: "Marie Leclerc",
-      role: "Directrice des Opérations",
-      bio: "Spécialiste en implémentation de solutions IA, Marie possède une expertise unique dans l'adaptation des technologies aux besoins des PME.",
+      name: "Vincent Delacroix",
+      role: "CEO & entrepreneur",
+      bio: "Expert en solutions technologiques et sécurité, avec une expérience polyvalente dans la formation",
       avatar: "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
-      name: "Thomas Martin",
-      role: "Responsable Formation",
-      bio: "Passionné par la transmission des connaissances, Thomas conçoit des programmes de formation accessibles et efficaces en IA.",
+      name: "Louis Marec",
+      role: "Développeur IA",
+      bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes, en quête d'une alternance avec une expérience internationale",
       avatar: "https://randomuser.me/api/portraits/men/2.jpg"
     }
   ];
@@ -62,9 +62,9 @@ const APropos = () => {
               </div>
               <div className="md:w-1/2">
                 <img 
-                  src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
+                  src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png"
                   alt="Viadex Mission" 
-                  className="rounded-xl shadow-md w-full"
+                  className="rounded-full shadow-md w-full"
                 />
               </div>
             </div>

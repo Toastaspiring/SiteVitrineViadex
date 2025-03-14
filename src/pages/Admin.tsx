@@ -59,7 +59,7 @@ const Admin = () => {
               <div className="space-y-1 p-2">
                 <Button 
                   variant={activeView === "contacts" ? "default" : "ghost"} 
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${activeView === "contacts" ? "text-white" : ""}`}
                   onClick={() => {
                     setActiveView("contacts");
                     navigate("/admin/contacts");
@@ -70,7 +70,7 @@ const Admin = () => {
                 </Button>
                 <Button 
                   variant={activeView === "appointments" ? "default" : "ghost"} 
-                  className="w-full justify-start text-left"
+                  className={`w-full justify-start text-left ${activeView === "appointments" ? "text-white" : ""}`}
                   onClick={() => {
                     setActiveView("appointments");
                     navigate("/admin/rendez-vous");

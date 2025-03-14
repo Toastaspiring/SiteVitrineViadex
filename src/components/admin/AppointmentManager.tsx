@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
-import { fr } from "date-fns/locale";
+import { enAU, fr } from "date-fns/locale";
 import { CalendarIcon, Calendar as CalendarViewIcon, Download, ExternalLink } from "lucide-react";
 
 // Simulation de données
@@ -132,7 +132,7 @@ const AppointmentManager = () => {
         <h1 className="text-2xl font-bold">Gestion des rendez-vous</h1>
         <Button 
           onClick={() => setExportModalOpen(true)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-white"
         >
           <ExternalLink className="h-4 w-4" />
           Exporter vers Calendrier
@@ -244,13 +244,13 @@ const AppointmentManager = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <Calendar
-                mode="single"
-                selected={selectedDate}
-                onSelect={setSelectedDate}
-                locale={fr}
-                className="mx-auto pointer-events-auto"
-              />
+            <Calendar
+              mode="single"
+              selected={selectedDate}
+              onSelect={setSelectedDate}
+              locale={fr}
+              className="w-full max-w-m mx-auto pointer-events-auto overflow-hidden"
+            />
               
               {selectedDate && (
                 <div className="mt-4">
