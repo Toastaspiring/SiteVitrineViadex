@@ -15,9 +15,9 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-semibold flex items-center hover:opacity-90 transition-opacity">
           <img 
-            src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png" 
+            src="/lovable-uploads/LogoV3bleu.png" 
             alt="Viadex Logo" 
-            className="h-8 mr-2" 
+            className="h-10 mr-2 rounded-full" 
           />
           <span className="text-primary animate-in fade-in-0">Viadex</span>
         </Link>

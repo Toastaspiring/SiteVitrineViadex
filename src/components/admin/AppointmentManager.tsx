@@ -249,7 +249,7 @@ const AppointmentManager = () => {
               selected={selectedDate}
               onSelect={setSelectedDate}
               locale={fr}
-              className="w-full max-w-m mx-auto pointer-events-auto overflow-hidden"
+              className="pointer-events-auto"
             />
               
               {selectedDate && (

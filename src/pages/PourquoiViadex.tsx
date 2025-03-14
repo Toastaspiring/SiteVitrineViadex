@@ -60,12 +60,12 @@ const PourquoiViadex = () => {
             </div>
             
             <div className="bg-background rounded-xl p-8 shadow-sm">
-              <div className="flex flex-col md:flex-row gap-8">
+              <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="md:w-1/2">
                   <img 
-                    src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
+                    src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png"
                     alt="Viadex Diagram" 
-                    className="rounded-lg w-full h-auto"
+                    className="rounded-full w-full h-auto"
                   />
                 </div>
                 <div className="md:w-1/2">
