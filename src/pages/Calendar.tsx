@@ -214,7 +214,7 @@ const CalendarPage = () => {
                       
                       <Button 
                         type="button" 
-                        className="w-full"
+                        className="w-full text-white"
                         onClick={handleNext}
                       >
                         Continuer
@@ -280,7 +280,7 @@ const CalendarPage = () => {
                         </Button>
                         <Button 
                           type="submit" 
-                          className="sm:flex-1"
+                          className="sm:flex-1 text-white"
                         >
                           Confirmer le rendez-vous
                         </Button>

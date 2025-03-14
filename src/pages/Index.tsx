@@ -44,9 +44,9 @@ const Index = () => {
                 </div>
                 <div className="relative z-10">
                   <img 
-                    src="/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png"
+                    src="/lovable-uploads/logoV1.png"
                     alt="Viadex Logo" 
-                    className="max-w-[80%] w-auto"
+                    className="max-w-[100%] w-auto"
                   />
                 </div>
                 <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4">
