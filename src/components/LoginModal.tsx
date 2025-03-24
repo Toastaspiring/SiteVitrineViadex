@@ -1,4 +1,3 @@
-
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -7,27 +6,28 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
 import { authenticateUser } from "@/services/databaseService";
-
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-export function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export function LoginModal({
+  isOpen,
+  onClose
+}: LoginModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setIsAuthenticated, setUser } = useAuth();
+  const {
+    setIsAuthenticated,
+    setUser
+  } = useAuth();
   const navigate = useNavigate();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
     try {
       // Use the database service to authenticate
       const user = await authenticateUser(email, password);
-      
       if (user) {
         setUser(user);
         setIsAuthenticated(true);
@@ -44,9 +44,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
       setIsLoading(false);
     }
   };
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+  return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] animate-in fade-in-0 zoom-in-95">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center mb-4">
@@ -58,28 +56,13 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
             <label htmlFor="email" className="text-sm font-medium">
               Email
             </label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full"
-              placeholder="votreemail@exemple.com"
-            />
+            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full" placeholder="votreemail@exemple.com" />
           </div>
           <div className="space-y-2">
             <label htmlFor="password" className="text-sm font-medium">
               Mot de passe
             </label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full"
-            />
+            <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full rounded-sm" />
           </div>
           <div className="text-xs text-muted-foreground">
             Pour la démonstration, utilisez: admin@viadex.fr / admin
@@ -89,6 +72,5 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </Button>
         </form>
       </DialogContent>
-    </Dialog>
-  );
+    </Dialog>;
 }
