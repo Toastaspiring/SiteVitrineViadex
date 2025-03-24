@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -50,9 +49,7 @@ const Index = () => {
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
                 <span className="block">L'IA au service des</span>
                 <span className="block">PME & ETI de l'Ouest :</span>
-                <span className="block text-white">
-                  simplifiez votre transformation
-                </span>
+                <span className="block text-white">simplifiez votre transformation</span>
               </h1>
               <p className="text-lg text-white/80 mb-8 max-w-xl">
                 Viadex accompagne les entreprises dans l'adoption de l'IA, sans complexité technique.
