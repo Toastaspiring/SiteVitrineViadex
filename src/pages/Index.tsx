@@ -1,45 +1,36 @@
-
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 const Index = () => {
-  const services = [
-    {
-      title: "Formations IA",
-      description: "Acculturation des dirigeants et équipes, formations certifiantes CertifIA, ateliers pratiques pour comprendre et maîtriser l'IA.",
-      icon: <GraduationCap className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50",
-      link: "/formation"
-    },
-    {
-      title: "Diagnostic Data & IA",
-      description: "Audit de vos données et processus, identification des opportunités d'IA, évaluation de la maturité et recommandations personnalisées.",
-      icon: <ClockIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50",
-      link: "/methodologie"
-    },
-    {
-      title: "Accompagnement de projets IA",
-      description: "Suivi de bout en bout de vos projets IA, change management, intégration technique et formation des utilisateurs.",
-      icon: <UsersIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50",
-      link: "/methodologie"
-    },
-    {
-      title: "Mise en œuvre dé-risquée",
-      description: "Approche progressive qui minimise les risques, respect du RGPD, évaluation du ROI et focus sur les cas d'usage à valeur ajoutée.",
-      icon: <ShieldIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50",
-      link: "/methodologie"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const services = [{
+    title: "Formations IA",
+    description: "Acculturation des dirigeants et équipes, formations certifiantes CertifIA, ateliers pratiques pour comprendre et maîtriser l'IA.",
+    icon: <GraduationCap className="w-6 h-6 text-primary" />,
+    color: "bg-blue-50",
+    link: "/formation"
+  }, {
+    title: "Diagnostic Data & IA",
+    description: "Audit de vos données et processus, identification des opportunités d'IA, évaluation de la maturité et recommandations personnalisées.",
+    icon: <ClockIcon className="w-6 h-6 text-primary" />,
+    color: "bg-blue-50",
+    link: "/methodologie"
+  }, {
+    title: "Accompagnement de projets IA",
+    description: "Suivi de bout en bout de vos projets IA, change management, intégration technique et formation des utilisateurs.",
+    icon: <UsersIcon className="w-6 h-6 text-primary" />,
+    color: "bg-blue-50",
+    link: "/methodologie"
+  }, {
+    title: "Mise en œuvre dé-risquée",
+    description: "Approche progressive qui minimise les risques, respect du RGPD, évaluation du ROI et focus sur les cas d'usage à valeur ajoutée.",
+    icon: <ShieldIcon className="w-6 h-6 text-primary" />,
+    color: "bg-blue-50",
+    link: "/methodologie"
+  }];
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-16">
@@ -52,23 +43,18 @@ const Index = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
                 </div>
-                <img 
-                  src="/lovable-uploads/logoV1.png"
-                  alt="Viadex Logo" 
-                  className="w-full h-auto"
-                />
+                <img src="/lovable-uploads/logoV1.png" alt="Viadex Logo" className="w-full h-auto" />
               </div>
             </div>
             
             {/* Content that can overlap the logo */}
             <div className="relative z-10 max-w-3xl">
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
-                <span className="block mb-2">L'IA au service des PME & ETI de l'Ouest :</span>
+                <span className="block mb-2 py-[30px]">L'IA au service des PME & ETI du Grand Ouest :
+              </span>
                 <span className="block text-white">simplifiez votre transformation</span>
               </h1>
-              <p className="text-lg text-white/80 mb-8 max-w-xl">
-                Viadex accompagne les entreprises dans l'adoption de l'IA, sans complexité technique.
-              </p>
+              <p className="text-lg text-white/80 mb-8 max-w-xl">Viadex accompagne les entreprises dans l'adoption de l'IA, en toute simplicité.</p>
               <Link to="/contact">
                 <Button className="px-6 py-6 bg-white text-primary hover:bg-white/90 rounded-lg text-lg font-medium">
                   Prenez un rendez-vous découverte
@@ -89,23 +75,15 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-              {services.map((service, index) => (
-                <Link 
-                  key={index}
-                  to={service.link}
-                  className="block h-full hover:no-underline"
-                >
-                  <div
-                    className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background flex flex-col h-full"
-                  >
+              {services.map((service, index) => <Link key={index} to={service.link} className="block h-full hover:no-underline">
+                  <div className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background flex flex-col h-full">
                     <div className={`w-14 h-14 ${service.color} rounded-lg flex items-center justify-center mb-4`}>
                       {service.icon}
                     </div>
                     <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                     <p className="text-secondary text-sm flex-grow">{service.description}</p>
                   </div>
-                </Link>
-              ))}
+                </Link>)}
             </div>
             
             <div className="flex justify-center mt-8">
@@ -140,17 +118,10 @@ const Index = () => {
               <div className="md:w-5/12 bg-blue-50 p-6 rounded-xl">
                 <h4 className="font-semibold mb-3">Points clés :</h4>
                 <ul className="space-y-2">
-                  {[
-                    "Certification officielle (France Compétences RS6891)",
-                    "Éligible au financement CPF",
-                    "Formation exclusive en France",
-                    "Tarif de lancement : 2 500 €"
-                  ].map((point, index) => (
-                    <li key={index} className="flex items-start gap-2">
+                  {["Certification officielle (France Compétences RS6891)", "Éligible au financement CPF", "Formation exclusive en France", "Tarif de lancement : 2 500 €"].map((point, index) => <li key={index} className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <span className="text-sm">{point}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
@@ -190,21 +161,16 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  title: "Sans jargon technique",
-                  description: "Nous parlons votre langage, pas celui des ingénieurs.",
-                },
-                {
-                  title: "Solutions accessibles",
-                  description: "Des approches concrètes adaptées à vos besoins réels.",
-                },
-                {
-                  title: "Accompagnement personnalisé",
-                  description: "Un suivi sur mesure pour votre entreprise.",
-                },
-              ].map((point, index) => (
-                <div key={index} className="flex items-start gap-4">
+              {[{
+              title: "Sans jargon technique",
+              description: "Nous parlons votre langage, pas celui des ingénieurs."
+            }, {
+              title: "Solutions accessibles",
+              description: "Des approches concrètes adaptées à vos besoins réels."
+            }, {
+              title: "Accompagnement personnalisé",
+              description: "Un suivi sur mesure pour votre entreprise."
+            }].map((point, index) => <div key={index} className="flex items-start gap-4">
                   <div className="bg-primary rounded-full p-2 text-white flex-shrink-0 mt-1">
                     <Check className="w-5 h-5" />
                   </div>
@@ -212,8 +178,7 @@ const Index = () => {
                     <h3 className="text-xl font-semibold mb-2">{point.title}</h3>
                     <p className="text-secondary">{point.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
             
             <div className="text-center">
@@ -243,8 +208,6 @@ const Index = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
