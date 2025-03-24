@@ -8,6 +8,8 @@ import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { getBlogPostBySlug } from "@/services/databaseService";
 import { BlogPost as BlogPostType } from "@/types/database";
 import { toast } from "sonner";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -43,7 +45,25 @@ const BlogPost = () => {
         <Navigation />
         <main className="pt-24 pb-16 px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <p className="text-center py-20">Chargement de l'article...</p>
+            <Link to="/blog" className="inline-flex items-center text-primary hover:underline mb-8">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Retour aux articles
+            </Link>
+            
+            <Card className="w-full mb-8">
+              <Skeleton className="w-full h-[400px] rounded-t-xl" />
+            </Card>
+            
+            <div className="space-y-4">
+              <Skeleton className="h-12 w-3/4" />
+              <div className="flex gap-4">
+                <Skeleton className="h-6 w-24" />
+                <Skeleton className="h-6 w-24" />
+                <Skeleton className="h-6 w-24" />
+              </div>
+              <Skeleton className="h-40 w-full" />
+              <Skeleton className="h-40 w-full" />
+            </div>
           </div>
         </main>
         <Footer />
@@ -80,62 +100,82 @@ const BlogPost = () => {
             Retour aux articles
           </Link>
           
-          <div className="mb-8">
-            <img 
-              src={post.imagePath} 
-              alt={post.titre} 
-              className="w-full h-80 object-cover rounded-xl" 
-            />
-          </div>
-          
-          <div className="mb-10">
-            <h1 className="text-4xl font-bold mb-6">{post.titre}</h1>
-            
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
-                {post.date}
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
-                {post.tempsLecture} de lecture
-              </div>
-              <div className="flex items-center">
-                <Tag className="w-4 h-4 mr-2" />
-                {post.categorie}
+          <article className="bg-white rounded-xl shadow-sm overflow-hidden mb-10">
+            <div className="relative">
+              <img 
+                src={post.imagePath} 
+                alt={post.titre} 
+                className="w-full h-[400px] object-cover" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                <div className="p-6 md:p-8 w-full">
+                  <span className="inline-block px-3 py-1 bg-primary text-white text-sm font-medium rounded-full mb-4">
+                    {post.categorie}
+                  </span>
+                  <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{post.titre}</h1>
+                </div>
               </div>
             </div>
             
-            <div className="prose prose-lg max-w-none">
-              {/* This would be replaced with actual content from the database */}
-              <p className="lead">{post.excerpt}</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non diam euismod, 
-                ultrices nisl a, tristique risus. Ut ut convallis nisl. Sed sit amet orci at magna 
-                efficitur mollis. Mauris vel diam sed velit feugiat interdum.
-              </p>
-              <p>
-                Nulla facilisi. Integer eget sagittis urna. Pellentesque habitant morbi tristique senectus 
-                et netus et malesuada fames ac turpis egestas. Curabitur fermentum nulla eget ipsum pulvinar 
-                lacinia. Mauris tristique sem et felis pulvinar, a tempor odio convallis.
-              </p>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6 border-b border-gray-100 pb-4">
+                <div className="flex items-center">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  {post.date}
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2" />
+                  {post.tempsLecture} de lecture
+                </div>
+                <div className="flex items-center">
+                  <Tag className="w-4 h-4 mr-2" />
+                  {post.categorie}
+                </div>
+              </div>
+              
+              <div className="prose prose-lg max-w-none">
+                {post.excerpt && (
+                  <div className="lead text-xl font-medium text-gray-900 mb-6">
+                    {post.excerpt}
+                  </div>
+                )}
+                
+                {post.content ? (
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                ) : (
+                  <>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non diam euismod, 
+                      ultrices nisl a, tristique risus. Ut ut convallis nisl. Sed sit amet orci at magna 
+                      efficitur mollis. Mauris vel diam sed velit feugiat interdum.
+                    </p>
+                    <p>
+                      Nulla facilisi. Integer eget sagittis urna. Pellentesque habitant morbi tristique senectus 
+                      et netus et malesuada fames ac turpis egestas. Curabitur fermentum nulla eget ipsum pulvinar 
+                      lacinia. Mauris tristique sem et felis pulvinar, a tempor odio convallis.
+                    </p>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
+          </article>
           
-          <div className="bg-primary/5 rounded-xl p-8 mb-10">
-            <h3 className="text-xl font-bold mb-4">Vous avez aimé cet article ?</h3>
-            <p className="mb-6">
-              Découvrez comment nous pouvons vous aider à implémenter des solutions d'IA adaptées à votre entreprise.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <Button>Contactez-nous</Button>
-              </Link>
-              <Link to="/calendrier">
-                <Button variant="outline">Prendre rendez-vous</Button>
-              </Link>
-            </div>
-          </div>
+          <Card className="bg-primary/5 mb-10">
+            <CardContent className="pt-6">
+              <h3 className="text-xl font-bold mb-4">Vous avez aimé cet article ?</h3>
+              <p className="mb-6">
+                Découvrez comment nous pouvons vous aider à implémenter des solutions d'IA adaptées à votre entreprise.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/contact">
+                  <Button>Contactez-nous</Button>
+                </Link>
+                <Link to="/calendrier">
+                  <Button variant="outline">Prendre rendez-vous</Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
       
