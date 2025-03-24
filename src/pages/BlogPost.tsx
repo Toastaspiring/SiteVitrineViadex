@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -10,21 +9,21 @@ import { BlogPost as BlogPostType } from "@/types/database";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-
 const BlogPost = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const {
+    slug
+  } = useParams<{
+    slug: string;
+  }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const fetchPost = async () => {
       if (!slug) return;
-      
       setIsLoading(true);
       try {
         const blogPost = await getBlogPostBySlug(slug);
         setPost(blogPost);
-        
         if (!blogPost) {
           toast.error("Article non trouvé");
         }
@@ -35,13 +34,10 @@ const BlogPost = () => {
         setIsLoading(false);
       }
     };
-
     fetchPost();
   }, [slug]);
-
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background">
+    return <div className="min-h-screen bg-background">
         <Navigation />
         <main className="pt-24 pb-16 px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -67,13 +63,10 @@ const BlogPost = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
   if (!post) {
-    return (
-      <div className="min-h-screen bg-background">
+    return <div className="min-h-screen bg-background">
         <Navigation />
         <main className="pt-24 pb-16 px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center py-20">
@@ -85,12 +78,9 @@ const BlogPost = () => {
           </div>
         </main>
         <Footer />
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-24 pb-16 px-6 lg:px-8">
@@ -102,11 +92,7 @@ const BlogPost = () => {
           
           <article className="bg-white rounded-xl shadow-sm overflow-hidden mb-10">
             <div className="relative">
-              <img 
-                src={post.imagePath} 
-                alt={post.titre} 
-                className="w-full h-[400px] object-cover" 
-              />
+              <img src={post.imagePath} alt={post.titre} className="w-full h-[400px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <div className="p-6 md:p-8 w-full">
                   <span className="inline-block px-3 py-1 bg-primary text-white text-sm font-medium rounded-full mb-4">
@@ -134,16 +120,13 @@ const BlogPost = () => {
               </div>
               
               <div className="prose prose-lg max-w-none">
-                {post.excerpt && (
-                  <div className="lead text-xl font-medium text-gray-900 mb-6">
+                {post.excerpt && <div className="lead text-xl font-medium text-gray-900 mb-6">
                     {post.excerpt}
-                  </div>
-                )}
+                  </div>}
                 
-                {post.content ? (
-                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
-                ) : (
-                  <>
+                {post.content ? <div dangerouslySetInnerHTML={{
+                __html: post.content
+              }} /> : <>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non diam euismod, 
                       ultrices nisl a, tristique risus. Ut ut convallis nisl. Sed sit amet orci at magna 
@@ -154,8 +137,7 @@ const BlogPost = () => {
                       et netus et malesuada fames ac turpis egestas. Curabitur fermentum nulla eget ipsum pulvinar 
                       lacinia. Mauris tristique sem et felis pulvinar, a tempor odio convallis.
                     </p>
-                  </>
-                )}
+                  </>}
               </div>
             </div>
           </article>
@@ -168,7 +150,7 @@ const BlogPost = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact">
-                  <Button>Contactez-nous</Button>
+                  <Button className="text-gray-50">Contactez-nous</Button>
                 </Link>
                 <Link to="/calendrier">
                   <Button variant="outline">Prendre rendez-vous</Button>
@@ -180,8 +162,6 @@ const BlogPost = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default BlogPost;
