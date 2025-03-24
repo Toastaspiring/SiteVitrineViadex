@@ -63,9 +63,9 @@ const PourquoiViadex = () => {
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="md:w-1/2">
                   <img 
-                    src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png"
-                    alt="Viadex Diagram" 
-                    className="rounded-xl w-full h-auto"
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                    alt="Équipe travaillant sur des solutions IA" 
+                    className="rounded-xl w-full h-auto object-cover"
                   />
                 </div>
                 <div className="md:w-1/2">
