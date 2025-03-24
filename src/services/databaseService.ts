@@ -1,12 +1,24 @@
 
 import { User, Contact, BlogPost } from "@/types/database";
 
+// Configuration for the API (will be used when the actual API is implemented)
+const API_BASE_URL = "/api"; // This should point to your backend API
+
 // This service will be updated when the actual MySQL database is connected
 // Currently using mock data with the correct structure
 
-// Mock function to simulate authentication with the database
+// Authentication service
 export const authenticateUser = async (email: string, password: string): Promise<User | null> => {
-  // This will be replaced with an actual API call
+  // In a real implementation, this would make a POST request to the authentication endpoint
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/auth/login`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ email, password })
+  // });
+  // const data = await response.json();
+  // return data.user || null;
+  
   console.log("Authenticating user:", email);
   
   // Simulate API call delay
@@ -23,9 +35,13 @@ export const authenticateUser = async (email: string, password: string): Promise
   return null;
 };
 
-// Mock function to fetch contacts from the database
+// Contact service functions
 export const getContacts = async (): Promise<Contact[]> => {
-  // This will be replaced with an actual API call
+  // In a real implementation, this would make a GET request to the contacts endpoint
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/contacts`);
+  // return await response.json();
+  
   console.log("Fetching contacts from database");
   
   // Simulate API call delay
@@ -41,7 +57,8 @@ export const getContacts = async (): Promise<Contact[]> => {
       message: "Je souhaiterais en savoir plus sur vos services de formation IA",
       date: "2023-06-12",
       status: "non-traité",
-      source: "formulaire_contact"
+      source: "formulaire_contact",
+      ip_address: "192.168.1.1"
     },
     {
       id: 2,
@@ -51,7 +68,8 @@ export const getContacts = async (): Promise<Contact[]> => {
       message: "Bonjour, est-il possible d'obtenir un devis pour un accompagnement stratégique ?",
       date: "2023-06-10",
       status: "traité",
-      source: "formulaire_accueil"
+      source: "formulaire_accueil",
+      ip_address: "192.168.1.2"
     },
     {
       id: 3,
@@ -61,7 +79,8 @@ export const getContacts = async (): Promise<Contact[]> => {
       message: "J'aimerais organiser un diagnostic IA pour mon entreprise de 50 personnes",
       date: "2023-06-08",
       status: "non-traité",
-      source: "formulaire_contact"
+      source: "formulaire_contact",
+      ip_address: "192.168.1.3"
     },
     {
       id: 4,
@@ -71,14 +90,22 @@ export const getContacts = async (): Promise<Contact[]> => {
       message: "Quelles sont vos disponibilités pour une première réunion?",
       date: "2023-06-05",
       status: "traité",
-      source: "formulaire_accueil"
+      source: "formulaire_accueil",
+      ip_address: "192.168.1.4"
     },
   ];
 };
 
-// Mock function to update a contact's status
 export const updateContactStatus = async (id: number, status: string): Promise<boolean> => {
-  // This will be replaced with an actual API call
+  // In a real implementation, this would make a PUT/PATCH request to update the contact status
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/contacts/${id}`, {
+  //   method: 'PATCH',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ status })
+  // });
+  // return response.ok;
+  
   console.log(`Updating contact ${id} status to ${status}`);
   
   // Simulate API call delay
@@ -88,9 +115,13 @@ export const updateContactStatus = async (id: number, status: string): Promise<b
   return true;
 };
 
-// Mock function to fetch blog posts from the database
+// Blog service functions
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
-  // This will be replaced with an actual API call
+  // In a real implementation, this would make a GET request to the blog posts endpoint
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/blog-posts`);
+  // return await response.json();
+  
   console.log("Fetching blog posts from database");
   
   // Simulate API call delay
@@ -161,8 +192,32 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
   ];
 };
 
-// Mock function to get a specific blog post by slug
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
+  // In a real implementation, this would make a GET request to get a specific blog post by slug
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/blog-posts/${slug}`);
+  // return response.ok ? await response.json() : null;
+  
   const posts = await getBlogPosts();
   return posts.find(post => post.slug === slug) || null;
+};
+
+// For future implementation: Adding a new contact from the contact form
+export const addContact = async (contact: Omit<Contact, 'id' | 'date' | 'status'>): Promise<boolean> => {
+  // In a real implementation, this would make a POST request to create a new contact
+  // Example:
+  // const response = await fetch(`${API_BASE_URL}/contacts`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(contact)
+  // });
+  // return response.ok;
+  
+  console.log("Adding new contact:", contact);
+  
+  // Simulate API call delay
+  await new Promise(resolve => setTimeout(resolve, 800));
+  
+  // Mock success response
+  return true;
 };

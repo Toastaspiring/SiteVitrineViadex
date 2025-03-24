@@ -1,5 +1,5 @@
 
-// Database types that match our future MySQL schema
+// Database types that match our MySQL schema
 
 export interface User {
   id: number;
