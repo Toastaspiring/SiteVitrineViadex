@@ -1,13 +1,9 @@
-
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
-
 const Contact = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-16">
@@ -54,9 +50,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary rounded-full p-3 text-white">
-                      <Phone className="w-5 h-5" />
-                    </div>
+                    
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
                       <p className="text-secondary">+33 (0)1 23 45 67 89</p>
@@ -83,12 +77,9 @@ const Contact = () => {
                     Préférez-vous un échange en direct ? Réservez un créneau de 30 minutes 
                     avec l'un de nos experts pour discuter de vos besoins spécifiques.
                   </p>
-                  <Link 
-                    to="/calendrier" 
-                    className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                  >
+                  <a href="#" className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors">
                     Réserver un créneau
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -101,37 +92,28 @@ const Contact = () => {
             <h2 className="text-2xl font-bold mb-8 text-center">Questions fréquentes</h2>
             
             <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  question: "Comment se déroule un premier échange ?",
-                  answer: "Lors d'un premier échange, nous prenons le temps de comprendre votre entreprise, vos besoins et vos objectifs. C'est un échange sans engagement, qui nous permet d'évaluer comment nous pouvons vous aider et vous donner un premier aperçu des possibilités."
-                },
-                {
-                  question: "Quels sont vos tarifs ?",
-                  answer: "Nos tarifs varient en fonction de vos besoins spécifiques et de l'ampleur de l'accompagnement. Nous privilégions une approche transparente et sur mesure. Contactez-nous pour recevoir un devis personnalisé."
-                },
-                {
-                  question: "Travaillez-vous avec des entreprises de toute taille ?",
-                  answer: "Oui, nous travaillons principalement avec des PME et ETI, mais notre approche s'adapte à toutes les tailles d'entreprise. Notre objectif est de rendre l'IA accessible à tous, quelle que soit la taille de votre structure."
-                },
-                {
-                  question: "Combien de temps dure un accompagnement typique ?",
-                  answer: "La durée d'un accompagnement varie selon vos objectifs. Un diagnostic peut être réalisé en quelques semaines, tandis qu'un accompagnement complet peut s'étendre sur plusieurs mois. Nous définissons ensemble un calendrier adapté à vos contraintes."
-                }
-              ].map((faq, index) => (
-                <div key={index} className="bg-background rounded-xl p-6">
+              {[{
+              question: "Comment se déroule un premier échange ?",
+              answer: "Lors d'un premier échange, nous prenons le temps de comprendre votre entreprise, vos besoins et vos objectifs. C'est un échange sans engagement, qui nous permet d'évaluer comment nous pouvons vous aider et vous donner un premier aperçu des possibilités."
+            }, {
+              question: "Quels sont vos tarifs ?",
+              answer: "Nos tarifs varient en fonction de vos besoins spécifiques et de l'ampleur de l'accompagnement. Nous privilégions une approche transparente et sur mesure. Contactez-nous pour recevoir un devis personnalisé."
+            }, {
+              question: "Travaillez-vous avec des entreprises de toute taille ?",
+              answer: "Oui, nous travaillons principalement avec des PME et ETI, mais notre approche s'adapte à toutes les tailles d'entreprise. Notre objectif est de rendre l'IA accessible à tous, quelle que soit la taille de votre structure."
+            }, {
+              question: "Combien de temps dure un accompagnement typique ?",
+              answer: "La durée d'un accompagnement varie selon vos objectifs. Un diagnostic peut être réalisé en quelques semaines, tandis qu'un accompagnement complet peut s'étendre sur plusieurs mois. Nous définissons ensemble un calendrier adapté à vos contraintes."
+            }].map((faq, index) => <div key={index} className="bg-background rounded-xl p-6">
                   <h3 className="font-semibold text-lg mb-3">{faq.question}</h3>
                   <p className="text-secondary">{faq.answer}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
