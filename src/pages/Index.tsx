@@ -1,5 +1,4 @@
-
-import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon } from "lucide-react";
+import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
@@ -11,26 +10,30 @@ const Index = () => {
     {
       title: "Formations IA",
       description: "Acculturation des dirigeants et équipes, formations certifiantes CertifIA, ateliers pratiques pour comprendre et maîtriser l'IA.",
-      icon: <LightbulbIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50"
+      icon: <GraduationCap className="w-6 h-6 text-primary" />,
+      color: "bg-blue-50",
+      link: "/formation"
     },
     {
       title: "Diagnostic Data & IA",
       description: "Audit de vos données et processus, identification des opportunités d'IA, évaluation de la maturité et recommandations personnalisées.",
       icon: <ClockIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50"
+      color: "bg-blue-50",
+      link: "/methodologie"
     },
     {
       title: "Accompagnement de projets IA",
       description: "Suivi de bout en bout de vos projets IA, change management, intégration technique et formation des utilisateurs.",
       icon: <UsersIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50"
+      color: "bg-blue-50",
+      link: "/methodologie"
     },
     {
       title: "Mise en œuvre dé-risquée",
       description: "Approche progressive qui minimise les risques, respect du RGPD, évaluation du ROI et focus sur les cas d'usage à valeur ajoutée.",
       icon: <ShieldIcon className="w-6 h-6 text-primary" />,
-      color: "bg-blue-50"
+      color: "bg-blue-50",
+      link: "/methodologie"
     }
   ];
 
@@ -88,16 +91,21 @@ const Index = () => {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {services.map((service, index) => (
-                <div
+                <Link 
                   key={index}
-                  className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background flex flex-col h-full"
+                  to={service.link}
+                  className="block h-full hover:no-underline"
                 >
-                  <div className={`w-14 h-14 ${service.color} rounded-lg flex items-center justify-center mb-4`}>
-                    {service.icon}
+                  <div
+                    className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background flex flex-col h-full"
+                  >
+                    <div className={`w-14 h-14 ${service.color} rounded-lg flex items-center justify-center mb-4`}>
+                      {service.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                    <p className="text-secondary text-sm flex-grow">{service.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                  <p className="text-secondary text-sm flex-grow">{service.description}</p>
-                </div>
+                </Link>
               ))}
             </div>
             
@@ -107,6 +115,45 @@ const Index = () => {
                   Découvrir notre méthodologie <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
+            </div>
+          </div>
+        </section>
+        
+        {/* Formation CertifIAG Banner */}
+        <section className="py-12 px-6 lg:px-8 bg-gradient-to-r from-blue-100 to-blue-50">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-xl shadow-sm">
+              <div className="md:w-7/12">
+                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                  <GraduationCap className="text-primary" />
+                  Formation CertifIAG
+                </h3>
+                <p className="text-secondary mb-6">
+                  Maîtrisez l'IA Générative avec discernement grâce à notre certification reconnue officiellement.
+                  Formation éligible CPF pour les professionnels souhaitant intégrer l'IA de façon concrète et responsable.
+                </p>
+                <Link to="/formation">
+                  <Button className="flex items-center gap-2 bg-primary text-white">
+                    Découvrir la formation <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="md:w-5/12 bg-blue-50 p-6 rounded-xl">
+                <h4 className="font-semibold mb-3">Points clés :</h4>
+                <ul className="space-y-2">
+                  {[
+                    "Certification officielle (France Compétences RS6891)",
+                    "Éligible au financement CPF",
+                    "Formation exclusive en France",
+                    "Tarif de lancement : 2 500 €"
+                  ].map((point, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-sm">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>

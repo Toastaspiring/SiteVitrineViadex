@@ -11,6 +11,7 @@ import { useAuth } from "./context/AuthContext";
 // Pages
 import Index from "./pages/Index";
 import Methodologie from "./pages/Methodologie";
+import Formation from "./pages/Formation";
 import PourquoiViadex from "./pages/PourquoiViadex";
 import APropos from "./pages/APropos";
 import Blog from "./pages/Blog";
@@ -41,6 +42,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/methodologie" element={<Methodologie />} />
+      <Route path="/formation" element={<Formation />} />
       <Route path="/pourquoi-viadex" element={<PourquoiViadex />} />
       <Route path="/a-propos" element={<APropos />} />
       <Route path="/blog" element={<Blog />} />

@@ -26,6 +26,9 @@ const Navigation = () => {
           <Link to="/methodologie" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Notre Méthodologie
           </Link>
+          <Link to="/formation" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
+            Formation CertifIAG
+          </Link>
           <Link to="/pourquoi-viadex" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Pourquoi Viadex
           </Link>
