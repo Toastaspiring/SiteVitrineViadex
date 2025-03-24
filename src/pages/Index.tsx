@@ -45,8 +45,8 @@ const Index = () => {
       <main className="pt-16">
         {/* Section Bannière */}
         <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
+          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2 mb-10 md:mb-0 z-10">
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
                 <span className="block mb-2">L'IA au service des PME & ETI de l'Ouest :</span>
                 <span className="block text-white">simplifiez votre transformation</span>
@@ -61,8 +61,8 @@ const Index = () => {
               </Link>
             </div>
             
-            <div className="md:w-1/2 flex justify-center">
-              <div className="relative">
+            <div className="md:w-1/2 flex justify-center md:justify-end">
+              <div className="relative max-w-[300px] md:max-w-[380px] w-full">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
                 </div>
@@ -70,7 +70,7 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/logoV1.png"
                     alt="Viadex Logo" 
-                    className="max-w-[100%] w-auto"
+                    className="w-full h-auto"
                   />
                 </div>
               </div>
