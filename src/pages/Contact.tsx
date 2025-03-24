@@ -1,9 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { Mail, MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { Mail, MapPin, Phone } from "lucide-react";
 const Contact = () => {
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -52,6 +50,14 @@ const Contact = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
+                    
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
+                      <p className="text-secondary">+33 (0)1 23 45 67 89</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4">
                     <div className="bg-primary rounded-full p-3 text-white">
                       <MapPin className="w-5 h-5" />
                     </div>
@@ -71,9 +77,9 @@ const Contact = () => {
                     Préférez-vous un échange en direct ? Réservez un créneau de 30 minutes 
                     avec l'un de nos experts pour discuter de vos besoins spécifiques.
                   </p>
-                  <Link to="/calendrier" className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                  <a href="#" className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors">
                     Réserver un créneau
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

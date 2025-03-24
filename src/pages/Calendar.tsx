@@ -1,4 +1,3 @@
-
 import { CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -14,12 +13,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-
-const timeSlots = [
-  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
-];
-
+const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
 const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [timeSlot, setTimeSlot] = useState<string>("");
@@ -33,25 +27,24 @@ const CalendarPage = () => {
   const isPastDay = (day: Date) => {
     return day < new Date(new Date().setHours(0, 0, 0, 0));
   };
-  
   const isWeekend = (day: Date) => {
     const dayOfWeek = day.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!date || !timeSlot || !name || !email || !motif) {
       toast.error("Veuillez remplir tous les champs obligatoires");
       return;
     }
-    
+
     // Simuler l'envoi du formulaire
     toast.success("Rendez-vous réservé avec succès!", {
-      description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", { locale: fr })} à ${timeSlot} a été confirmé.`,
+      description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", {
+        locale: fr
+      })} à ${timeSlot} a été confirmé.`
     });
-    
+
     // Réinitialiser le formulaire
     setDate(undefined);
     setTimeSlot("");
@@ -61,7 +54,6 @@ const CalendarPage = () => {
     setMotif("");
     setFormStep(0);
   };
-
   const handleNext = () => {
     if (!date || !timeSlot) {
       toast.error("Veuillez sélectionner une date et un horaire");
@@ -69,13 +61,10 @@ const CalendarPage = () => {
     }
     setFormStep(1);
   };
-
   const handleBack = () => {
     setFormStep(0);
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-24 pb-16 px-6">
@@ -135,7 +124,7 @@ const CalendarPage = () => {
                   <CardDescription>Contactez-nous par téléphone ou email</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-primary font-medium">+33 (0)1 23 45 67 89</p>
+                  
                   <p className="text-primary font-medium">contact@viadex.fr</p>
                 </CardContent>
               </Card>
@@ -145,168 +134,95 @@ const CalendarPage = () => {
               <CardHeader>
                 <CardTitle>Réserver un créneau</CardTitle>
                 <CardDescription>
-                  {formStep === 0 
-                    ? "Sélectionnez une date et un horaire disponible" 
-                    : "Complétez vos informations pour confirmer"}
+                  {formStep === 0 ? "Sélectionnez une date et un horaire disponible" : "Complétez vos informations pour confirmer"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {formStep === 0 ? (
-                    <>
+                  {formStep === 0 ? <>
                       <div className="space-y-4">
                         <div>
                           <Label htmlFor="date">Date du rendez-vous</Label>
                           <div className="mt-2">
                             <Popover>
                               <PopoverTrigger asChild>
-                                <Button
-                                  variant="outline"
-                                  className={cn(
-                                    "w-full justify-start text-left font-normal",
-                                    !date && "text-muted-foreground"
-                                  )}
-                                >
+                                <Button variant="outline" className={cn("w-full justify-start text-left font-normal", !date && "text-muted-foreground")}>
                                   <CalendarIcon className="mr-2 h-4 w-4" />
-                                  {date ? (
-                                    format(date, "dd MMMM yyyy", { locale: fr })
-                                  ) : (
-                                    <span>Sélectionnez une date</span>
-                                  )}
+                                  {date ? format(date, "dd MMMM yyyy", {
+                                locale: fr
+                              }) : <span>Sélectionnez une date</span>}
                                 </Button>
                               </PopoverTrigger>
                               <PopoverContent className="w-auto p-0" align="start">
-                                <CalendarComponent
-                                  mode="single"
-                                  selected={date}
-                                  onSelect={setDate}
-                                  disabled={(date) => isPastDay(date) || isWeekend(date)}
-                                  locale={fr}
-                                  className="pointer-events-auto"
-                                />
+                                <CalendarComponent mode="single" selected={date} onSelect={setDate} disabled={date => isPastDay(date) || isWeekend(date)} locale={fr} className="pointer-events-auto" />
                               </PopoverContent>
                             </Popover>
                           </div>
                         </div>
                         
-                        {date && (
-                          <div>
+                        {date && <div>
                             <Label htmlFor="time">Horaire</Label>
                             <div className="grid grid-cols-4 gap-2 mt-2">
-                              {timeSlots.map((time) => (
-                                <Button
-                                  key={time}
-                                  type="button"
-                                  variant={timeSlot === time ? "default" : "outline"}
-                                  className={cn(
-                                    "h-10",
-                                    timeSlot === time ? "bg-primary text-white" : ""
-                                  )}
-                                  onClick={() => setTimeSlot(time)}
-                                >
+                              {timeSlots.map(time => <Button key={time} type="button" variant={timeSlot === time ? "default" : "outline"} className={cn("h-10", timeSlot === time ? "bg-primary text-white" : "")} onClick={() => setTimeSlot(time)}>
                                   {time}
-                                </Button>
-                              ))}
+                                </Button>)}
                             </div>
-                          </div>
-                        )}
+                          </div>}
                       </div>
                       
-                      <Button 
-                        type="button" 
-                        className="w-full text-white"
-                        onClick={handleNext}
-                      >
+                      <Button type="button" className="w-full text-white" onClick={handleNext}>
                         Continuer
                       </Button>
-                    </>
-                  ) : (
-                    <>
+                    </> : <>
                       <div className="space-y-4">
                         <div className="grid gap-2">
                           <Label htmlFor="name">Nom complet *</Label>
-                          <Input 
-                            id="name" 
-                            value={name} 
-                            onChange={(e) => setName(e.target.value)} 
-                            placeholder="Votre nom et prénom"
-                            required
-                          />
+                          <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Votre nom et prénom" required />
                         </div>
                         
                         <div className="grid gap-2">
                           <Label htmlFor="email">Email *</Label>
-                          <Input 
-                            id="email" 
-                            type="email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
-                            placeholder="votre.email@exemple.com"
-                            required
-                          />
+                          <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre.email@exemple.com" required />
                         </div>
                         
                         <div className="grid gap-2">
                           <Label htmlFor="phone">Téléphone</Label>
-                          <Input 
-                            id="phone" 
-                            value={phone} 
-                            onChange={(e) => setPhone(e.target.value)} 
-                            placeholder="Votre numéro de téléphone"
-                          />
+                          <Input id="phone" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Votre numéro de téléphone" />
                         </div>
                         
                         <div className="grid gap-2">
                           <Label htmlFor="motif">Motif du rendez-vous *</Label>
-                          <Textarea 
-                            id="motif" 
-                            value={motif} 
-                            onChange={(e) => setMotif(e.target.value)} 
-                            placeholder="Décrivez brièvement l'objet de votre demande"
-                            rows={4}
-                            required
-                          />
+                          <Textarea id="motif" value={motif} onChange={e => setMotif(e.target.value)} placeholder="Décrivez brièvement l'objet de votre demande" rows={4} required />
                         </div>
                       </div>
                       
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button 
-                          type="button" 
-                          variant="outline" 
-                          onClick={handleBack}
-                          className="sm:flex-1"
-                        >
+                        <Button type="button" variant="outline" onClick={handleBack} className="sm:flex-1">
                           Retour
                         </Button>
-                        <Button 
-                          type="submit" 
-                          className="sm:flex-1 text-white"
-                        >
+                        <Button type="submit" className="sm:flex-1 text-white">
                           Confirmer le rendez-vous
                         </Button>
                       </div>
-                    </>
-                  )}
+                    </>}
                 </form>
               </CardContent>
-              {formStep === 0 && date && timeSlot && (
-                <CardFooter className="border-t px-6 py-4">
+              {formStep === 0 && date && timeSlot && <CardFooter className="border-t px-6 py-4">
                   <p className="text-sm text-center w-full">
                     Vous avez sélectionné le{" "}
                     <span className="font-medium">
-                      {format(date, "dd MMMM yyyy", { locale: fr })} à {timeSlot}
+                      {format(date, "dd MMMM yyyy", {
+                    locale: fr
+                  })} à {timeSlot}
                     </span>
                   </p>
-                </CardFooter>
-              )}
+                </CardFooter>}
             </Card>
           </div>
         </div>
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default CalendarPage;
