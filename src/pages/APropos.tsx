@@ -62,9 +62,9 @@ const APropos = () => {
               </div>
               <div className="md:w-1/2">
                 <img 
-                  src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png"
-                  alt="Viadex Mission" 
-                  className="rounded-full shadow-md w-full"
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                  alt="Personnes collaborant sur des solutions IA" 
+                  className="rounded-xl shadow-md w-full h-auto object-cover"
                 />
               </div>
             </div>

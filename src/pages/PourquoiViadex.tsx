@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 
-// test 
-
 const PourquoiViadex = () => {
   const forces = [
     {
@@ -67,7 +65,7 @@ const PourquoiViadex = () => {
                   <img 
                     src="/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png"
                     alt="Viadex Diagram" 
-                    className="rounded-full w-full h-auto"
+                    className="rounded-xl w-full h-auto"
                   />
                 </div>
                 <div className="md:w-1/2">
