@@ -1,14 +1,14 @@
 
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { LoginModal } from "./LoginModal";
-import { AuthContext } from "@/App";
+import { useAuth } from "@/context/AuthContext";
 import { Calendar } from "lucide-react";
 
 const Navigation = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">

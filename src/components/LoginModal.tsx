@@ -2,10 +2,11 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@/App";
+import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
+import { authenticateUser } from "@/services/databaseService";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -16,17 +17,19 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { setIsAuthenticated, setUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulation d'authentification - Dans un cas réel, utiliser une API
-    setTimeout(() => {
-      // Identifiants de test (à remplacer par une véritable authentification)
-      if (email === "admin@viadex.fr" && password === "admin") {
+    try {
+      // Use the database service to authenticate
+      const user = await authenticateUser(email, password);
+      
+      if (user) {
+        setUser(user);
         setIsAuthenticated(true);
         onClose();
         toast.success("Connexion réussie");
@@ -34,8 +37,12 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
       } else {
         toast.error("Identifiants incorrects");
       }
+    } catch (error) {
+      console.error("Erreur de connexion:", error);
+      toast.error("Erreur lors de la connexion. Veuillez réessayer.");
+    } finally {
       setIsLoading(false);
-    }, 800);
+    }
   };
 
   return (

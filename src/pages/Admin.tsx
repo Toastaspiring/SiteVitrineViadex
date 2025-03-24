@@ -5,18 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Grid, Calendar as CalendarIcon, List, User, LogOut } from "lucide-react";
-import { useContext } from "react";
-import { AuthContext } from "@/App";
+import { useAuth } from "@/context/AuthContext";
 import ContactList from "@/components/admin/ContactList";
 import AppointmentManager from "@/components/admin/AppointmentManager";
 
 const Admin = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { logout, user } = useAuth();
   const [activeView, setActiveView] = useState<string>("contacts");
   
   const handleLogout = () => {
-    setIsAuthenticated(false);
+    logout();
     navigate("/");
   };
 
@@ -92,8 +91,8 @@ const Admin = () => {
                     <User className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium text-sm">Admin Viadex</p>
-                    <p className="text-xs text-muted-foreground">admin@viadex.fr</p>
+                    <p className="font-medium text-sm">{user?.email || "Admin"}</p>
+                    <p className="text-xs text-muted-foreground">{user?.email || "admin@viadex.fr"}</p>
                   </div>
                 </div>
               </CardContent>

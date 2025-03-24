@@ -1,77 +1,42 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
+import { getBlogPosts } from "@/services/databaseService";
+import { BlogPost } from "@/types/database";
+import { toast } from "sonner";
 
 const Blog = () => {
   const [email, setEmail] = useState("");
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+  
+  const fetchBlogPosts = async () => {
+    setIsLoading(true);
+    try {
+      const posts = await getBlogPosts();
+      setBlogPosts(posts);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des articles:", error);
+      toast.error("Erreur lors du chargement des articles");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email inscrit à la newsletter:", email);
-    alert("Merci pour votre inscription à notre newsletter !");
+    toast.success("Merci pour votre inscription à notre newsletter !");
     setEmail("");
   };
-
-  const articles = [
-    {
-      id: "3-usages-concrets-ia-pme",
-      title: "3 usages concrets de l'IA pour les PME",
-      excerpt: "Découvrez comment des PME de différents secteurs utilisent l'IA pour optimiser leurs opérations et améliorer leur rentabilité.",
-      date: "10 juin 2024",
-      imageUrl: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Usage",
-      readTime: "5 min de lecture"
-    },
-    {
-      id: "integrer-ia-petit-budget",
-      title: "Comment intégrer l'IA sans investir des milliers d'euros ?",
-      excerpt: "L'adoption de l'IA n'implique pas nécessairement des investissements massifs. Voici des stratégies pour démarrer avec un budget limité.",
-      date: "2 juin 2024",
-      imageUrl: "https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Stratégie",
-      readTime: "7 min de lecture"
-    },
-    {
-      id: "erreurs-eviter-ia-entreprise",
-      title: "Les erreurs à éviter avec l'IA en entreprise",
-      excerpt: "L'implémentation de l'IA comporte des pièges courants. Cet article détaille les erreurs les plus fréquentes et comment les éviter.",
-      date: "25 mai 2024",
-      imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Conseil",
-      readTime: "6 min de lecture"
-    },
-    {
-      id: "ia-generative-entreprise",
-      title: "L'IA générative: comment l'utiliser dans votre entreprise",
-      excerpt: "Les modèles d'IA générative comme GPT transforment les entreprises. Découvrez des cas d'usage pratiques pour votre activité.",
-      date: "18 mai 2024",
-      imageUrl: "https://images.unsplash.com/photo-1593642531955-b62e17bdaa9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Technologie",
-      readTime: "8 min de lecture"
-    },
-    {
-      id: "ia-avantage-concurrentiel",
-      title: "Comment transformer l'IA en avantage concurrentiel",
-      excerpt: "L'IA peut être un puissant différenciateur sur le marché. Voici comment en faire un véritable avantage concurrentiel.",
-      date: "12 mai 2024",
-      imageUrl: "https://images.unsplash.com/photo-1661956602868-6ae368943878?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Stratégie",
-      readTime: "5 min de lecture"
-    },
-    {
-      id: "preparation-equipes-ia",
-      title: "Comment préparer vos équipes à l'arrivée de l'IA",
-      excerpt: "La transformation par l'IA nécessite une préparation des équipes. Découvrez nos conseils pour une transition réussie.",
-      date: "5 mai 2024",
-      imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      category: "Management",
-      readTime: "6 min de lecture"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -125,35 +90,45 @@ const Blog = () => {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-12">Articles récents</h2>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {articles.map((article) => (
-                <div key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                  <img 
-                    src={article.imageUrl} 
-                    alt={article.title} 
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-sm font-medium px-3 py-1 bg-primary/10 text-primary rounded-full">
-                        {article.category}
-                      </span>
-                      <span className="text-sm text-muted-foreground">
-                        {article.readTime}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold mb-2">{article.title}</h3>
-                    <p className="text-secondary mb-4 line-clamp-3">{article.excerpt}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">{article.date}</span>
-                      <Link to={`/blog/${article.id}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
-                        Lire plus <ArrowRight className="w-4 h-4" />
-                      </Link>
+            {isLoading ? (
+              <div className="text-center py-8">
+                <p>Chargement des articles...</p>
+              </div>
+            ) : blogPosts.length === 0 ? (
+              <div className="text-center py-8">
+                <p>Aucun article trouvé</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {blogPosts.map((article) => (
+                  <div key={article.id} className="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <img 
+                      src={article.imagePath} 
+                      alt={article.titre} 
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-sm font-medium px-3 py-1 bg-primary/10 text-primary rounded-full">
+                          {article.categorie}
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {article.tempsLecture} de lecture
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">{article.titre}</h3>
+                      <p className="text-secondary mb-4 line-clamp-3">{article.excerpt}</p>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">{article.date}</span>
+                        <Link to={`/blog/${article.slug}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
+                          Lire plus <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
