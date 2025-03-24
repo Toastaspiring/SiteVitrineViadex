@@ -23,8 +23,8 @@ const Navigation = () => {
         </Link>
         
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/services" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
-            Nos Services
+          <Link to="/methodologie" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
+            Notre Méthodologie
           </Link>
           <Link to="/pourquoi-viadex" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Pourquoi Viadex

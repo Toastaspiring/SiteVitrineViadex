@@ -10,7 +10,7 @@ import { useAuth } from "./context/AuthContext";
 
 // Pages
 import Index from "./pages/Index";
-import Services from "./pages/Services";
+import Methodologie from "./pages/Methodologie";
 import PourquoiViadex from "./pages/PourquoiViadex";
 import APropos from "./pages/APropos";
 import Blog from "./pages/Blog";
@@ -40,7 +40,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Index />} />
-      <Route path="/services" element={<Services />} />
+      <Route path="/methodologie" element={<Methodologie />} />
       <Route path="/pourquoi-viadex" element={<PourquoiViadex />} />
       <Route path="/a-propos" element={<APropos />} />
       <Route path="/blog" element={<Blog />} />

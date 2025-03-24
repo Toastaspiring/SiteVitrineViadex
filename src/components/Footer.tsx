@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const footerSections = [
     {
-      title: "Services",
+      title: "Notre méthodologie",
       links: [
-        { name: "Diagnostic IA", path: "/services" },
-        { name: "Accompagnement stratégique", path: "/services" },
-        { name: "Formations IA", path: "/services" },
-        { name: "Veille IA", path: "/services" }
+        { name: "Acculturation et formation", path: "/methodologie" },
+        { name: "Évaluation et diagnostic", path: "/methodologie" },
+        { name: "Expérimentation et POC", path: "/methodologie" },
+        { name: "Mise en œuvre dé-risquée", path: "/methodologie" }
       ],
     },
     {
