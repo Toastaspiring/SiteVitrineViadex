@@ -56,13 +56,13 @@ export function LoginModal({
             <label htmlFor="email" className="text-sm font-medium">
               Email
             </label>
-            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full" placeholder="votreemail@exemple.com" />
+            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required placeholder="votreemail@exemple.com" className="w-full bg-gray-200" />
           </div>
           <div className="space-y-2">
             <label htmlFor="password" className="text-sm font-medium">
               Mot de passe
             </label>
-            <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full rounded-sm" />
+            <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full bg-gray-200" />
           </div>
           <div className="text-xs text-muted-foreground">
             Pour la démonstration, utilisez: admin@viadex.fr / admin
