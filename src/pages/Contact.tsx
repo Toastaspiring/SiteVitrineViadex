@@ -3,6 +3,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const Contact = () => {
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -41,8 +43,8 @@ const Contact = () => {
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary rounded-full p-3 text-white">
-                      <Mail className="w-5 h-5" />
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <Mail className="h-4 w-4 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Email</h3>
@@ -51,8 +53,8 @@ const Contact = () => {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="bg-primary rounded-full p-3 text-white">
-                      <MapPin className="w-5 h-5" />
+                    <div className="bg-primary/10 p-2 rounded-full">
+                      <MapPin className="h-4 w-4 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Adresse</h3>
@@ -70,9 +72,9 @@ const Contact = () => {
                     Préférez-vous un échange en direct ? Réservez un créneau de 30 minutes 
                     avec l'un de nos experts pour discuter de vos besoins spécifiques.
                   </p>
-                  <a href="#" className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                  <Link to="/calendrier" className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors">
                     Réserver un créneau
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
