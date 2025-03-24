@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -82,12 +83,12 @@ const Contact = () => {
                     Préférez-vous un échange en direct ? Réservez un créneau de 30 minutes 
                     avec l'un de nos experts pour discuter de vos besoins spécifiques.
                   </p>
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="/calendrier" 
                     className="block w-full py-3 bg-primary text-white text-center rounded-lg font-medium hover:bg-primary/90 transition-colors"
                   >
                     Réserver un créneau
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
