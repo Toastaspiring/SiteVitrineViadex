@@ -1,3 +1,4 @@
+
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -47,7 +48,8 @@ const Index = () => {
           <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
-                L'IA au service des PME & ETI : 
+                <span className="block">L'IA au service des</span>
+                <span className="block">PME & ETI de l'Ouest :</span>
                 <span className="block text-white">
                   simplifiez votre transformation
                 </span>
