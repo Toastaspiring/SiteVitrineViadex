@@ -13,7 +13,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+
 const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
+
 const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [timeSlot, setTimeSlot] = useState<string>("");
@@ -23,7 +25,6 @@ const CalendarPage = () => {
   const [motif, setMotif] = useState("");
   const [formStep, setFormStep] = useState(0);
 
-  // Calculer les dates indisponibles (exemple: week-ends et jours passés)
   const isPastDay = (day: Date) => {
     return day < new Date(new Date().setHours(0, 0, 0, 0));
   };
@@ -31,6 +32,7 @@ const CalendarPage = () => {
     const dayOfWeek = day.getDay();
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!date || !timeSlot || !name || !email || !motif) {
@@ -38,14 +40,12 @@ const CalendarPage = () => {
       return;
     }
 
-    // Simuler l'envoi du formulaire
     toast.success("Rendez-vous réservé avec succès!", {
       description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", {
         locale: fr
       })} à ${timeSlot} a été confirmé.`
     });
 
-    // Réinitialiser le formulaire
     setDate(undefined);
     setTimeSlot("");
     setName("");
@@ -54,6 +54,7 @@ const CalendarPage = () => {
     setMotif("");
     setFormStep(0);
   };
+
   const handleNext = () => {
     if (!date || !timeSlot) {
       toast.error("Veuillez sélectionner une date et un horaire");
@@ -61,9 +62,11 @@ const CalendarPage = () => {
     }
     setFormStep(1);
   };
+
   const handleBack = () => {
     setFormStep(0);
   };
+
   return <div className="min-h-screen bg-background">
       <Navigation />
       
@@ -121,10 +124,9 @@ const CalendarPage = () => {
               <Card>
                 <CardHeader>
                   <CardTitle>Besoin d'aide?</CardTitle>
-                  <CardDescription>Contactez-nous par téléphone ou email</CardDescription>
+                  <CardDescription>Contactez-nous par email</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  
                   <p className="text-primary font-medium">contact@viadex.fr</p>
                 </CardContent>
               </Card>
@@ -186,11 +188,6 @@ const CalendarPage = () => {
                         </div>
                         
                         <div className="grid gap-2">
-                          <Label htmlFor="phone">Téléphone</Label>
-                          <Input id="phone" value={phone} onChange={e => setPhone(e.target.value)} placeholder="Votre numéro de téléphone" />
-                        </div>
-                        
-                        <div className="grid gap-2">
                           <Label htmlFor="motif">Motif du rendez-vous *</Label>
                           <Textarea id="motif" value={motif} onChange={e => setMotif(e.target.value)} placeholder="Décrivez brièvement l'objet de votre demande" rows={4} required />
                         </div>
@@ -225,4 +222,5 @@ const CalendarPage = () => {
       <Footer />
     </div>;
 };
+
 export default CalendarPage;

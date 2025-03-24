@@ -1,7 +1,8 @@
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 const Contact = () => {
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -46,14 +47,6 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Email</h3>
                       <p className="text-secondary">contact@viadex.fr</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">Téléphone</h3>
-                      <p className="text-secondary">+33 (0)1 23 45 67 89</p>
                     </div>
                   </div>
                   
