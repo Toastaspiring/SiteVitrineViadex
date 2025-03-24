@@ -67,7 +67,7 @@ export function LoginModal({
           <div className="text-xs text-muted-foreground">
             Pour la démonstration, utilisez: admin@viadex.fr / admin
           </div>
-          <Button type="submit" className="w-full bg-primary hover:bg-primary/90 transition-colors" disabled={isLoading}>
+          <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 transition-colors text-slate-50">
             {isLoading ? "Connexion en cours..." : "Se connecter"}
           </Button>
         </form>
