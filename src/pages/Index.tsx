@@ -1,3 +1,4 @@
+
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -183,7 +184,7 @@ const Index = () => {
             
             <div className="text-center">
               <Link to="/contact">
-                <Button className="px-6 py-3 bg-primary text-white text-lg">
+                <Button className="px-6 py-3 bg-primary text-white text-lg hidden md:inline-flex">
                   Voyons ensemble comment l'IA peut vous aider
                 </Button>
               </Link>
