@@ -45,8 +45,23 @@ const Index = () => {
       <main className="pt-16">
         {/* Section Bannière */}
         <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2 mb-10 md:mb-0 z-10">
+          <div className="mx-auto max-w-7xl relative">
+            {/* Background Logo - Positioned absolutely */}
+            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-90 md:opacity-100 pointer-events-none z-0">
+              <div className="relative max-w-[400px] md:max-w-[500px] w-full">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
+                </div>
+                <img 
+                  src="/lovable-uploads/logoV1.png"
+                  alt="Viadex Logo" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+            
+            {/* Content that can overlap the logo */}
+            <div className="relative z-10 max-w-3xl">
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
                 <span className="block mb-2">L'IA au service des PME & ETI de l'Ouest :</span>
                 <span className="block text-white">simplifiez votre transformation</span>
@@ -59,21 +74,6 @@ const Index = () => {
                   Prenez un rendez-vous découverte
                 </Button>
               </Link>
-            </div>
-            
-            <div className="md:w-1/2 flex justify-center md:justify-end">
-              <div className="relative max-w-[300px] md:max-w-[380px] w-full">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
-                </div>
-                <div className="relative z-10">
-                  <img 
-                    src="/lovable-uploads/logoV1.png"
-                    alt="Viadex Logo" 
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </section>
