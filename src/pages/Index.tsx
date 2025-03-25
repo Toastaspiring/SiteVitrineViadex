@@ -1,297 +1,35 @@
 
-import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap, BookOpen } from "lucide-react";
+import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getBlogPosts } from "@/services/databaseService";
-import { BlogPost } from "@/types/database";
-import { toast } from "sonner";
+import HeroBanner from "@/components/home/HeroBanner";
+import ServicesList from "@/components/home/ServicesList";
+import FormationBanner from "@/components/home/FormationBanner";
+import BlogSection from "@/components/home/BlogSection";
+import AboutSection from "@/components/home/AboutSection";
+import WhyChooseSection from "@/components/home/WhyChooseSection";
+import CTASection from "@/components/home/CTASection";
+import { Toaster } from "sonner";
 
 const Index = () => {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    fetchBlogPosts();
-  }, []);
-  
-  const fetchBlogPosts = async () => {
-    setIsLoading(true);
-    try {
-      const posts = await getBlogPosts();
-      setBlogPosts(posts.slice(0, 3)); // Get only the first 3 posts for the landing page
-    } catch (error) {
-      console.error("Erreur lors de la récupération des articles:", error);
-      toast.error("Erreur lors du chargement des articles");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  const services = [{
-    title: "Formations IA",
-    description: "Acculturation des dirigeants et équipes, formations certifiantes CertifIA, ateliers pratiques pour comprendre et maîtriser l'IA.",
-    icon: <GraduationCap className="w-6 h-6 text-primary" />,
-    color: "bg-blue-50",
-    link: "/formation"
-  }, {
-    title: "Diagnostic Data & IA",
-    description: "Audit de vos données et processus, identification des opportunités d'IA, évaluation de la maturité et recommandations personnalisées.",
-    icon: <ClockIcon className="w-6 h-6 text-primary" />,
-    color: "bg-blue-50",
-    link: "/methodologie"
-  }, {
-    title: "Accompagnement de projets IA",
-    description: "Suivi de bout en bout de vos projets IA, change management, intégration technique et formation des utilisateurs.",
-    icon: <UsersIcon className="w-6 h-6 text-primary" />,
-    color: "bg-blue-50",
-    link: "/methodologie"
-  }, {
-    title: "Mise en œuvre dé-risquée",
-    description: "Approche progressive qui minimise les risques, respect du RGPD, évaluation du ROI et focus sur les cas d'usage à valeur ajoutée.",
-    icon: <ShieldIcon className="w-6 h-6 text-primary" />,
-    color: "bg-blue-50",
-    link: "/methodologie"
-  }];
-  
-  return <div className="min-h-screen bg-background">
+  return (
+    <div className="min-h-screen bg-background">
       <Navigation />
+      <Toaster />
       
       <main className="pt-16">
-        {/* Section Bannière */}
-        <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-          <div className="mx-auto max-w-7xl relative">
-            {/* Background Logo - Only visible on screens larger than 1200px (xl breakpoint) */}
-            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-90 md:opacity-100 pointer-events-none z-0 hidden xl:block">
-              <div className="relative max-w-[400px] md:max-w-[500px] w-full">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-blue-300/20 rounded-full filter blur-3xl animate-pulse"></div>
-                </div>
-                <img src="/lovable-uploads/logoV1.png" alt="Viadex Logo" className="w-full h-auto" />
-              </div>
-            </div>
-            
-            {/* Content that can overlap the logo */}
-            <div className="relative z-10 max-w-3xl">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
-                <span className="block mb-2 py-[30px]">L'IA au service des PME & ETI du Grand Ouest :
-              </span>
-                <span className="block text-white">simplifiez votre transformation</span>
-              </h1>
-              <p className="text-lg text-white/80 mb-8 max-w-xl">Viadex accompagne les entreprises dans la valorisation de leur Data et l'adoption de l'IA.</p>
-              <Link to="/contact">
-                <Button className="px-6 py-6 bg-white text-primary hover:bg-white/90 rounded-lg text-lg font-medium">
-                  Prenez un rendez-vous découverte
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Services */}
-        <section className="py-16 px-6 lg:px-8 bg-white">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6">Nos services d'accompagnement IA</h2>
-              <p className="text-xl text-secondary/80 max-w-3xl mx-auto">
-                Notre approche méthodique vous garantit une adoption sécurisée et efficace de l'intelligence artificielle.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-              {services.map((service, index) => <Link key={index} to={service.link} className="block h-full hover:no-underline">
-                  <div className="p-6 rounded-xl border border-border hover:border-primary transition-colors bg-background flex flex-col h-full">
-                    <div className={`w-14 h-14 ${service.color} rounded-lg flex items-center justify-center mb-4`}>
-                      {service.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                    <p className="text-secondary text-sm flex-grow">{service.description}</p>
-                  </div>
-                </Link>)}
-            </div>
-            
-            <div className="flex justify-center mt-8">
-              <Link to="/methodologie">
-                <Button className="px-6 py-3 bg-primary text-white rounded-lg flex items-center gap-2">
-                  Découvrir notre méthodologie <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-        
-        {/* Formation CertifIAG Banner */}
-        <section className="py-12 px-6 lg:px-8 bg-gradient-to-r from-blue-100 to-blue-50">
-          <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-xl shadow-sm">
-              <div className="md:w-7/12">
-                <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                  <GraduationCap className="text-primary" />
-                  Formation CertifIAG
-                </h3>
-                <p className="text-secondary mb-6">
-                  Maîtrisez l'IA Générative avec discernement grâce à notre certification CertifOpac, reconnue officiellement en partenariat avec JustAI.
-                  Formation éligible CPF pour les professionnels souhaitant intégrer l'IA de façon concrète et responsable.
-                </p>
-                <Link to="/formation">
-                  <Button className="flex items-center gap-2 bg-primary text-white">
-                    Découvrir la formation <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-              <div className="md:w-5/12 bg-blue-50 p-6 rounded-xl">
-                <h4 className="font-semibold mb-3">Points clés :</h4>
-                <ul className="space-y-2">
-                  {["Certification officielle (France Compétences RS6891)", "Éligible au financement CPF", "Formation exclusive en France", "Tarif de lancement : 2 500 €"].map((point, index) => <li key={index} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{point}</span>
-                    </li>)}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Blog Section */}
-        <section className="py-16 px-6 lg:px-8 bg-blue-50">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Notre Blog & Ressources</h2>
-              <p className="text-xl text-secondary/80 max-w-2xl mx-auto">
-                Découvrez nos articles et ressources pour mieux comprendre les enjeux de l'IA et son application dans votre entreprise.
-              </p>
-            </div>
-            
-            {isLoading ? (
-              <div className="text-center py-8">
-                <p>Chargement des articles...</p>
-              </div>
-            ) : blogPosts.length === 0 ? (
-              <div className="text-center py-8">
-                <p>Aucun article trouvé</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                {blogPosts.map((article) => (
-                  <Link key={article.id} to={`/blog/${article.slug}`} className="block hover:no-underline">
-                    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={article.imagePath} 
-                          alt={article.titre}
-                          className="w-full h-full object-cover transition-transform hover:scale-105" 
-                        />
-                      </div>
-                      <div className="p-6 flex-grow">
-                        <h3 className="text-xl font-semibold mb-3 text-primary">{article.titre}</h3>
-                        <p className="text-secondary">{article.excerpt}</p>
-                      </div>
-                      <div className="p-6 pt-0">
-                        <span className="text-primary flex items-center gap-1 font-medium">
-                          Lire l'article <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-            
-            <div className="flex justify-center mt-8">
-              <Link to="/blog">
-                <Button className="px-6 py-3 bg-primary text-white rounded-lg flex items-center gap-2">
-                  Voir tous les articles <BookOpen className="w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-            
-        {/* Présentation rapide */}
-        <section className="py-16 px-6 lg:px-8 bg-background">
-          <div className="mx-auto max-w-7xl">
-            <div className="flex flex-col md:flex-row items-center gap-12 bg-white p-8 rounded-xl">
-              <div className="md:w-1/2">
-                <h3 className="text-2xl font-bold mb-4">Vers l'intelligence en toute confiance</h3>
-                <p className="text-secondary mb-6">
-                  L'IA n'est plus réservée aux grandes entreprises. Chez Viadex, nous vous aidons à exploiter son potentiel de manière simple et efficace, quelles que soient la taille et les ressources de votre entreprise.
-                </p>
-                <Link to="/methodologie">
-                  <Button className="flex items-center gap-2 bg-primary text-white">
-                    Découvrir notre méthodologie <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-              <div className="md:w-1/2">
-                <ContactForm isShort={true} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pourquoi Viadex */}
-        <section className="py-16 px-6 lg:px-8 bg-gradient-to-b from-background to-white">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Pourquoi choisir Viadex ?</h2>
-              <p className="text-xl text-secondary/80 max-w-2xl mx-auto">
-                Notre approche unique rend l'IA accessible et efficace pour votre entreprise.
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {[{
-              title: "Centrer sur vos processus",
-              description: "Nous parlons votre langage et notre expérience nous permet de s'adapter à votre métier."
-            }, {
-              title: "Solutions accessibles",
-              description: "Des approches concrètes adaptées à vos besoins réels."
-            }, {
-              title: "Accompagnement personnalisé",
-              description: "Un suivi sur mesure pour votre entreprise."
-            }].map((point, index) => <div key={index} className="flex items-start gap-4">
-                  <div className="bg-primary rounded-full p-2 text-white flex-shrink-0 mt-1">
-                    <Check className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{point.title}</h3>
-                    <p className="text-secondary">{point.description}</p>
-                  </div>
-                </div>)}
-            </div>
-            
-            <div className="text-center">
-              <Link to="/contact">
-                <Button className="px-6 py-3 bg-primary text-white text-lg hidden md:inline-flex">
-                  Voyons ensemble comment l'IA peut vous aider
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary text-white px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">Prêt à commencer votre transformation ?</h2>
-            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-              Rejoignez les entreprises qui ont déjà simplifié leur adoption de l'IA avec Viadex.
-            </p>
-            <Link to="/contact">
-              <Button className="px-8 py-4 bg-white text-primary rounded-lg font-semibold hover:bg-white/90 transition-colors text-lg">
-                Prendre un rendez-vous
-              </Button>
-            </Link>
-          </div>
-        </section>
+        <HeroBanner />
+        <ServicesList />
+        <FormationBanner />
+        <BlogSection />
+        <AboutSection />
+        <WhyChooseSection />
+        <CTASection />
       </main>
 
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
