@@ -1,4 +1,3 @@
-
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -16,23 +15,22 @@ const Formation = () => {
         <section className="bg-primary text-white py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Formation CertifIAG</h1>
-            <div className="flex items-center gap-2 text-2xl font-semibold mb-2">
+            <div className="flex items-center gap-2 text-2xl md:text-2xl font-semibold mb-2">
               <p>Maîtrisez l'IA Générative avec discernement grâce à la certification CertifIAG</p>
             </div>
-            <div className="flex items-center text-gray-300 text-[1.1rem] tracking-wide italic gap-4">
-              <div className="bg-white rounded-full p-3">
-                <img src="lovable-uploads/partenaire/justAi.png" alt="Just IA Logo" className="h-16 w-16 object-contain" />
+            <div className="flex flex-col sm:flex-row items-center text-gray-300 text-[1.1rem] tracking-wide italic gap-4">
+              <div className="flex gap-4 items-center">
+                <div className="bg-white rounded-full p-2 w-16 h-16 flex items-center justify-center">
+                  <img src="lovable-uploads/partenaire/justAi.png" alt="Just IA Logo" className="w-12 h-12 object-contain" />
+                </div>
+                <div className="bg-white rounded-full p-2 w-16 h-16 flex items-center justify-center">
+                  <img src="lovable-uploads/partenaire/certifopac.png" alt="CertifOpac Logo" className="w-12 h-12 object-contain" />
+                </div>
               </div>
-              <div className="bg-white rounded-full p-3">
-                <img src="lovable-uploads/partenaire/certifopac.png" alt="CertifOpac Logo" className="h-16 w-16 object-contain" />
-              </div>
-              <span><strong>Formation CertifOpac en partenariat avec Just IA</strong></span>
+              <span className="mt-2 sm:mt-0"><strong>Formation CertifOpac en partenariat avec Just IA</strong></span>
             </div>
           </div>
         </section>
-
-
-
 
         {/* Intro */}
         <section className="py-12 px-6 lg:px-8 bg-white">
@@ -306,19 +304,19 @@ const Formation = () => {
         {/* CTA */}
         <section className="py-12 px-6 lg:px-8 bg-primary text-white">
           <div className="max-w-7xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 text-2xl font-semibold mb-6">
+            <div className="flex flex-col items-center justify-center gap-2 text-xl md:text-2xl font-semibold mb-6">
               <span className="text-3xl">✉️</span>
               <h2>Pour en savoir plus, contactez-nous ou découvrez les prochaines sessions !</h2>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button className="bg-white text-primary hover:bg-white/90 px-6 py-6 text-lg">
+                <Button className="bg-white text-primary hover:bg-white/90 px-6 py-6 text-lg w-full sm:w-auto">
                   Nous contacter
                 </Button>
               </Link>
               <Link to="/calendrier">
-                <Button className="bg-white/20 text-white hover:bg-white/30 px-6 py-6 text-lg">
+                <Button className="bg-white/20 text-white hover:bg-white/30 px-6 py-6 text-lg w-full sm:w-auto">
                   Prendre rendez-vous
                 </Button>
               </Link>
