@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle, BookOpen, LineChart, Layers, Users, Shield } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Methodologie = () => {
   const etapes = [
@@ -15,7 +16,8 @@ const Methodologie = () => {
         "Formations ciblées selon les profils utilisateurs",
         "Adoption d'un socle commun de compréhension"
       ],
-      icon: <BookOpen className="w-8 h-8 text-primary" />
+      icon: <BookOpen className="w-8 h-8 text-primary" />,
+      image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop"
     },
     {
       title: "Évaluation et Diagnostic",
@@ -25,7 +27,8 @@ const Methodologie = () => {
         "Analyse des usages internes non contrôlés",
         "Roadmap progressive et réaliste"
       ],
-      icon: <LineChart className="w-8 h-8 text-primary" />
+      icon: <LineChart className="w-8 h-8 text-primary" />,
+      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=800&auto=format&fit=crop"
     },
     {
       title: "Expérimentation et Proof of Concept (POC)",
@@ -35,7 +38,8 @@ const Methodologie = () => {
         "Résultats mesurables avant généralisation",
         "Ajustements agiles et sur-mesure"
       ],
-      icon: <Layers className="w-8 h-8 text-primary" />
+      icon: <Layers className="w-8 h-8 text-primary" />,
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
     },
     {
       title: "Mise en œuvre progressive",
@@ -47,7 +51,8 @@ const Methodologie = () => {
         "Accompagnement dans la gestion du projet IA",
         "Encadrement RH et conduite du changement"
       ],
-      icon: <Users className="w-8 h-8 text-primary" />
+      icon: <Users className="w-8 h-8 text-primary" />,
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
     },
     {
       title: "Suivi et optimisation",
@@ -57,7 +62,8 @@ const Methodologie = () => {
         "Ajustements fonctionnels",
         "Évolution des solutions en fonction de vos besoins"
       ],
-      icon: <Shield className="w-8 h-8 text-primary" />
+      icon: <Shield className="w-8 h-8 text-primary" />,
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
     }
   ];
 
@@ -87,12 +93,18 @@ const Methodologie = () => {
                     index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                   }`}
                 >
-                  <div className="md:w-1/4 flex items-start justify-center">
-                    <div className="p-4 rounded-full bg-primary/10">
-                      {etape.icon}
+                  <div className="md:w-1/3 flex flex-col items-center justify-start">
+                    <div className="w-full h-48 md:h-64 rounded-lg overflow-hidden">
+                      <AspectRatio ratio={16/9} className="bg-muted">
+                        <img 
+                          src={etape.image} 
+                          alt={etape.title} 
+                          className="object-cover w-full h-full rounded-lg"
+                        />
+                      </AspectRatio>
                     </div>
                   </div>
-                  <div className="md:w-3/4">
+                  <div className="md:w-2/3">
                     <div className="flex items-center gap-2 mb-4">
                       <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white font-bold">
                         {index + 1}
