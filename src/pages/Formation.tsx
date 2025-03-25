@@ -17,7 +17,6 @@ const Formation = () => {
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Formation CertifIAG</h1>
             <div className="flex items-center gap-2 text-2xl font-semibold mb-6">
-              <span className="text-3xl">🌟</span>
               <p>Maîtrisez l'IA Générative avec discernement grâce à la certification CertifIAG</p>
             </div>
           </div>
@@ -27,7 +26,6 @@ const Formation = () => {
         <section className="py-12 px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-2 text-2xl font-semibold mb-6 text-primary">
-              <span className="text-3xl">🚀</span>
               <h2>L'IA, oui… mais pas sans intelligence humaine.</h2>
             </div>
             
@@ -41,7 +39,6 @@ const Formation = () => {
               
               <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-primary">
                 <div className="flex items-center gap-2 font-semibold mb-2">
-                  <span className="text-2xl">👉</span>
                   <p className="text-primary">C'est exactement ce que propose CertifIAG :</p>
                 </div>
                 <p className="text-secondary">
@@ -57,7 +54,6 @@ const Formation = () => {
         <section className="py-12 px-6 lg:px-8 bg-background">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-2 text-2xl font-semibold mb-8 text-primary">
-              <span className="text-3xl">🎯</span>
               <h2>Qu'est-ce que CertifIAG ?</h2>
             </div>
             
@@ -131,7 +127,6 @@ const Formation = () => {
         <section className="py-12 px-6 lg:px-8 bg-background">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-2 text-2xl font-semibold mb-8 text-primary">
-              <span className="text-3xl">📚</span>
               <h2>Une formation unique, pensée pour les professionnels</h2>
             </div>
             
@@ -183,7 +178,6 @@ const Formation = () => {
             
             <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-primary mb-8">
               <div className="flex items-center gap-2 font-semibold mb-2">
-                <span className="text-2xl">👥</span>
                 <p className="text-primary">Formation sur site possible :</p>
               </div>
               <p className="text-secondary">
@@ -200,7 +194,6 @@ const Formation = () => {
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <div className="flex items-center gap-2 text-2xl font-semibold mb-6 text-primary">
-                  <span className="text-3xl">🧠</span>
                   <h2>Objectifs de la certification</h2>
                 </div>
                 
@@ -224,27 +217,23 @@ const Formation = () => {
               
               <div>
                 <div className="flex items-center gap-2 text-2xl font-semibold mb-6 text-primary">
-                  <span className="text-3xl">🏢</span>
                   <h2>Avantages pour les entreprises</h2>
                 </div>
-                
+
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">🔧</span>
-                    <p>Productivité optimisée</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">⚙️</span>
-                    <p>Transformation digitale facilitée</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">📈</span>
-                    <p>Gain de compétitivité</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">👥</span>
-                    <p>Formation collective sur site disponible</p>
-                  </div>
+                  {[
+                    "Productivité optimisée",
+                    "Transformation digitale facilitée",
+                    "Gain de compétitivité",
+                    "Formation collective sur site disponible",
+                  ].map((point, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="bg-primary rounded-full p-1 text-white mt-1 flex-shrink-0">
+                        <Check className="w-4 h-4" />
+                      </div>
+                      <p>{point}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -257,7 +246,6 @@ const Formation = () => {
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <div className="flex items-center gap-2 text-2xl font-semibold mb-6 text-primary">
-                  <span className="text-3xl">🎤</span>
                   <h2>Comment ça se passe ?</h2>
                 </div>
                 
@@ -282,7 +270,6 @@ const Formation = () => {
               
               <div>
                 <div className="flex items-center gap-2 text-2xl font-semibold mb-6 text-primary">
-                  <span className="text-3xl">👤</span>
                   <h2>Pour qui ?</h2>
                 </div>
                 
@@ -291,7 +278,7 @@ const Formation = () => {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-primary mb-6">
-                  <h3 className="font-semibold text-lg mb-2">🔥 En conclusion</h3>
+                  <h3 className="font-semibold text-lg mb-2">En conclusion</h3>
                   <p className="text-secondary mb-2">
                     L'IA ne pense pas à votre place. Elle amplifie votre intelligence.
                   </p>

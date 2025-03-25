@@ -64,19 +64,19 @@ const Blog = () => {
                 </p>
               </div>
               <div className="md:w-1/3 w-full">
-                <form onSubmit={handleSubmit} className="flex w-full">
+                <form onSubmit={handleSubmit} className="flex w-full items-center">
                   <div className="relative flex-grow">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                     <input
                       type="email"
                       placeholder="Votre email"
-                      className="w-full pl-10 py-3 pr-3 rounded-l-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full pl-10 py-3 pr-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </div>
-                  <Button type="submit" className="bg-primary text-white rounded-r-lg">
+                  <Button type="submit" className="bg-primary ml-2 text-white rounded-r-lg">
                     S'inscrire
                   </Button>
                 </form>

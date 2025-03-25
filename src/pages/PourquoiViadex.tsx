@@ -8,8 +8,8 @@ import { Check } from "lucide-react";
 const PourquoiViadex = () => {
   const forces = [
     {
-      title: "Approche sans jargon technique",
-      description: "Nous croyons que l'IA doit être accessible à tous, pas seulement aux spécialistes. C'est pourquoi nous nous engageons à communiquer de façon claire et compréhensible, sans jargon technique.",
+      title: "Approche opérationel et métier",
+      description: "Nous croyons que l'IA doit être accessible à tous, pas seulement aux spécialistes. C'est pourquoi notre expérience opérationnel en entreprise nous permet de s'adapter a vos métier.",
       icon: "💬"
     },
     {
@@ -73,7 +73,7 @@ const PourquoiViadex = () => {
                   <p className="text-secondary mb-6">
                     Chez Viadex, nous croyons que l'IA doit être accessible à toutes les entreprises, 
                     quelle que soit leur taille. Notre mission est de démocratiser l'accès à cette technologie 
-                    en la rendant compréhensible, accessible et exploitable par tous.
+                    en la rendant compréhensible et exploitable par tous.
                   </p>
                   <p className="text-secondary">
                     Nous travaillons main dans la main avec nos clients pour identifier les opportunités concrètes 

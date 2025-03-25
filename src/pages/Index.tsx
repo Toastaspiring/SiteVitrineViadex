@@ -55,7 +55,7 @@ const Index = () => {
               </span>
                 <span className="block text-white">simplifiez votre transformation</span>
               </h1>
-              <p className="text-lg text-white/80 mb-8 max-w-xl">Viadex accompagne les entreprises dans l'adoption de l'IA, en toute simplicité.</p>
+              <p className="text-lg text-white/80 mb-8 max-w-xl">Viadex accompagne les entreprises dans la valorisation de leur Data et l'adoption de l'IA.</p>
               <Link to="/contact">
                 <Button className="px-6 py-6 bg-white text-primary hover:bg-white/90 rounded-lg text-lg font-medium">
                   Prenez un rendez-vous découverte
@@ -163,8 +163,8 @@ const Index = () => {
             
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {[{
-              title: "Sans jargon technique",
-              description: "Nous parlons votre langage, pas celui des ingénieurs."
+              title: "Centrer sur vos processus",
+              description: "Nous parlons votre langage et notre expérience nous permet de s'adapter à votre métier."
             }, {
               title: "Solutions accessibles",
               description: "Des approches concrètes adaptées à vos besoins réels."

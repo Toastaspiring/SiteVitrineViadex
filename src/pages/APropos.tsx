@@ -10,19 +10,33 @@ const APropos = () => {
       name: "Jad Marchoudi",
       role: "Développeur IA",
       bio: "Alternant en Bachelor IA à l'EPSI Rennes",
-      avatar: "https://randomuser.me/api/portraits/men/1.jpg"
+      avatar: "lovable-uploads/avatar/jad.jpg"
     },
     {
       name: "Vincent Delacroix",
       role: "CEO & entrepreneur",
       bio: "Expert en solutions technologiques et sécurité, avec une expérience polyvalente dans la formation",
-      avatar: "https://randomuser.me/api/portraits/women/1.jpg"
+      avatar: "lovable-uploads/avatar/Vincent.jpg"
     },
     {
       name: "Louis Marec",
       role: "Développeur IA",
-      bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes, en quête d'une alternance avec une expérience internationale",
-      avatar: "https://randomuser.me/api/portraits/men/2.jpg"
+      bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes.",
+      avatar: "lovable-uploads/avatar/Louis.jpg"
+    }
+  ];
+  const Partenaire = [
+    {
+      name: "Just AI",
+      avatar: "lovable-uploads/partenaire/justAi.png"
+    },
+    {
+      name: "Le Poool",
+      avatar: "lovable-uploads/partenaire/LePool.png"
+    },
+    {
+      name: "AppInside",
+      avatar: "lovable-uploads/partenaire/coachappinside.png"
     }
   ];
 
@@ -38,36 +52,6 @@ const APropos = () => {
             <p className="text-xl max-w-3xl">
               Découvrez qui nous sommes, notre mission et notre passion pour rendre l'IA accessible à toutes les entreprises.
             </p>
-          </div>
-        </section>
-
-        {/* Notre mission */}
-        <section className="py-16 px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-12 items-center">
-              <div className="md:w-1/2">
-                <h2 className="text-3xl font-bold mb-6 text-primary">Notre mission</h2>
-                <p className="text-xl text-secondary mb-6">
-                  Permettre aux PME d'adopter l'IA simplement et efficacement.
-                </p>
-                <p className="text-secondary mb-4">
-                  Chez Viadex, nous croyons fermement que l'intelligence artificielle ne doit pas être réservée aux grandes entreprises. 
-                  Notre mission est de démocratiser l'accès à cette technologie transformative en la rendant compréhensible, 
-                  accessible et exploitable par toutes les entreprises, quelle que soit leur taille.
-                </p>
-                <p className="text-secondary">
-                  Nous nous engageons à accompagner nos clients avec pédagogie et bienveillance, en nous adaptant à leur niveau 
-                  de maturité technologique et en veillant à ce que chaque solution proposée apporte une valeur concrète et mesurable.
-                </p>
-              </div>
-              <div className="md:w-1/2">
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-                  alt="Personnes collaborant sur des solutions IA" 
-                  className="rounded-xl shadow-md w-full h-auto object-cover"
-                />
-              </div>
-            </div>
           </div>
         </section>
 
@@ -87,6 +71,25 @@ const APropos = () => {
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-primary font-medium mb-4">{member.role}</p>
                   <p className="text-secondary">{member.bio}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Nos Partenaires */}
+        <section className="py-16 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Nos partenaires</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {Partenaire.map((member, index) => (
+                <div key={index} className="rounded-xl p-6 text-center">
+                  <img 
+                    src={member.avatar} 
+                    alt={member.name} 
+                    className="w-32 h-32 mx-auto mb-4 object-cover"
+                  />
                 </div>
               ))}
             </div>

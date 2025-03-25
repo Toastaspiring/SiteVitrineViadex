@@ -69,7 +69,7 @@ const Methodologie = () => {
         {/* En-tête */}
         <section className="bg-primary text-white py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Notre Méthodologie : Dérisquer l'IA</h1>
+            <h1 className="text-4xl font-bold mb-4">Notre Méthodologie : Dérisquer votre transition IA</h1>
             <p className="text-xl max-w-3xl">
               Une IA maîtrisée : Réduction des risques, usage responsable, ROI mesurable et approche progressive adaptée à vos cas d'usage
             </p>
