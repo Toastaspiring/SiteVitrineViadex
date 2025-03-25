@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap, BookOpen } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -61,7 +60,7 @@ const Index = () => {
         {/* Section Bannière */}
         <section className="relative overflow-hidden px-6 lg:px-8 py-24 sm:py-32 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
           <div className="mx-auto max-w-7xl relative">
-            {/* Background Logo - Positioned absolutely and hidden on mobile */}
+            {/* Background Logo - Only visible on screens larger than 1200px (xl breakpoint) */}
             <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-90 md:opacity-100 pointer-events-none z-0 hidden xl:block">
               <div className="relative max-w-[400px] md:max-w-[500px] w-full">
                 <div className="absolute inset-0 flex items-center justify-center">

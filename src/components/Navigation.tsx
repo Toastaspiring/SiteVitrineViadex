@@ -22,7 +22,7 @@ const Navigation = () => {
           <span className="text-primary animate-in fade-in-0">Viadex</span>
         </Link>
         
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - only visible on extra large screens */}
         <div className="hidden xl:flex items-center space-x-8">
           <Link to="/methodologie" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Notre Méthodologie
@@ -53,6 +53,7 @@ const Navigation = () => {
             </Link>
           ) : (
             <>
+              {/* Login button - desktop version */}
               <Button 
                 variant="ghost" 
                 className="hidden xl:inline-flex hover:scale-105 transform transition-all"
@@ -61,7 +62,7 @@ const Navigation = () => {
                 Se Connecter
               </Button>
               
-              {/* Mobile login icon button */}
+              {/* Mobile login icon button - always visible on mobile */}
               <Button 
                 variant="ghost" 
                 size="icon" 
