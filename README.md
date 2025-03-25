@@ -50,4 +50,4 @@ npm run dev
 
 ## Déploiement
 
-Le site peut être déployé facilement via la plateforme GPT Engineer ou via des services comme Netlify.
+Le site peut être déployé facilement via la plateforme GPT Engineer ou via des services comme Netlify..
