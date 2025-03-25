@@ -93,7 +93,7 @@ const Methodologie = () => {
                     index % 2 !== 0 ? 'md:flex-row-reverse' : ''
                   }`}
                 >
-                  <div className="md:w-1/3 flex flex-col items-center justify-start">
+                  <div className="md:w-1/3 flex items-center justify-center">
                     <div className="w-full h-48 md:h-64 rounded-lg overflow-hidden">
                       <AspectRatio ratio={16/9} className="bg-muted">
                         <img 
