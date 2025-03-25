@@ -1,10 +1,36 @@
+
 import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap, BookOpen } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getBlogPosts } from "@/services/databaseService";
+import { BlogPost } from "@/types/database";
+import { toast } from "sonner";
+
 const Index = () => {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+  
+  const fetchBlogPosts = async () => {
+    setIsLoading(true);
+    try {
+      const posts = await getBlogPosts();
+      setBlogPosts(posts.slice(0, 3)); // Get only the first 3 posts for the landing page
+    } catch (error) {
+      console.error("Erreur lors de la récupération des articles:", error);
+      toast.error("Erreur lors du chargement des articles");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
   const services = [{
     title: "Formations IA",
     description: "Acculturation des dirigeants et équipes, formations certifiantes CertifIA, ateliers pratiques pour comprendre et maîtriser l'IA.",
@@ -30,28 +56,6 @@ const Index = () => {
     color: "bg-blue-50",
     link: "/methodologie"
   }];
-
-  // Sample blog articles
-  const blogArticles = [
-    {
-      title: "Comment l'IA peut transformer votre PME",
-      excerpt: "Découvrez les avantages concrets de l'IA pour les petites et moyennes entreprises du Grand Ouest.",
-      image: "/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png",
-      slug: "comment-ia-transformer-pme"
-    },
-    {
-      title: "Les fondamentaux de l'IA pour les dirigeants",
-      excerpt: "Un guide simple pour comprendre les concepts essentiels de l'IA sans expertise technique.",
-      image: "/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png",
-      slug: "fondamentaux-ia-dirigeants"
-    },
-    {
-      title: "Études de cas: L'IA dans le Grand Ouest",
-      excerpt: "Exemples concrets de PME et ETI ayant réussi leur transformation avec l'IA.",
-      image: "/lovable-uploads/logoV1.png",
-      slug: "etudes-cas-ia-grand-ouest"
-    }
-  ];
   
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -129,30 +133,40 @@ const Index = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-              {blogArticles.map((article, index) => (
-                <Link key={index} to={`/blog/${article.slug}`} className="block hover:no-underline">
-                  <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={article.image} 
-                        alt={article.title}
-                        className="w-full h-full object-cover transition-transform hover:scale-105" 
-                      />
+            {isLoading ? (
+              <div className="text-center py-8">
+                <p>Chargement des articles...</p>
+              </div>
+            ) : blogPosts.length === 0 ? (
+              <div className="text-center py-8">
+                <p>Aucun article trouvé</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                {blogPosts.map((article) => (
+                  <Link key={article.id} to={`/blog/${article.slug}`} className="block hover:no-underline">
+                    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={article.imagePath} 
+                          alt={article.titre}
+                          className="w-full h-full object-cover transition-transform hover:scale-105" 
+                        />
+                      </div>
+                      <div className="p-6 flex-grow">
+                        <h3 className="text-xl font-semibold mb-3 text-primary">{article.titre}</h3>
+                        <p className="text-secondary">{article.excerpt}</p>
+                      </div>
+                      <div className="p-6 pt-0">
+                        <span className="text-primary flex items-center gap-1 font-medium">
+                          Lire l'article <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </div>
                     </div>
-                    <div className="p-6 flex-grow">
-                      <h3 className="text-xl font-semibold mb-3 text-primary">{article.title}</h3>
-                      <p className="text-secondary">{article.excerpt}</p>
-                    </div>
-                    <div className="p-6 pt-0">
-                      <span className="text-primary flex items-center gap-1 font-medium">
-                        Lire l'article <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                  </Link>
+                ))}
+              </div>
+            )}
             
             <div className="flex justify-center mt-8">
               <Link to="/blog">
