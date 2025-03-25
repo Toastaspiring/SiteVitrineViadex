@@ -2,6 +2,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FormationHeader from "@/components/formation/FormationHeader";
+import FormationPartner from "@/components/formation/FormationPartner"
 import FormationIntro from "@/components/formation/FormationIntro";
 import AboutCertifIAG from "@/components/formation/AboutCertifIAG";
 import WhyTrainInAI from "@/components/formation/WhyTrainInAI";
@@ -17,6 +18,7 @@ const Formation = () => {
       
       <main className="pt-16">
         <FormationHeader />
+        <FormationPartner />
         <FormationIntro />
         <AboutCertifIAG />
         <WhyTrainInAI />
