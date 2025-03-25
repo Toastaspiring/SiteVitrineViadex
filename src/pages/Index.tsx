@@ -1,5 +1,5 @@
 
-import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap } from "lucide-react";
+import { ArrowRight, Check, LightbulbIcon, ClockIcon, UsersIcon, ShieldIcon, GraduationCap, BookOpen } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
@@ -31,6 +31,29 @@ const Index = () => {
     color: "bg-blue-50",
     link: "/methodologie"
   }];
+
+  // Sample blog articles
+  const blogArticles = [
+    {
+      title: "Comment l'IA peut transformer votre PME",
+      excerpt: "Découvrez les avantages concrets de l'IA pour les petites et moyennes entreprises du Grand Ouest.",
+      image: "/lovable-uploads/3258e66c-55f9-47f0-a8af-e2ec44ce6416.png",
+      slug: "comment-ia-transformer-pme"
+    },
+    {
+      title: "Les fondamentaux de l'IA pour les dirigeants",
+      excerpt: "Un guide simple pour comprendre les concepts essentiels de l'IA sans expertise technique.",
+      image: "/lovable-uploads/3699b2d8-edb8-4fe3-ade8-f89c626c1ab9.png",
+      slug: "fondamentaux-ia-dirigeants"
+    },
+    {
+      title: "Études de cas: L'IA dans le Grand Ouest",
+      excerpt: "Exemples concrets de PME et ETI ayant réussi leur transformation avec l'IA.",
+      image: "/lovable-uploads/logoV1.png",
+      slug: "etudes-cas-ia-grand-ouest"
+    }
+  ];
+  
   return <div className="min-h-screen bg-background">
       <Navigation />
       
@@ -91,6 +114,51 @@ const Index = () => {
               <Link to="/methodologie">
                 <Button className="px-6 py-3 bg-primary text-white rounded-lg flex items-center gap-2">
                   Découvrir notre méthodologie <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Blog Section */}
+        <section className="py-16 px-6 lg:px-8 bg-blue-50">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Notre Blog & Ressources</h2>
+              <p className="text-xl text-secondary/80 max-w-2xl mx-auto">
+                Découvrez nos articles et ressources pour mieux comprendre les enjeux de l'IA et son application dans votre entreprise.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+              {blogArticles.map((article, index) => (
+                <Link key={index} to={`/blog/${article.slug}`} className="block hover:no-underline">
+                  <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={article.image} 
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform hover:scale-105" 
+                      />
+                    </div>
+                    <div className="p-6 flex-grow">
+                      <h3 className="text-xl font-semibold mb-3 text-primary">{article.title}</h3>
+                      <p className="text-secondary">{article.excerpt}</p>
+                    </div>
+                    <div className="p-6 pt-0">
+                      <span className="text-primary flex items-center gap-1 font-medium">
+                        Lire l'article <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            
+            <div className="flex justify-center mt-8">
+              <Link to="/blog">
+                <Button className="px-6 py-3 bg-primary text-white rounded-lg flex items-center gap-2">
+                  Voir tous les articles <BookOpen className="w-4 h-4" />
                 </Button>
               </Link>
             </div>
