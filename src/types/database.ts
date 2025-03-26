@@ -28,9 +28,22 @@ export interface BlogPost {
   date: string;
   tempsLecture: string;
   categorie: number;
+  categorie_nom?: string;
   excerpt?: string;
   content?: string;
   slug?: string;
+}
+
+// Type to match the actual API response for blog posts
+export interface ApiBlogPost {
+  ID_article: number;
+  titre: string;
+  ImagePath: string;
+  date: string;
+  Text: string;
+  reading_time: number;
+  categorie: number;
+  categorie_nom?: string;
 }
 
 // API request/response types to match the documentation

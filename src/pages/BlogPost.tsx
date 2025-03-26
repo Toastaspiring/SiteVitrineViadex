@@ -4,18 +4,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { getBlogPostBySlug } from "@/services/blogService";
+import { getBlogPostBySlug, getBlogPostById } from "@/services/blogService";
 import { BlogPost as BlogPostType } from "@/types/database";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogPost = () => {
-  const {
-    slug
-  } = useParams<{
-    slug: string;
-  }>();
+  const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,7 +20,15 @@ const BlogPost = () => {
       if (!slug) return;
       setIsLoading(true);
       try {
-        const blogPost = await getBlogPostBySlug(slug);
+        const id = parseInt(slug);
+        let blogPost: BlogPostType | null = null;
+        
+        if (!isNaN(id)) {
+          blogPost = await getBlogPostById(id);
+        } else {
+          blogPost = await getBlogPostBySlug(slug);
+        }
+        
         setPost(blogPost);
         if (!blogPost) {
           toast.error("Article non trouvé");
@@ -40,7 +44,8 @@ const BlogPost = () => {
   }, [slug]);
 
   if (isLoading) {
-    return <div className="min-h-screen bg-background">
+    return (
+      <div className="min-h-screen bg-background">
         <Navigation />
         <main className="pt-24 pb-16 px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -66,11 +71,13 @@ const BlogPost = () => {
           </div>
         </main>
         <Footer />
-      </div>;
+      </div>
+    );
   }
 
   if (!post) {
-    return <div className="min-h-screen bg-background">
+    return (
+      <div className="min-h-screen bg-background">
         <Navigation />
         <main className="pt-24 pb-16 px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center py-20">
@@ -82,10 +89,12 @@ const BlogPost = () => {
           </div>
         </main>
         <Footer />
-      </div>;
+      </div>
+    );
   }
 
-  return <div className="min-h-screen bg-background">
+  return (
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-24 pb-16 px-6 lg:px-8">
@@ -101,7 +110,7 @@ const BlogPost = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                 <div className="p-6 md:p-8 w-full">
                   <span className="inline-block px-3 py-1 bg-primary text-white text-sm font-medium rounded-full mb-4">
-                    {post.categorie}
+                    {post.categorie_nom || `Catégorie ${post.categorie}`}
                   </span>
                   <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{post.titre}</h1>
                 </div>
@@ -120,18 +129,21 @@ const BlogPost = () => {
                 </div>
                 <div className="flex items-center">
                   <Tag className="w-4 h-4 mr-2" />
-                  {post.categorie}
+                  {post.categorie_nom || `Catégorie ${post.categorie}`}
                 </div>
               </div>
               
               <div className="prose prose-lg max-w-none">
-                {post.excerpt && <div className="lead text-xl font-medium text-gray-900 mb-6">
+                {post.excerpt && (
+                  <div className="lead text-xl font-medium text-gray-900 mb-6">
                     {post.excerpt}
-                  </div>}
+                  </div>
+                )}
                 
-                {post.content ? <div dangerouslySetInnerHTML={{
-                __html: post.content
-              }} /> : <>
+                {post.content ? (
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                ) : (
+                  <>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non diam euismod, 
                       ultrices nisl a, tristique risus. Ut ut convallis nisl. Sed sit amet orci at magna 
@@ -142,7 +154,8 @@ const BlogPost = () => {
                       et netus et malesuada fames ac turpis egestas. Curabitur fermentum nulla eget ipsum pulvinar 
                       lacinia. Mauris tristique sem et felis pulvinar, a tempor odio convallis.
                     </p>
-                  </>}
+                  </>
+                )}
               </div>
             </div>
           </article>
@@ -167,7 +180,8 @@ const BlogPost = () => {
       </main>
       
       <Footer />
-    </div>;
+    </div>
+  );
 };
 
 export default BlogPost;

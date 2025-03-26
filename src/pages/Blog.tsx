@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -131,14 +132,14 @@ const Blog = () => {
                     <div className="p-6">
                       <div className="flex justify-between items-center mb-3">
                         <span className="text-sm font-medium px-3 py-1 bg-primary/10 text-primary rounded-full">
-                          {article.categorie}
+                          {article.categorie_nom || `Catégorie ${article.categorie}`}
                         </span>
                         <span className="text-sm text-muted-foreground">
                           {article.tempsLecture} de lecture
                         </span>
                       </div>
                       <h3 className="text-xl font-bold mb-2">{article.titre}</h3>
-                      <p className="text-secondary mb-4 line-clamp-3">{article.excerpt}</p>
+                      <p className="text-secondary mb-4 line-clamp-3">{article.excerpt || article.titre}</p>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">{article.date}</span>
                         <Link to={`/blog/${article.slug || article.id}`} className="text-primary font-medium flex items-center gap-1 hover:underline">

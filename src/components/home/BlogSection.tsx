@@ -43,6 +43,7 @@ const BlogSection = () => {
             date: "2025-03-15",
             tempsLecture: "5 min",
             categorie: 1,
+            categorie_nom: "Usage",
             excerpt: "Découvrez comment l'IA générative peut transformer votre entreprise et améliorer votre productivité."
           },
           {
@@ -52,6 +53,7 @@ const BlogSection = () => {
             date: "2025-03-10",
             tempsLecture: "7 min",
             categorie: 2,
+            categorie_nom: "Stratégie",
             excerpt: "Un guide étape par étape pour intégrer l'IA dans vos processus d'entreprise."
           },
           {
@@ -61,6 +63,7 @@ const BlogSection = () => {
             date: "2025-03-05",
             tempsLecture: "6 min",
             categorie: 3,
+            categorie_nom: "Conseil",
             excerpt: "Des exemples concrets d'utilisation de l'IA pour développer votre business."
           }
         ]);
