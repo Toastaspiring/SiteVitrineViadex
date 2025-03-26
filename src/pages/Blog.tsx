@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
-import { getBlogPosts } from "@/services/databaseService";
+import { getBlogPosts } from "@/services/blogService";
 import { BlogPost } from "@/types/database";
 import { toast } from "sonner";
 

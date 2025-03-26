@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Eye, Mail, MailCheck, MailX, Download } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { getContacts, updateContactStatus } from "@/services/databaseService";
+import { getContacts, updateContactStatus } from "@/services/contactService";
 import { Contact } from "@/types/database";
 import { toast } from "sonner";
 

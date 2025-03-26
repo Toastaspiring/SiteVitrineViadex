@@ -1,6 +1,5 @@
 
-// This file is maintained for backward compatibility
-// It re-exports all services from the new modularized files
+// Re-export all services for easier imports
 export * from './apiService';
 export * from './authService';
 export * from './blogService';

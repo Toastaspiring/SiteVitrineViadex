@@ -5,11 +5,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
-import { authenticateUser } from "@/services/databaseService";
+import { authenticateUser } from "@/services/authService";
+
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export function LoginModal({
   isOpen,
   onClose
@@ -22,11 +24,11 @@ export function LoginModal({
     setUser
   } = useAuth();
   const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // Use the database service to authenticate
       const user = await authenticateUser(email, password);
       if (user) {
         setUser(user);
@@ -44,6 +46,7 @@ export function LoginModal({
       setIsLoading(false);
     }
   };
+
   return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] animate-in fade-in-0 zoom-in-95">
         <DialogHeader>

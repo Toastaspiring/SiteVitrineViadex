@@ -4,11 +4,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { getBlogPostBySlug } from "@/services/databaseService";
+import { getBlogPostBySlug } from "@/services/blogService";
 import { BlogPost as BlogPostType } from "@/types/database";
 import { toast } from "sonner";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+
 const BlogPost = () => {
   const {
     slug
@@ -17,6 +18,7 @@ const BlogPost = () => {
   }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchPost = async () => {
       if (!slug) return;
@@ -36,6 +38,7 @@ const BlogPost = () => {
     };
     fetchPost();
   }, [slug]);
+
   if (isLoading) {
     return <div className="min-h-screen bg-background">
         <Navigation />
@@ -65,6 +68,7 @@ const BlogPost = () => {
         <Footer />
       </div>;
   }
+
   if (!post) {
     return <div className="min-h-screen bg-background">
         <Navigation />
@@ -80,6 +84,7 @@ const BlogPost = () => {
         <Footer />
       </div>;
   }
+
   return <div className="min-h-screen bg-background">
       <Navigation />
       
@@ -164,4 +169,5 @@ const BlogPost = () => {
       <Footer />
     </div>;
 };
+
 export default BlogPost;

@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { addContact } from "@/services/databaseService";
+import { addContact } from "@/services/contactService";
 import { toast } from "sonner";
 
 interface ContactFormProps {
