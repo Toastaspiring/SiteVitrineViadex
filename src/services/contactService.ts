@@ -34,6 +34,9 @@ export const updateContactStatus = async (id: number, statusId: number): Promise
   try {
     await fetchApi(`/contact/${id}`, {
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ status: statusId })
     });
     
@@ -61,6 +64,9 @@ export const addContact = async (contactData: {
   try {
     await fetchApi('/contact', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         nom: contactData.nom,
         prenom: contactData.prenom,

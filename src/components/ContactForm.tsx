@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { addContact } from "@/services/contactService";
@@ -6,10 +5,10 @@ import { toast } from "sonner";
 
 interface ContactFormProps {
   isShort?: boolean;
-  source?: string;
+  source?: number | string;
 }
 
-const ContactForm = ({ isShort = false, source = "formulaire_contact" }: ContactFormProps) => {
+const ContactForm = ({ isShort = false, source = 1 }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -29,10 +28,13 @@ const ContactForm = ({ isShort = false, source = "formulaire_contact" }: Contact
     setIsSubmitting(true);
     
     try {
-      // Add source to the contact data
+      // Create contact data with correct types
       const contactData = {
-        ...formData,
-        source
+        nom: formData.nom,
+        email: formData.email,
+        message: formData.message,
+        // Convert source to number if it's a string
+        source: typeof source === 'string' ? parseInt(source, 10) || 1 : source
       };
       
       const success = await addContact(contactData);

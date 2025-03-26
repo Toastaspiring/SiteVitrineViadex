@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -35,10 +34,10 @@ const ContactList = () => {
   
   const markAsHandled = async (id: number) => {
     try {
-      const success = await updateContactStatus(id, "traité");
+      const success = await updateContactStatus(id, 2);
       if (success) {
         setContacts(contacts.map(contact => 
-          contact.id === id ? { ...contact, status: "traité" } : contact
+          contact.id === id ? { ...contact, status: 2 } : contact
         ));
         toast.success("Statut mis à jour avec succès");
       }
@@ -50,10 +49,10 @@ const ContactList = () => {
   
   const markAsUnhandled = async (id: number) => {
     try {
-      const success = await updateContactStatus(id, "non-traité");
+      const success = await updateContactStatus(id, 1);
       if (success) {
         setContacts(contacts.map(contact => 
-          contact.id === id ? { ...contact, status: "non-traité" } : contact
+          contact.id === id ? { ...contact, status: 1 } : contact
         ));
         toast.success("Statut mis à jour avec succès");
       }
@@ -69,7 +68,6 @@ const ContactList = () => {
   };
   
   const exportToCSV = () => {
-    // Create CSV data
     const headers = ["ID", "Nom", "Prénom", "Email", "Message", "Date", "Statut", "Source"];
     const csvData = contacts.map(contact => [
       contact.id,
@@ -87,7 +85,6 @@ const ContactList = () => {
       ...csvData.map(row => row.join(","))
     ].join("\n");
     
-    // Create blob and download
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -139,19 +136,19 @@ const ContactList = () => {
               </TableHeader>
               <TableBody>
                 {contacts.map((contact) => (
-                  <TableRow key={contact.id} className={contact.status === "non-traité" ? "bg-secondary/10" : ""}>
+                  <TableRow key={contact.id} className={contact.status === 1 ? "bg-secondary/10" : ""}>
                     <TableCell className="font-medium">{contact.prenom ? `${contact.prenom} ${contact.nom}` : contact.nom}</TableCell>
                     <TableCell>{contact.email}</TableCell>
                     <TableCell>{contact.date}</TableCell>
                     <TableCell>
                       <span 
                         className={`px-2 py-1 rounded-full text-xs ${
-                          contact.status === "non-traité" 
+                          contact.status === 1 
                             ? "bg-destructive/10 text-destructive" 
                             : "bg-primary/10 text-primary"
                         }`}
                       >
-                        {contact.status}
+                        {getStatusDisplay(contact.status)}
                       </span>
                     </TableCell>
                     <TableCell>
@@ -163,7 +160,7 @@ const ContactList = () => {
                         >
                           <Eye className="h-4 w-4" />
                         </Button>
-                        {contact.status === "non-traité" ? (
+                        {contact.status === 1 ? (
                           <Button 
                             variant="outline" 
                             size="sm"

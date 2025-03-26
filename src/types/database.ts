@@ -14,10 +14,10 @@ export interface Contact {
   email: string;
   message: string;
   date: string;
-  status: number | string;
+  status: number;
   date_rdv?: string;
-  source?: number | string;
-  raison?: number | string;
+  source?: number;
+  raison?: number;
   ip_address?: string;
 }
 
@@ -27,7 +27,7 @@ export interface BlogPost {
   imagePath: string;
   date: string;
   tempsLecture: string;
-  categorie: number | string;
+  categorie: number;
   excerpt?: string;
   content?: string;
   slug?: string;

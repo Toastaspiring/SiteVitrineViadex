@@ -31,7 +31,7 @@ const Contact = () => {
                   n'hésitez pas à nous contacter. Nous vous répondrons dans les plus brefs délais.
                 </p>
                 
-                <ContactForm />
+                <ContactForm source={1} />
               </div>
               
               <div className="lg:w-1/2">
