@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/home/ui/dialog";
 import { Input } from "@/components/home/ui/input";
 import { Button } from "@/components/home/ui/button";
@@ -28,8 +29,10 @@ export function LoginModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    
     try {
       const user = await authenticateUser(email, password);
+      
       if (user) {
         setUser(user);
         setIsAuthenticated(true);
@@ -37,10 +40,12 @@ export function LoginModal({
         toast.success("Connexion réussie");
         navigate("/admin");
       } else {
+        // Single toast for failed login
         toast.error("Identifiants incorrects");
       }
     } catch (error) {
       console.error("Erreur de connexion:", error);
+      // Single toast for unexpected errors
       toast.error("Erreur lors de la connexion. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
@@ -66,9 +71,6 @@ export function LoginModal({
               Mot de passe
             </label>
             <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full bg-gray-200" />
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Pour la démonstration, utilisez: admin@viadex.fr / admin
           </div>
           <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 transition-colors text-slate-50">
             {isLoading ? "Connexion en cours..." : "Se connecter"}

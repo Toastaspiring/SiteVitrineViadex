@@ -1,3 +1,4 @@
+
 import { toast } from "sonner";
 
 // Base URL for API requests
@@ -29,15 +30,6 @@ export const fetchApi = async <T>(
 ): Promise<T> => {
   const effectiveUrl = `${API_BASE_URL}${endpoint}`;
   const method = options?.method || 'GET';
-  let payloadStr = '';
-
-  if (options?.body) {
-    try {
-      payloadStr = JSON.stringify(JSON.parse(options.body as string), null, 2);
-    } catch (e) {
-      payloadStr = options.body as string;
-    }
-  }
 
   try {
     const response = await fetch(effectiveUrl, {
