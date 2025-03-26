@@ -1,48 +1,36 @@
-
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 import { Lightbulb, ArrowRight, Users, Handshake, Shield, Check } from "lucide-react";
-
 const APropos = () => {
-  const team = [
-    {
-      name: "Jad Marchoudi",
-      role: "Développeur IA",
-      bio: "Alternant en Bachelor IA à l'EPSI Rennes",
-      avatar: "lovable-uploads/avatar/jad.jpg"
-    },
-    {
-      name: "Vincent Delacroix",
-      role: "CEO & entrepreneur",
-      bio: "Expert en solutions technologiques et sécurité, avec une expérience polyvalente dans la formation",
-      avatar: "lovable-uploads/avatar/Vincent.jpg"
-    },
-    {
-      name: "Louis Marec",
-      role: "Développeur IA",
-      bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes.",
-      avatar: "lovable-uploads/avatar/Louis.jpg"
-    }
-  ];
-  const Partenaire = [
-    {
-      name: "Just AI",
-      avatar: "lovable-uploads/partenaire/justAi.png"
-    },
-    {
-      name: "Le Poool",
-      avatar: "lovable-uploads/partenaire/LePool.png"
-    },
-    {
-      name: "AppInside",
-      avatar: "lovable-uploads/partenaire/coachappinside.png"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const team = [{
+    name: "Jad Marchoudi",
+    role: "Développeur IA",
+    bio: "Alternant en Bachelor IA à l'EPSI Rennes",
+    avatar: "lovable-uploads/avatar/jad.jpg"
+  }, {
+    name: "Vincent Delacroix",
+    role: "CEO & entrepreneur",
+    bio: "Expert en solutions technologiques et sécurité, avec une expérience polyvalente dans la formation",
+    avatar: "lovable-uploads/avatar/Vincent.jpg"
+  }, {
+    name: "Louis Marec",
+    role: "Développeur IA",
+    bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes.",
+    avatar: "lovable-uploads/avatar/Louis.jpg"
+  }];
+  const Partenaire = [{
+    name: "Just AI",
+    avatar: "lovable-uploads/partenaire/justAi.png"
+  }, {
+    name: "Le Poool",
+    avatar: "lovable-uploads/partenaire/LePool.png"
+  }, {
+    name: "AppInside",
+    avatar: "lovable-uploads/partenaire/coachappinside.png"
+  }];
+  return <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-16">
@@ -62,15 +50,9 @@ const APropos = () => {
             <h2 className="text-3xl font-bold mb-12 text-center">Nos partenaires</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {Partenaire.map((member, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 text-center">
-                  <img 
-                    src={member.avatar} 
-                    alt={member.name} 
-                    className="w-32 h-32 mx-auto mb-4 object-cover"
-                  />
-                </div>
-              ))}
+              {Partenaire.map((member, index) => <div key={index} className="bg-white rounded-xl p-6 text-center">
+                  <img src={member.avatar} alt={member.name} className="w-32 h-32 mx-auto mb-4 object-cover" />
+                </div>)}
             </div>
           </div>
         </section>
@@ -81,18 +63,12 @@ const APropos = () => {
             <h2 className="text-3xl font-bold mb-12 text-center">Notre équipe</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {team.map((member, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 shadow-sm text-center">
-                  <img 
-                    src={member.avatar} 
-                    alt={member.name} 
-                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                  />
+              {team.map((member, index) => <div key={index} className="bg-white rounded-xl p-6 shadow-sm text-center">
+                  <img src={member.avatar} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-primary font-medium mb-4">{member.role}</p>
                   <p className="text-secondary">{member.bio}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -102,7 +78,7 @@ const APropos = () => {
           <div className="max-w-7xl mx-auto">
             <div className="bg-white rounded-xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-4 text-primary">
-                <Lightbulb className="w-6 h-6" />
+                
                 <h2 className="text-3xl font-bold">Notre Vision : L'IA, un levier stratégique pour toutes les entreprises</h2>
               </div>
               
@@ -119,7 +95,7 @@ const APropos = () => {
               </p>
               
               <div className="flex items-center gap-3 mb-4 text-primary">
-                <ArrowRight className="w-6 h-6" />
+                
                 <h3 className="text-2xl font-bold">Pourquoi Viadex a été créé ?</h3>
               </div>
               
@@ -139,7 +115,7 @@ const APropos = () => {
               </p>
               
               <div className="flex items-center gap-3 mb-5 text-primary">
-                <Users className="w-6 h-6" />
+                
                 <h3 className="text-2xl font-bold">Notre approche : 3 piliers qui font la différence</h3>
               </div>
               
@@ -178,7 +154,7 @@ const APropos = () => {
               </div>
               
               <div className="flex items-center gap-3 mb-5 text-primary">
-                <Shield className="w-6 h-6" />
+                
                 <h3 className="text-2xl font-bold">Nos valeurs : notre boussole au quotidien</h3>
               </div>
               
@@ -230,8 +206,6 @@ const APropos = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default APropos;
