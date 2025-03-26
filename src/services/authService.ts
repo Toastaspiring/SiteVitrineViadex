@@ -1,29 +1,36 @@
-
 import { User } from "@/types/database";
 import { fetchApi } from "./apiService";
 import { toast } from "sonner";
 
-// Authentication service
-export const authenticateUser = async (email: string, password: string): Promise<User | null> => {
-  console.log("Authenticating user:", email);
-  
+// Typing for the backend's login response
+type AuthResponse = {
+  success: true;
+  user: User;
+};
+
+// 🔐 Authenticate user via POST /user
+export const authenticateUser = async (
+  email: string,
+  password: string
+): Promise<User | null> => {
   try {
-    return await fetchApi<User>('/user', {
-      method: 'POST',
-      body: JSON.stringify({ email, password })
+    const res = await fetchApi<AuthResponse>("/user", {
+      method: "POST",
+      body: JSON.stringify({ email, password }), // plain password
     });
+
+    toast.success("Connexion réussie !");
+    return res.user;
+
   } catch (error) {
-    console.error("Authentication error:", error);
-    toast.error("Erreur d'authentification");
+    toast.error("Email ou mot de passe incorrect");
     return null;
   }
 };
 
+// 📩 Get user by email (GET /user/{email})
 export const getUserByEmail = async (email: string): Promise<User | null> => {
-  console.log("Fetching user by email:", email);
-  
   try {
-    // Email must be URL encoded as per documentation
     const encodedEmail = encodeURIComponent(email);
     return await fetchApi<User>(`/user/${encodedEmail}`);
   } catch (error) {
@@ -32,48 +39,12 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
   }
 };
 
+// 📋 Get all users (GET /user)
 export const getAllUsers = async (): Promise<User[]> => {
-  console.log("Fetching all users");
-  
   try {
-    return await fetchApi<User[]>('/user');
+    return await fetchApi<User[]>("/user");
   } catch (error) {
-    console.error("Error fetching users:", error);
     toast.error("Erreur lors du chargement des utilisateurs");
     return [];
-  }
-};
-
-export const registerUser = async (email: string, password: string): Promise<User | null> => {
-  console.log("Registering new user:", email);
-  
-  try {
-    return await fetchApi<User>('/user', {
-      method: 'POST',
-      body: JSON.stringify({ email, password })
-    });
-  } catch (error) {
-    console.error("Registration error:", error);
-    toast.error("Erreur lors de l'enregistrement");
-    return null;
-  }
-};
-
-export const deleteUser = async (email: string): Promise<boolean> => {
-  console.log("Deleting user:", email);
-  
-  try {
-    // Email must be URL encoded as per documentation
-    const encodedEmail = encodeURIComponent(email);
-    await fetchApi(`/user/${encodedEmail}`, {
-      method: 'DELETE'
-    });
-    
-    toast.success("Utilisateur supprimé avec succès");
-    return true;
-  } catch (error) {
-    console.error("Error deleting user:", error);
-    toast.error("Erreur lors de la suppression de l'utilisateur");
-    return false;
   }
 };

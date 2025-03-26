@@ -29,11 +29,11 @@ const Blog = () => {
       } else {
         console.error("API did not return an array for blog posts:", posts);
         setBlogPosts([]);
-        //toast.error("Format de données incorrect lors du chargement des articles");
+        toast.error("Format de données incorrect lors du chargement des articles");
       }
     } catch (error) {
       console.error("Erreur lors de la récupération des articles:", error);
-      //toast.error("Erreur lors du chargement des articles");
+      toast.error("Erreur lors du chargement des articles");
       setBlogPosts([]);
     } finally {
       setIsLoading(false);
@@ -43,7 +43,7 @@ const Blog = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email inscrit à la newsletter:", email);
-    //toast.success("Merci pour votre inscription à notre newsletter !");
+    toast.success("Merci pour votre inscription à notre newsletter !");
     setEmail("");
   };
 

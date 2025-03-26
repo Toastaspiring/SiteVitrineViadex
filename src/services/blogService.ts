@@ -44,7 +44,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     }
   } catch (error) {
     console.error("Error fetching blog posts:", error);
-    //toast.error("Erreur lors du chargement des articles");
+    toast.error("Erreur lors du chargement des articles");
     return [];
   }
 };
@@ -57,7 +57,7 @@ export const getBlogPostById = async (id: number): Promise<BlogPost | null> => {
     return mapApiBlogPostToBlogPost(response);
   } catch (error) {
     console.error(`Error fetching blog post with ID ${id}:`, error);
-    //toast.error("Erreur lors du chargement de l'article");
+    toast.error("Erreur lors du chargement de l'article");
     return null;
   }
 };
@@ -96,7 +96,7 @@ export const createBlogPost = async (postData: Omit<BlogPost, 'id'>): Promise<Bl
     return mapApiBlogPostToBlogPost(response);
   } catch (error) {
     console.error("Error creating blog post:", error);
-    //toast.error("Erreur lors de la création de l'article");
+    toast.error("Erreur lors de la création de l'article");
     return null;
   }
 };
@@ -122,7 +122,7 @@ export const updateBlogPost = async (id: number, postData: Partial<BlogPost>): P
     return mapApiBlogPostToBlogPost(response);
   } catch (error) {
     console.error(`Error updating blog post ${id}:`, error);
-    //toast.error("Erreur lors de la mise à jour de l'article");
+    toast.error("Erreur lors de la mise à jour de l'article");
     return null;
   }
 };
@@ -134,11 +134,11 @@ export const deleteBlogPost = async (id: number): Promise<boolean> => {
     await fetchApi(`/blogpost/${id}`, {
       method: 'DELETE'
     });
-    //toast.success("Article supprimé avec succès");
+    toast.success("Article supprimé avec succès");
     return true;
   } catch (error) {
     console.error(`Error deleting blog post ${id}:`, error);
-    //toast.error("Erreur lors de la suppression de l'article");
+    toast.error("Erreur lors de la suppression de l'article");
     return false;
   }
 };

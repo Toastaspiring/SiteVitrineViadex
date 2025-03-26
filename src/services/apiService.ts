@@ -59,8 +59,6 @@ export const fetchApi = async <T>(
       data = await response.text().catch(() => "");
     }
 
-    console.log(`API ${method} ${endpoint}`)
-
     toast(
       `API ${method} ${endpoint}`,
       {
@@ -75,10 +73,10 @@ export const fetchApi = async <T>(
 
     return data;
   } catch (error) {
-    // toast.error(`Erreur API: ${endpoint}`, {
-    //   description: error instanceof Error ? error.message : String(error),
-    //   duration: 10000,
-    // });
+    toast.error(`Erreur API: ${endpoint}`, {
+      description: error instanceof Error ? error.message : String(error),
+      duration: 10000,
+    });
     throw error;
   }
 };

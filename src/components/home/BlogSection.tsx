@@ -68,7 +68,7 @@ const BlogSection = () => {
           }
         ]);
       } else {
-        //toast.error("Erreur lors du chargement des articles");
+        toast.error("Erreur lors du chargement des articles");
       }
     } finally {
       setIsLoading(false);

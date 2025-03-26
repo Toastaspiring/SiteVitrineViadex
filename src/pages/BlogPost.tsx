@@ -31,11 +31,11 @@ const BlogPost = () => {
         
         setPost(blogPost);
         if (!blogPost) {
-          //toast.error("Article non trouvé");
+          toast.error("Article non trouvé");
         }
       } catch (error) {
         console.error("Erreur lors de la récupération de l'article:", error);
-        //toast.error("Erreur lors du chargement de l'article");
+        toast.error("Erreur lors du chargement de l'article");
       } finally {
         setIsLoading(false);
       }
