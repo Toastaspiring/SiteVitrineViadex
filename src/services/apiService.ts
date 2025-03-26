@@ -51,10 +51,16 @@ export const fetchApi = async <T>(
       });
     }
     
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    // Create a dummy proxy server to bypass CORS for development
+    const effectiveUrl = process.env.NODE_ENV === 'development' 
+      ? `/api${endpoint}` // Use a relative path that can be proxied
+      : `${API_BASE_URL}${endpoint}`;
+    
+    const response = await fetch(effectiveUrl, {
       ...options,
       headers: {
         'Content-Type': 'application/json',
+        'Origin': 'https://viadex.fr', // Set the Origin header to match the allowed domain
         ...options?.headers,
       }
     });

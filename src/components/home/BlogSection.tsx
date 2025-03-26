@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getBlogPosts } from "@/services/databaseService";
+import { getBlogPosts } from "@/services/blogService";
 import { BlogPost } from "@/types/database";
 import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -18,11 +19,47 @@ const BlogSection = () => {
   const fetchBlogPosts = async () => {
     setIsLoading(true);
     try {
+      console.log("Fetching blog posts from API");
       const posts = await getBlogPosts();
+      console.log("Received blog posts:", posts);
       setBlogPosts(posts.slice(0, 3)); // Get only the first 3 posts for the landing page
     } catch (error) {
       console.error("Erreur lors de la récupération des articles:", error);
-      toast.error("Erreur lors du chargement des articles");
+      // Fallback to sample data for development purposes
+      if (process.env.NODE_ENV !== 'production') {
+        console.log("Using fallback sample data");
+        setBlogPosts([
+          {
+            id: 1,
+            titre: "L'IA générative et son impact sur les PME",
+            imagePath: "https://via.placeholder.com/800x400",
+            date: "2025-03-15",
+            tempsLecture: "5 min",
+            categorie: 1,
+            excerpt: "Découvrez comment l'IA générative peut transformer votre entreprise et améliorer votre productivité."
+          },
+          {
+            id: 2,
+            titre: "Les bases de l'intégration de l'IA dans votre entreprise",
+            imagePath: "https://via.placeholder.com/800x400",
+            date: "2025-03-10",
+            tempsLecture: "7 min",
+            categorie: 2,
+            excerpt: "Un guide étape par étape pour intégrer l'IA dans vos processus d'entreprise."
+          },
+          {
+            id: 3,
+            titre: "5 cas d'usage de l'IA pour augmenter votre chiffre d'affaires",
+            imagePath: "https://via.placeholder.com/800x400",
+            date: "2025-03-05",
+            tempsLecture: "6 min",
+            categorie: 3,
+            excerpt: "Des exemples concrets d'utilisation de l'IA pour développer votre business."
+          }
+        ]);
+      } else {
+        toast.error("Erreur lors du chargement des articles");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -39,8 +76,19 @@ const BlogSection = () => {
         </div>
         
         {isLoading ? (
-          <div className="text-center py-8">
-            <p>Chargement des articles...</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm h-full flex flex-col">
+                <Skeleton className="h-48 w-full" />
+                <div className="p-6 flex-grow space-y-3">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-20 w-full" />
+                </div>
+                <div className="p-6 pt-0">
+                  <Skeleton className="h-5 w-24" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : blogPosts.length === 0 ? (
           <div className="text-center py-8">
@@ -49,7 +97,7 @@ const BlogSection = () => {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {blogPosts.map((article) => (
-              <Link key={article.id} to={`/blog/${article.slug}`} className="block hover:no-underline">
+              <Link key={article.id} to={`/blog/${article.slug || article.id}`} className="block hover:no-underline">
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                   <div className="h-48 overflow-hidden">
                     <img 
@@ -60,7 +108,7 @@ const BlogSection = () => {
                   </div>
                   <div className="p-6 flex-grow">
                     <h3 className="text-xl font-semibold mb-3 text-primary">{article.titre}</h3>
-                    <p className="text-secondary">{article.excerpt}</p>
+                    <p className="text-secondary">{article.excerpt || article.titre}</p>
                   </div>
                   <div className="p-6 pt-0">
                     <span className="text-primary flex items-center gap-1 font-medium">
