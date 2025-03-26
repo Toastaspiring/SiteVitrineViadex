@@ -40,10 +40,12 @@ export function LoginModal({
         toast.success("Connexion réussie");
         navigate("/admin");
       } else {
+        // Single toast for failed login
         toast.error("Identifiants incorrects");
       }
     } catch (error) {
       console.error("Erreur de connexion:", error);
+      // Single toast for unexpected errors
       toast.error("Erreur lors de la connexion. Veuillez réessayer.");
     } finally {
       setIsLoading(false);

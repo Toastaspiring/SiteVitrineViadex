@@ -16,7 +16,7 @@ export const authenticateUser = async (email: string, password: string): Promise
     return user;
   } catch (error) {
     console.error("Authentication error:", error);
-    toast.error("Identifiants incorrects");
+    // Don't show a toast here, let the component handle error display
     return null;
   }
 };
