@@ -1,3 +1,4 @@
+
 import { toast } from "sonner";
 
 // Base URL for API requests
@@ -29,15 +30,6 @@ export const fetchApi = async <T>(
 ): Promise<T> => {
   const effectiveUrl = `${API_BASE_URL}${endpoint}`;
   const method = options?.method || 'GET';
-  let payloadStr = '';
-
-  if (options?.body) {
-    try {
-      payloadStr = JSON.stringify(JSON.parse(options.body as string), null, 2);
-    } catch (e) {
-      payloadStr = options.body as string;
-    }
-  }
 
   try {
     const response = await fetch(effectiveUrl, {
@@ -59,26 +51,12 @@ export const fetchApi = async <T>(
       data = await response.text().catch(() => "");
     }
 
-    console.log(`API ${method} ${endpoint}`)
-
-    toast(
-      `API ${method} ${endpoint}`,
-      {
-        description: `Status: ${response.status} ${response.statusText}\n\nPayload:\n${payloadStr || '---'}\n\nResponse:\n${typeof data === 'string' ? data : JSON.stringify(data, null, 2)}`,
-        duration: 10000,
-      }
-    );
-
     if (!response.ok) {
       throw new Error(typeof data === 'string' ? data : data.error || 'Une erreur est survenue');
     }
 
     return data;
   } catch (error) {
-    // toast.error(`Erreur API: ${endpoint}`, {
-    //   description: error instanceof Error ? error.message : String(error),
-    //   duration: 10000,
-    // });
     throw error;
   }
 };
