@@ -1,8 +1,15 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { addContact } from "@/services/databaseService";
+import { toast } from "sonner";
 
-const ContactForm = ({ isShort = false }) => {
+interface ContactFormProps {
+  isShort?: boolean;
+  source?: string;
+}
+
+const ContactForm = ({ isShort = false, source = "formulaire_contact" }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -10,24 +17,41 @@ const ContactForm = ({ isShort = false }) => {
     entreprise: "",
     telephone: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulaire soumis:", formData);
-    // Ici, vous pourriez ajouter le code pour envoyer le formulaire
-    alert("Merci pour votre message ! Nous vous contacterons bientôt.");
-    setFormData({
-      nom: "",
-      email: "",
-      message: "",
-      entreprise: "",
-      telephone: ""
-    });
+    setIsSubmitting(true);
+    
+    try {
+      // Add source to the contact data
+      const contactData = {
+        ...formData,
+        source
+      };
+      
+      const success = await addContact(contactData);
+      
+      if (success) {
+        setFormData({
+          nom: "",
+          email: "",
+          message: "",
+          entreprise: "",
+          telephone: ""
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Une erreur est survenue lors de l'envoi du formulaire");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -114,8 +138,17 @@ const ContactForm = ({ isShort = false }) => {
         </div>
         
         <div>
-          <Button type="submit" className="w-full bg-primary text-white">
-            {isShort ? "Obtenir un échange gratuit" : "Envoyer ma demande"}
+          <Button 
+            type="submit" 
+            className="w-full bg-primary text-white"
+            disabled={isSubmitting}
+          >
+            {isSubmitting 
+              ? "Envoi en cours..." 
+              : isShort 
+                ? "Obtenir un échange gratuit" 
+                : "Envoyer ma demande"
+            }
           </Button>
         </div>
       </form>
