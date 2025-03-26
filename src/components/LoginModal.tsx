@@ -70,9 +70,6 @@ export function LoginModal({
             </label>
             <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full bg-gray-200" />
           </div>
-          <div className="text-xs text-muted-foreground">
-            Pour la démonstration, utilisez: admin@viadex.fr / admin
-          </div>
           <Button type="submit" disabled={isLoading} className="w-full bg-primary hover:bg-primary/90 transition-colors text-slate-50">
             {isLoading ? "Connexion en cours..." : "Se connecter"}
           </Button>
