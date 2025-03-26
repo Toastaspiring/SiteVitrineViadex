@@ -51,7 +51,13 @@ export const fetchApi = async <T>(
       });
     }
     
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      }
+    });
     return await handleApiResponse(response);
   } catch (error) {
     console.error(`API Error (${endpoint}):`, error);

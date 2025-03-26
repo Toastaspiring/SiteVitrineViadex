@@ -14,9 +14,10 @@ export interface Contact {
   email: string;
   message: string;
   date: string;
-  status: string;
+  status: number | string;
   date_rdv?: string;
-  source?: string;
+  source?: number | string;
+  raison?: number | string;
   ip_address?: string;
 }
 
@@ -26,8 +27,34 @@ export interface BlogPost {
   imagePath: string;
   date: string;
   tempsLecture: string;
-  categorie: string;
+  categorie: number | string;
   excerpt?: string;
   content?: string;
   slug?: string;
+}
+
+// API request/response types to match the documentation
+export interface BlogPostRequest {
+  titre: string;
+  ImagePath: string;
+  date: string;
+  Text: string;
+  reading_time: number;
+  categorie: number;
+}
+
+export interface ContactRequest {
+  nom: string;
+  prenom?: string;
+  date: string;
+  status: number;
+  message: string;
+  date_rdv?: string;
+  source?: number;
+  raison?: number;
+}
+
+export interface UserRequest {
+  email: string;
+  password: string;
 }
