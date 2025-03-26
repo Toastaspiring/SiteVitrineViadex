@@ -1,11 +1,11 @@
+
 import { Toaster } from "@/components/home/ui/toaster";
 import { Toaster as Sonner } from "@/components/home/ui/sonner";
 import { TooltipProvider } from "@/components/home/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./context/AuthContext";
-import { useAuth } from "./context/AuthContext";
 
 // Pages
 import Index from "./pages/Index";
@@ -17,24 +17,12 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import CalendarPage from "./pages/Calendar";
-import Admin from "./pages/Admin";
 import MentionsLegales from "./pages/MentionsLegales";
 import Confidentialite from "./pages/Confidentialite";
 import ConditionsUtilisation from "./pages/ConditionsUtilisation";
 import Cookies from "./pages/Cookies";
 
 const queryClient = new QueryClient();
-
-// ProtectedRoute component for admin routes
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const { isAuthenticated } = useAuth();
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
-  }
-  
-  return children;
-};
 
 const AppRoutes = () => {
   return (
@@ -48,7 +36,6 @@ const AppRoutes = () => {
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/calendrier" element={<CalendarPage />} />
-      {/* Admin route removed */}
       
       {/* Legal pages */}
       <Route path="/mentions-légales" element={<MentionsLegales />} />
