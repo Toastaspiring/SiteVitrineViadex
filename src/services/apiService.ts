@@ -14,15 +14,7 @@ export const handleApiResponse = async (response: Response) => {
     const statusColor = response.ok ? 'green' : 'red';
     
     toast.success(`API Debug: ${endpoint}`, {
-      description: (
-        <div className="max-h-40 overflow-auto text-xs">
-          <div><span className="font-semibold">Status:</span> <span style={{ color: statusColor }}>{response.status} {response.statusText}</span></div>
-          <div className="mt-1 font-semibold">Response:</div>
-          <pre className="mt-1 bg-gray-100 p-2 rounded">
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        </div>
-      ),
+      description: `Status: ${response.status} ${response.statusText}\nResponse: ${JSON.stringify(data, null, 2)}`,
       duration: 10000,
     });
   }
@@ -42,25 +34,19 @@ export const fetchApi = async <T>(
     // Debug: Display the request in a toast notification
     if (process.env.NODE_ENV !== 'production') {
       let debugMessage = `Sending request to: ${endpoint}`;
+      let payloadStr = '';
       
       if (options?.body) {
-        debugMessage += `\nPayload: ${options.body}`;
+        try {
+          payloadStr = JSON.stringify(JSON.parse(options.body as string), null, 2);
+          debugMessage += `\nPayload: ${payloadStr}`;
+        } catch (e) {
+          payloadStr = options.body as string;
+        }
       }
       
       toast.info(`API Request: ${endpoint}`, {
-        description: (
-          <div className="max-h-40 overflow-auto text-xs">
-            <div><span className="font-semibold">Method:</span> {options?.method || 'GET'}</div>
-            {options?.body && (
-              <>
-                <div className="mt-1 font-semibold">Payload:</div>
-                <pre className="mt-1 bg-gray-100 p-2 rounded">
-                  {JSON.stringify(JSON.parse(options.body as string), null, 2)}
-                </pre>
-              </>
-            )}
-          </div>
-        ),
+        description: `Method: ${options?.method || 'GET'}${options?.body ? `\nPayload: ${payloadStr}` : ''}`,
         duration: 5000,
       });
     }
@@ -73,13 +59,7 @@ export const fetchApi = async <T>(
     // Debug: Display the error in a toast notification
     if (process.env.NODE_ENV !== 'production') {
       toast.error(`API Error: ${endpoint}`, {
-        description: (
-          <div className="max-h-40 overflow-auto text-xs">
-            <pre className="bg-gray-100 p-2 rounded">
-              {error instanceof Error ? error.message : String(error)}
-            </pre>
-          </div>
-        ),
+        description: error instanceof Error ? error.message : String(error),
         duration: 10000,
       });
     }
