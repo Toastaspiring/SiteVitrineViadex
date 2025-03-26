@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
+import { Lightbulb, ArrowRight, Users, Handshake, Shield, Check } from "lucide-react";
 
 const APropos = () => {
   const team = [
@@ -96,37 +97,118 @@ const APropos = () => {
           </div>
         </section>
 
-        {/* Pourquoi Viadex a été créé */}
+        {/* Notre Vision et Pourquoi Viadex */}
         <section className="py-16 px-6 lg:px-8 bg-background">
           <div className="max-w-7xl mx-auto">
             <div className="bg-white rounded-xl p-8 shadow-sm">
-              <h2 className="text-3xl font-bold mb-6 text-primary">Pourquoi Viadex a été créé ?</h2>
+              <div className="flex items-center gap-3 mb-4 text-primary">
+                <Lightbulb className="w-6 h-6" />
+                <h2 className="text-3xl font-bold">Notre Vision : L'IA, un levier stratégique pour toutes les entreprises</h2>
+              </div>
+              
+              <p className="text-secondary mb-6">
+                Chez Viadex, nous sommes convaincus que l'intelligence artificielle ne doit pas être réservée aux grands groupes ou aux experts techniques. 
+                Nous croyons que chaque entreprise – quelle que soit sa taille ou son secteur – peut tirer une valeur concrète et mesurable de l'IA, 
+                à condition qu'elle soit bien comprise, bien cadrée et bien intégrée.
+              </p>
+              
+              <p className="text-secondary mb-8">
+                Notre ambition ? <span className="font-medium">Démocratiser l'accès à l'IA</span>, en la rendant compréhensible, utile et adaptée à votre réalité opérationnelle.
+                Nous avançons à vos côtés, pas à pas, pour identifier les bons usages, définir les priorités et sécuriser la mise en œuvre, 
+                sans jargon inutile ni promesse irréaliste.
+              </p>
+              
+              <div className="flex items-center gap-3 mb-4 text-primary">
+                <ArrowRight className="w-6 h-6" />
+                <h3 className="text-2xl font-bold">Pourquoi Viadex a été créé ?</h3>
+              </div>
               
               <p className="text-secondary mb-4">
-                Viadex est né d'un constat simple : malgré le potentiel immense de l'intelligence artificielle pour toutes les entreprises, 
-                son adoption reste freinée par des barrières techniques, un langage complexe et des solutions souvent inadaptées aux besoins des PME.
+                Viadex est né d'un constat simple : malgré un engouement croissant pour l'IA, beaucoup d'entreprises se sentent perdues 
+                face à un discours trop technique, des outils mal adaptés et une promesse floue.
               </p>
               
-              <p className="text-secondary mb-4">
-                Nos fondateurs, forts de leur expérience dans l'accompagnement des entreprises en transformation numérique, 
-                ont décidé de créer Viadex pour combler ce fossé et offrir un accompagnement véritablement adapté aux besoins 
-                et aux réalités des PME et ETI françaises.
+              <p className="text-secondary mb-6">
+                Fort de 20 ans d'expérience en innovation et gestion d'entreprise à l'international, notre fondateur a voulu créer une structure 
+                qui parle le langage des dirigeants, s'appuie sur une vision business et apporte des solutions concrètes.
               </p>
               
-              <p className="text-secondary mb-4">
-                Notre approche différenciante repose sur trois piliers :
+              <p className="text-secondary mb-8">
+                Nous sommes basés en Bretagne, au plus proche des PME et ETI du Grand Ouest, et nous avons une mission claire : 
+                Vous aider à tirer profit de l'IA sans brûler les étapes, sans risques inutiles, et avec un retour sur investissement tangible.
               </p>
               
-              <ul className="list-disc pl-6 mb-6 text-secondary space-y-2">
-                <li>Une communication claire et accessible, sans jargon technique</li>
-                <li>Des solutions pragmatiques et abordables, avec un focus sur le ROI</li>
-                <li>Un accompagnement personnalisé et sur mesure, qui s'adapte à votre niveau de maturité</li>
-              </ul>
+              <div className="flex items-center gap-3 mb-5 text-primary">
+                <Users className="w-6 h-6" />
+                <h3 className="text-2xl font-bold">Notre approche : 3 piliers qui font la différence</h3>
+              </div>
               
-              <p className="text-secondary">
-                Aujourd'hui, notre mission reste plus pertinente que jamais : aider les entreprises françaises à tirer parti 
-                de la révolution de l'IA pour développer leur compétitivité et pérenniser leur activité dans un monde en constante évolution.
-              </p>
+              <div className="space-y-6 mb-8">
+                <div>
+                  <h4 className="text-xl font-semibold mb-2 text-primary flex items-center gap-2">
+                    <span className="inline-flex items-center justify-center rounded-full bg-primary/10 p-1">1</span> 
+                    Une communication claire et pédagogique
+                  </h4>
+                  <p className="text-secondary ml-8">
+                    Fini le jargon. Nous parlons IA avec simplicité et transparence, pour que vos équipes comprennent, s'approprient et s'engagent.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-xl font-semibold mb-2 text-primary flex items-center gap-2">
+                    <span className="inline-flex items-center justify-center rounded-full bg-primary/10 p-1">2</span> 
+                    Des solutions pragmatiques et accessibles
+                  </h4>
+                  <p className="text-secondary ml-8">
+                    Nous privilégions des outils à impact rapide (quick wins), des démarches progressives, et un focus permanent sur le ROI. 
+                    L'IA n'a de valeur que si elle sert vos objectifs business.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-xl font-semibold mb-2 text-primary flex items-center gap-2">
+                    <span className="inline-flex items-center justify-center rounded-full bg-primary/10 p-1">3</span> 
+                    Un accompagnement humain, sur mesure
+                  </h4>
+                  <p className="text-secondary ml-8">
+                    Chaque entreprise est unique. Nous adaptons nos interventions à votre niveau de maturité, à vos priorités et à vos contraintes, 
+                    en mobilisant notre réseau de partenaires locaux.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 mb-5 text-primary">
+                <Shield className="w-6 h-6" />
+                <h3 className="text-2xl font-bold">Nos valeurs : notre boussole au quotidien</h3>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <p className="text-secondary"><span className="font-medium">Accessibilité :</span> rendre l'IA simple, concrète et adaptée à tous.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <p className="text-secondary"><span className="font-medium">Pragmatisme :</span> rester ancrés dans vos enjeux de terrain.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <p className="text-secondary"><span className="font-medium">Éthique :</span> respecter vos données, vos valeurs, et le cadre réglementaire.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <p className="text-secondary"><span className="font-medium">Collaboration :</span> avancer ensemble, avec vos équipes et nos partenaires.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <p className="text-secondary"><span className="font-medium">Exécution :</span> transformer les idées en actions, avec rigueur et méthode.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 text-primary">
+                <Handshake className="w-6 h-6" />
+                <p className="text-lg font-semibold">Une IA utile, sécurisée, responsable. Chez Viadex, nous croyons à une IA au service des hommes, des métiers, et de la performance durable.</p>
+              </div>
             </div>
           </div>
         </section>
