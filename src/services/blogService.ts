@@ -8,7 +8,15 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
   console.log("Fetching blog posts from API");
   
   try {
-    return await fetchApi<BlogPost[]>('/blogpost');
+    const response = await fetchApi<BlogPost[] | any>('/blogpost');
+    
+    // Ensure we always return an array
+    if (Array.isArray(response)) {
+      return response;
+    } else {
+      console.error("API did not return an array for blog posts:", response);
+      return [];
+    }
   } catch (error) {
     console.error("Error fetching blog posts:", error);
     toast.error("Erreur lors du chargement des articles");

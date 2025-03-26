@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -8,6 +7,7 @@ import { ArrowRight, Mail } from "lucide-react";
 import { getBlogPosts } from "@/services/blogService";
 import { BlogPost } from "@/types/database";
 import { toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Blog = () => {
   const [email, setEmail] = useState("");
@@ -22,10 +22,18 @@ const Blog = () => {
     setIsLoading(true);
     try {
       const posts = await getBlogPosts();
-      setBlogPosts(posts);
+      
+      if (Array.isArray(posts)) {
+        setBlogPosts(posts);
+      } else {
+        console.error("API did not return an array for blog posts:", posts);
+        setBlogPosts([]);
+        toast.error("Format de données incorrect lors du chargement des articles");
+      }
     } catch (error) {
       console.error("Erreur lors de la récupération des articles:", error);
       toast.error("Erreur lors du chargement des articles");
+      setBlogPosts([]);
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +51,6 @@ const Blog = () => {
       <Navigation />
       
       <main className="pt-16">
-        {/* En-tête */}
         <section className="bg-primary text-white py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl font-bold mb-4">Ressources & Blog</h1>
@@ -53,7 +60,6 @@ const Blog = () => {
           </div>
         </section>
 
-        {/* Newsletter Signup */}
         <section className="py-10 px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="bg-background rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center gap-8">
@@ -85,14 +91,29 @@ const Blog = () => {
           </div>
         </section>
 
-        {/* Articles */}
         <section className="py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-12">Articles récents</h2>
             
             {isLoading ? (
-              <div className="text-center py-8">
-                <p>Chargement des articles...</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <Skeleton className="w-full h-48" />
+                    <div className="p-6">
+                      <div className="flex justify-between items-center mb-3">
+                        <Skeleton className="h-6 w-20" />
+                        <Skeleton className="h-4 w-32" />
+                      </div>
+                      <Skeleton className="h-8 w-full mb-2" />
+                      <Skeleton className="h-20 w-full mb-4" />
+                      <div className="flex justify-between items-center">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-4 w-24" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             ) : blogPosts.length === 0 ? (
               <div className="text-center py-8">
@@ -120,7 +141,7 @@ const Blog = () => {
                       <p className="text-secondary mb-4 line-clamp-3">{article.excerpt}</p>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">{article.date}</span>
-                        <Link to={`/blog/${article.slug}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
+                        <Link to={`/blog/${article.slug || article.id}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
                           Lire plus <ArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
@@ -132,7 +153,6 @@ const Blog = () => {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="py-16 px-6 lg:px-8 bg-primary text-white">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6">Besoin de conseils adaptés à votre entreprise ?</h2>

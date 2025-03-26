@@ -22,7 +22,14 @@ const BlogSection = () => {
       console.log("Fetching blog posts from API");
       const posts = await getBlogPosts();
       console.log("Received blog posts:", posts);
-      setBlogPosts(posts.slice(0, 3)); // Get only the first 3 posts for the landing page
+      
+      // Make sure posts is an array before using array methods
+      if (Array.isArray(posts)) {
+        setBlogPosts(posts.slice(0, 3)); // Get only the first 3 posts for the landing page
+      } else {
+        console.error("API did not return an array for blog posts:", posts);
+        throw new Error("Invalid blog posts format from API");
+      }
     } catch (error) {
       console.error("Erreur lors de la récupération des articles:", error);
       // Fallback to sample data for development purposes

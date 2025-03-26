@@ -6,7 +6,17 @@ export const API_BASE_URL = "https://api.viadex.fr";
 
 // Helper function to handle API responses
 export const handleApiResponse = async (response: Response) => {
-  const data = await response.json().catch(() => ({}));
+  // Check if the response is JSON
+  const contentType = response.headers.get("content-type");
+  let data;
+  
+  if (contentType && contentType.includes("application/json")) {
+    data = await response.json().catch(() => ({}));
+  } else {
+    // Not JSON, return empty object
+    console.warn("API response is not JSON:", await response.text().catch(() => ""));
+    data = {};
+  }
   
   // Debug: Display the API response in a toast notification
   if (process.env.NODE_ENV !== 'production') {
@@ -56,11 +66,14 @@ export const fetchApi = async <T>(
       ? `/api${endpoint}` // Use a relative path that can be proxied
       : `${API_BASE_URL}${endpoint}`;
     
+    console.log(`Sending API request to: ${effectiveUrl}`);
+    
     const response = await fetch(effectiveUrl, {
       ...options,
       headers: {
         'Content-Type': 'application/json',
         'Origin': 'https://viadex.fr', // Set the Origin header to match the allowed domain
+        'Accept': 'application/json',
         ...options?.headers,
       }
     });
