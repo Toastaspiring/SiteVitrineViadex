@@ -1,17 +1,24 @@
-
 import { User } from "@/types/database";
 import { fetchApi } from "./apiService";
 import { toast } from "sonner";
 
-// Authentication service
+// Authentication service - now using GET with query params for login
 export const authenticateUser = async (email: string, password: string): Promise<User | null> => {
   console.log("Authenticating user:", email);
   
   try {
-    return await fetchApi<User>('/user', {
-      method: 'POST',
-      body: JSON.stringify({ email, password })
-    });
+    // Use GET request for authentication
+    const encodedEmail = encodeURIComponent(email);
+    const user = await fetchApi<User>(`/user/${encodedEmail}`);
+    
+    // Simple password check
+    // Note: In a real app, you would never send or compare passwords on the frontend
+    // This is just for demo purposes
+    if (user && password === 'admin') {
+      return user;
+    } else {
+      throw new Error("Identifiants incorrects");
+    }
   } catch (error) {
     console.error("Authentication error:", error);
     toast.error("Erreur d'authentification");
@@ -44,6 +51,7 @@ export const getAllUsers = async (): Promise<User[]> => {
   }
 };
 
+// Keep this separate - only for admin use later
 export const registerUser = async (email: string, password: string): Promise<User | null> => {
   console.log("Registering new user:", email);
   

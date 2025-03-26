@@ -1,3 +1,4 @@
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/home/ui/dialog";
 import { Input } from "@/components/home/ui/input";
 import { Button } from "@/components/home/ui/button";
@@ -28,8 +29,10 @@ export function LoginModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    
     try {
       const user = await authenticateUser(email, password);
+      
       if (user) {
         setUser(user);
         setIsAuthenticated(true);
