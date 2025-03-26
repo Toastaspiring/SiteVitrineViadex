@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import ContactForm from "@/components/ContactForm";
 
 const AboutSection = () => {

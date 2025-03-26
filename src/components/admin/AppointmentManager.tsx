@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/home/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/home/ui/table";
+import { Button } from "@/components/home/ui/button";
+import { Calendar } from "@/components/home/ui/calendar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/home/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/home/ui/dialog";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/home/ui/popover";
 import { format } from "date-fns";
 import { enAU, fr } from "date-fns/locale";
 import { CalendarIcon, Calendar as CalendarViewIcon, Download, ExternalLink } from "lucide-react";

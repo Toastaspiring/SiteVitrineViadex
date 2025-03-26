@@ -1,9 +1,9 @@
 
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/home/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/home/ui/card";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { Grid, Calendar as CalendarIcon, List, User, LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import ContactList from "@/components/admin/ContactList";

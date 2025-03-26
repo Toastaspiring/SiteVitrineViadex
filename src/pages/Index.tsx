@@ -20,10 +20,10 @@ const Index = () => {
       <main className="pt-16">
         <HeroBanner />
         <ServicesList />
-        <FormationBanner />
-        <BlogSection />
-        <AboutSection />
         <WhyChooseSection />
+        <FormationBanner />
+        <AboutSection />
+        <BlogSection />
         <CTASection />
       </main>
 

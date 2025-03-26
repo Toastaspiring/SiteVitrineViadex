@@ -1,5 +1,5 @@
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/home/ui/card";
 
 const ProcessAndTarget = () => {
   return (

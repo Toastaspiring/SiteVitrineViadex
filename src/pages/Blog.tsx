@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
 import { getBlogPosts } from "@/services/blogService";
 import { BlogPost } from "@/types/database";
 import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/home/ui/skeleton";
 
 const Blog = () => {
   const [email, setEmail] = useState("");
@@ -29,11 +29,11 @@ const Blog = () => {
       } else {
         console.error("API did not return an array for blog posts:", posts);
         setBlogPosts([]);
-        toast.error("Format de données incorrect lors du chargement des articles");
+        //toast.error("Format de données incorrect lors du chargement des articles");
       }
     } catch (error) {
       console.error("Erreur lors de la récupération des articles:", error);
-      toast.error("Erreur lors du chargement des articles");
+      //toast.error("Erreur lors du chargement des articles");
       setBlogPosts([]);
     } finally {
       setIsLoading(false);
@@ -43,7 +43,7 @@ const Blog = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email inscrit à la newsletter:", email);
-    toast.success("Merci pour votre inscription à notre newsletter !");
+    //toast.success("Merci pour votre inscription à notre newsletter !");
     setEmail("");
   };
 
@@ -142,7 +142,7 @@ const Blog = () => {
                       <p className="text-secondary mb-4 line-clamp-3">{article.excerpt || article.titre}</p>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">{article.date}</span>
-                        <Link to={`/blog/${article.slug || article.id}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
+                        <Link to={`/blog/${article.id}`} className="text-primary font-medium flex items-center gap-1 hover:underline">
                           Lire plus <ArrowRight className="w-4 h-4" />
                         </Link>
                       </div>

@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { getBlogPostBySlug, getBlogPostById } from "@/services/blogService";
 import { BlogPost as BlogPostType } from "@/types/database";
 import { toast } from "sonner";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from "@/components/home/ui/card";
+import { Skeleton } from "@/components/home/ui/skeleton";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -31,11 +31,11 @@ const BlogPost = () => {
         
         setPost(blogPost);
         if (!blogPost) {
-          toast.error("Article non trouvé");
+          //toast.error("Article non trouvé");
         }
       } catch (error) {
         console.error("Erreur lors de la récupération de l'article:", error);
-        toast.error("Erreur lors du chargement de l'article");
+        //toast.error("Erreur lors du chargement de l'article");
       } finally {
         setIsLoading(false);
       }

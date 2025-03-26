@@ -1,7 +1,7 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 
 const APropos = () => {
@@ -55,6 +55,25 @@ const APropos = () => {
           </div>
         </section>
 
+        {/* Nos Partenaires */}
+        <section className="py-16 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Nos partenaires</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {Partenaire.map((member, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 text-center">
+                  <img 
+                    src={member.avatar} 
+                    alt={member.name} 
+                    className="w-32 h-32 mx-auto mb-4 object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Notre équipe */}
         <section className="py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -71,25 +90,6 @@ const APropos = () => {
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
                   <p className="text-primary font-medium mb-4">{member.role}</p>
                   <p className="text-secondary">{member.bio}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Nos Partenaires */}
-        <section className="py-16 px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Nos partenaires</h2>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {Partenaire.map((member, index) => (
-                <div key={index} className="rounded-xl p-6 text-center">
-                  <img 
-                    src={member.avatar} 
-                    alt={member.name} 
-                    className="w-32 h-32 mx-auto mb-4 object-cover"
-                  />
                 </div>
               ))}
             </div>

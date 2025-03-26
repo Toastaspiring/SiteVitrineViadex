@@ -1,5 +1,5 @@
 
-import { Button } from "./ui/button";
+import { Button } from "./home/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { LoginModal } from "./LoginModal";

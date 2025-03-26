@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { ArrowRight, GraduationCap, ClockIcon, UsersIcon, ShieldIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 
 const ServicesList = () => {
   const services = [{

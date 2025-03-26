@@ -1,10 +1,10 @@
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle, BookOpen, LineChart, Layers, Users, Shield } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { AspectRatio } from "@/components/home/ui/aspect-ratio";
 
 const Methodologie = () => {
   const etapes = [

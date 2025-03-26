@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/home/ui/table";
+import { Button } from "@/components/home/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/home/ui/dialog";
 import { getContacts, deleteContact, updateContactStatus } from "@/services/contactService";
 import { Contact } from "@/types/database";
 import { toast } from "sonner";

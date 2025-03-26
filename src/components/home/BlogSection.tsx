@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/home/ui/button";
 import { getBlogPosts } from "@/services/blogService";
 import { BlogPost } from "@/types/database";
 import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "@/components/home/ui/skeleton";
 
 const BlogSection = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -68,7 +68,7 @@ const BlogSection = () => {
           }
         ]);
       } else {
-        toast.error("Erreur lors du chargement des articles");
+        //toast.error("Erreur lors du chargement des articles");
       }
     } finally {
       setIsLoading(false);
