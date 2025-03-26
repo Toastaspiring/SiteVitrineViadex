@@ -1,12 +1,7 @@
-
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/home/ui/dialog";
 import { Input } from "@/components/home/ui/input";
 import { Button } from "@/components/home/ui/button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/context/AuthContext";
-import { toast } from "sonner";
-import { authenticateUser } from "@/services/authService";
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -20,37 +15,13 @@ export function LoginModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    setIsAuthenticated,
-    setUser
-  } = useAuth();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    
-    try {
-      const user = await authenticateUser(email, password);
-      
-      if (user) {
-        setUser(user);
-        setIsAuthenticated(true);
-        onClose();
-        toast.success("Connexion réussie");
-        navigate("/admin");
-      } else {
-        // Single toast for failed login
-        toast.error("Identifiants incorrects");
-      }
-    } catch (error) {
-      console.error("Erreur de connexion:", error);
-      // Single toast for unexpected errors
-      toast.error("Erreur lors de la connexion. Veuillez réessayer.");
-    } finally {
-      setIsLoading(false);
-    }
+    console.log("Login functionality disabled");
   };
+
+  if (!isOpen) return null;
 
   return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px] animate-in fade-in-0 zoom-in-95">

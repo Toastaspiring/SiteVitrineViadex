@@ -1,6 +1,4 @@
 
-import { toast } from "sonner";
-
 // Base URL for API requests
 export const API_BASE_URL = "https://api.viadex.fr";
 
@@ -23,13 +21,12 @@ export const handleApiResponse = async (response: Response) => {
   return data;
 };
 
-// Generic fetch function with single toast for request + response
+// Generic fetch function without debug toasts
 export const fetchApi = async <T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> => {
   const effectiveUrl = `${API_BASE_URL}${endpoint}`;
-  const method = options?.method || 'GET';
 
   try {
     const response = await fetch(effectiveUrl, {
@@ -51,24 +48,13 @@ export const fetchApi = async <T>(
       data = await response.text().catch(() => "");
     }
 
-    toast(
-      `API ${method} ${endpoint}`,
-      {
-        description: `Status: ${response.status} ${response.statusText}\n\nPayload:\n${payloadStr || '---'}\n\nResponse:\n${typeof data === 'string' ? data : JSON.stringify(data, null, 2)}`,
-        duration: 10000,
-      }
-    );
-
     if (!response.ok) {
       throw new Error(typeof data === 'string' ? data : data.error || 'Une erreur est survenue');
     }
 
     return data;
   } catch (error) {
-    toast.error(`Erreur API: ${endpoint}`, {
-      description: error instanceof Error ? error.message : String(error),
-      duration: 10000,
-    });
+    console.error(`API Error (${endpoint}):`, error);
     throw error;
   }
 };

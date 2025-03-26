@@ -1,3 +1,4 @@
+
 import { User } from "@/types/database";
 import { fetchApi } from "./apiService";
 import { toast } from "sonner";
@@ -8,43 +9,26 @@ type AuthResponse = {
   user: User;
 };
 
-// 🔐 Authenticate user via POST /user
+// 🔐 Authenticate user via POST /user - disabled functionality
 export const authenticateUser = async (
   email: string,
   password: string
 ): Promise<User | null> => {
-  try {
-    const res = await fetchApi<AuthResponse>("/user", {
-      method: "POST",
-      body: JSON.stringify({ email, password }), // plain password
-    });
-
-    toast.success("Connexion réussie !");
-    return res.user;
-
-  } catch (error) {
-    toast.error("Email ou mot de passe incorrect");
-    return null;
-  }
+  console.log("Authentication disabled:", { email });
+  // Return null to indicate authentication is disabled
+  return null;
 };
 
-// 📩 Get user by email (GET /user/{email})
+// 📩 Get user by email (GET /user/{email}) - disabled functionality
 export const getUserByEmail = async (email: string): Promise<User | null> => {
-  try {
-    const encodedEmail = encodeURIComponent(email);
-    return await fetchApi<User>(`/user/${encodedEmail}`);
-  } catch (error) {
-    console.error("Error fetching user:", error);
-    return null;
-  }
+  console.log("Get user by email disabled:", { email });
+  // Return null to indicate functionality is disabled
+  return null;
 };
 
-// 📋 Get all users (GET /user)
+// 📋 Get all users (GET /user) - disabled functionality
 export const getAllUsers = async (): Promise<User[]> => {
-  try {
-    return await fetchApi<User[]>("/user");
-  } catch (error) {
-    toast.error("Erreur lors du chargement des utilisateurs");
-    return [];
-  }
+  console.log("Get all users disabled");
+  // Return empty array to indicate functionality is disabled
+  return [];
 };
