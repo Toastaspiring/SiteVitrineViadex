@@ -107,7 +107,7 @@ const BlogSection = () => {
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {blogPosts.map((article) => (
-              <Link key={article.id} to={`/blog/${article.slug || article.id}`} className="block hover:no-underline">
+              <Link key={article.id} to={`/blog/${article.id}`} className="block hover:no-underline">
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                   <div className="h-48 overflow-hidden">
                     <img 

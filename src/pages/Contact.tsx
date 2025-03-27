@@ -95,7 +95,7 @@ const Contact = () => {
               answer: "Nos tarifs varient en fonction de vos besoins spécifiques et de l'ampleur de l'accompagnement. Nous privilégions une approche transparente et sur mesure. Contactez-nous pour recevoir un devis personnalisé."
             }, {
               question: "Travaillez-vous avec des entreprises de toute taille ?",
-              answer: "Oui, nous travaillons principalement avec des PME et ETI, mais notre approche s'adapte à toutes les tailles d'entreprise. Notre objectif est de rendre l'IA accessible à tous, quelle que soit la taille de votre structure."
+              answer: "Oui, nous travaillons principalement avec des PME, TPE et ETI, mais notre approche s'adapte à toutes les tailles d'entreprise. Notre objectif est de rendre l'IA accessible à tous, quelle que soit la taille de votre structure."
             }, {
               question: "Combien de temps dure un accompagnement typique ?",
               answer: "La durée d'un accompagnement varie selon vos objectifs. Un diagnostic peut être réalisé en quelques semaines, tandis qu'un accompagnement complet peut s'étendre sur plusieurs mois. Nous définissons ensemble un calendrier adapté à vos contraintes."

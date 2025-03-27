@@ -1,11 +1,11 @@
 
-# Viadex - L'IA accessible pour les PME et ETI
+# Viadex - L'IA accessible pour les PME, TPE et ETI
 
-Viadex est une plateforme dédiée à l'accompagnement des PME et ETI dans leur transformation numérique grâce à l'intelligence artificielle. Notre approche se distingue par sa simplicité, son accessibilité et son pragmatisme.
+Viadex est une plateforme dédiée à l'accompagnement des PME, TPE et ETI dans leur transformation numérique grâce à l'intelligence artificielle. Notre approche se distingue par sa simplicité, son accessibilité et son pragmatisme.
 
 ## À propos du projet
 
-Ce site web présente les services de Viadex, une entreprise spécialisée dans l'accompagnement des PME et ETI pour l'adoption de l'intelligence artificielle. Le site met en avant l'approche sans jargon technique et les solutions accessibles proposées par Viadex.
+Ce site web présente les services de Viadex, une entreprise spécialisée dans l'accompagnement des PME, TPE et ETI pour l'adoption de l'intelligence artificielle. Le site met en avant l'approche sans jargon technique et les solutions accessibles proposées par Viadex.
 
 ## Fonctionnalités principales
 

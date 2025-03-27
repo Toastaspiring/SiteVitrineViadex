@@ -51,10 +51,10 @@ const PourquoiViadex = () => {
         <section className="py-16 px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6">L'IA pour les PME/ETI : Une opportunité à saisir</h2>
+              <h2 className="text-3xl font-bold mb-6">L'IA pour les PME/TPE/ETI : Une opportunité à saisir</h2>
               <p className="text-xl text-secondary max-w-3xl mx-auto">
                 L'intelligence artificielle n'est plus réservée aux grandes entreprises disposant de ressources illimitées. 
-                Aujourd'hui, les PME et ETI peuvent également tirer parti de cette technologie pour optimiser leurs processus, 
+                Aujourd'hui, les PME, TPE et ETI peuvent également tirer parti de cette technologie pour optimiser leurs processus, 
                 améliorer leur productivité et développer de nouveaux avantages concurrentiels.
               </p>
             </div>

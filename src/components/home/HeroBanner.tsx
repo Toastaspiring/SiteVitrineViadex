@@ -19,7 +19,7 @@ const HeroBanner = () => {
         {/* Content that can overlap the logo */}
         <div className="relative z-10 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 relative">
-            <span className="block mb-2 py-[30px]">L'IA au service des PME & ETI du Grand Ouest :
+            <span className="block mb-2 py-[30px]">L'IA au service des PME, TPE & ETI du Grand Ouest :
           </span>
             <span className="block text-white">simplifiez votre transformation</span>
           </h1>

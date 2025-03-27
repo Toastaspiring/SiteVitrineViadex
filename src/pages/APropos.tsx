@@ -110,7 +110,7 @@ const APropos = () => {
               </p>
               
               <p className="text-secondary mb-8">
-                Nous sommes basés en Bretagne, au plus proche des PME et ETI du Grand Ouest, et nous avons une mission claire : 
+                Nous sommes basés en Bretagne, au plus proche des PME, TPE et ETI du Grand Ouest, et nous avons une mission claire : 
                 Vous aider à tirer profit de l'IA sans brûler les étapes, sans risques inutiles, et avec un retour sur investissement tangible.
               </p>
               
