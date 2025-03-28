@@ -74,11 +74,11 @@ const CalendarSelector = ({
             onValueChange={setTimePreference} 
             className="grid grid-cols-2 gap-4 pt-2"
           >
-            <div className="flex items-center">
+            <div className="flex items-center w-full">
               <RadioGroupItem value="Matin" id="matin" className="peer sr-only" />
               <Label 
                 htmlFor="matin" 
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center h-full"
               >
                 <Clock className="mb-2 h-5 w-5" />
                 <span className="font-medium">Matin</span>
@@ -86,11 +86,11 @@ const CalendarSelector = ({
               </Label>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-center w-full">
               <RadioGroupItem value="Après-midi" id="apres-midi" className="peer sr-only" />
               <Label 
                 htmlFor="apres-midi" 
-                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center h-full"
               >
                 <Clock className="mb-2 h-5 w-5" />
                 <span className="font-medium">Après-midi</span>

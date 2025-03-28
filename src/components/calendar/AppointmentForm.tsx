@@ -34,6 +34,7 @@ const AppointmentForm = () => {
         nom: name,
         email: email,
         message: motif,
+        preferenceContact: timePreference,
         date_rdv: rdvInfo
       });
 
