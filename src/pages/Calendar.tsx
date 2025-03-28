@@ -1,4 +1,3 @@
-
 import { CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -41,12 +40,9 @@ const CalendarPage = () => {
       return;
     }
 
-    // Format the date for the database
     const formattedDate = format(date, "yyyy-MM-dd");
-    // Add time preference information to the appointment
     const rdvInfo = `${formattedDate} - Préférence: ${timePreference}`;
 
-    // Save appointment in database
     try {
       const success = await addContact({
         nom: name,
@@ -185,16 +181,20 @@ const CalendarPage = () => {
                         
                         {date && <div className="space-y-2">
                             <Label>Préférence horaire</Label>
-                            <RadioGroup value={timePreference} onValueChange={setTimePreference} className="grid grid-cols-2 gap-4 pt-2">
+                            <RadioGroup 
+                              value={timePreference} 
+                              onValueChange={setTimePreference} 
+                              className="grid grid-cols-2 gap-4 pt-2"
+                            >
                               <div className="flex items-center">
                                 <RadioGroupItem value="Matin" id="matin" className="peer sr-only" />
                                 <Label 
                                   htmlFor="matin" 
-                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center"
                                 >
                                   <Clock className="mb-2 h-5 w-5" />
                                   <span className="font-medium">Matin</span>
-                                  <span className="text-xs text-muted-foreground">9h - 12h</span>
+                                  <span className="text-xs text-muted-foreground">Préférence matinée</span>
                                 </Label>
                               </div>
                               
@@ -202,11 +202,11 @@ const CalendarPage = () => {
                                 <RadioGroupItem value="Après-midi" id="apres-midi" className="peer sr-only" />
                                 <Label 
                                   htmlFor="apres-midi" 
-                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full text-center"
                                 >
                                   <Clock className="mb-2 h-5 w-5" />
                                   <span className="font-medium">Après-midi</span>
-                                  <span className="text-xs text-muted-foreground">14h - 17h</span>
+                                  <span className="text-xs text-muted-foreground">Préférence après-midi</span>
                                 </Label>
                               </div>
                             </RadioGroup>
