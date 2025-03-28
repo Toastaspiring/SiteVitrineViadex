@@ -1,3 +1,4 @@
+
 import { CalendarIcon, LucideBrainCircuit, Clock, User, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -11,14 +12,14 @@ import { Input } from "@/components/home/ui/input";
 import { Label } from "@/components/home/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/home/ui/popover";
 import { Textarea } from "@/components/home/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/home/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-
-const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"];
+import { addContact } from "@/services/contactService";
 
 const CalendarPage = () => {
   const [date, setDate] = useState<Date | undefined>(undefined);
-  const [timeSlot, setTimeSlot] = useState<string>("");
+  const [timePreference, setTimePreference] = useState<string>("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -33,31 +34,51 @@ const CalendarPage = () => {
     return dayOfWeek === 0 || dayOfWeek === 6;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!date || !timeSlot || !name || !email || !motif) {
+    if (!date || !timePreference || !name || !email || !motif) {
       toast.error("Veuillez remplir tous les champs obligatoires");
       return;
     }
 
-    toast.success("Rendez-vous réservé avec succès!", {
-      description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", {
-        locale: fr
-      })} à ${timeSlot} a été confirmé.`
-    });
+    // Format the date for the database
+    const formattedDate = format(date, "yyyy-MM-dd");
+    // Add time preference information to the appointment
+    const rdvInfo = `${formattedDate} - Préférence: ${timePreference}`;
 
-    setDate(undefined);
-    setTimeSlot("");
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMotif("");
-    setFormStep(0);
+    // Save appointment in database
+    try {
+      const success = await addContact({
+        nom: name,
+        email: email,
+        message: motif,
+        date_rdv: rdvInfo
+      });
+
+      if (success) {
+        toast.success("Rendez-vous réservé avec succès!", {
+          description: `Votre rendez-vous le ${format(date, "dd MMMM yyyy", {
+            locale: fr
+          })} (${timePreference}) a été confirmé.`
+        });
+
+        setDate(undefined);
+        setTimePreference("");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMotif("");
+        setFormStep(0);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la création du rendez-vous:", error);
+      toast.error("Une erreur est survenue lors de la réservation");
+    }
   };
 
   const handleNext = () => {
-    if (!date || !timeSlot) {
-      toast.error("Veuillez sélectionner une date et un horaire");
+    if (!date || !timePreference) {
+      toast.error("Veuillez sélectionner une date et une préférence horaire");
       return;
     }
     setFormStep(1);
@@ -136,7 +157,7 @@ const CalendarPage = () => {
               <CardHeader>
                 <CardTitle>Réserver un créneau</CardTitle>
                 <CardDescription>
-                  {formStep === 0 ? "Sélectionnez une date et un horaire disponible" : "Complétez vos informations pour confirmer"}
+                  {formStep === 0 ? "Sélectionnez une date et votre préférence horaire" : "Complétez vos informations pour confirmer"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -162,14 +183,34 @@ const CalendarPage = () => {
                           </div>
                         </div>
                         
-                        {date && <div>
-                            <Label htmlFor="time">Horaire</Label>
-                            <div className="grid grid-cols-4 gap-2 mt-2">
-                              {timeSlots.map(time => <Button key={time} type="button" variant={timeSlot === time ? "default" : "outline"} className={cn("h-10", timeSlot === time ? "bg-primary text-white" : "")} onClick={() => setTimeSlot(time)}>
-                                  {time}
-                                </Button>)}
-                            </div>
-                          </div>}
+                        {date && <div className="space-y-2">
+                            <Label>Préférence horaire</Label>
+                            <RadioGroup value={timePreference} onValueChange={setTimePreference} className="grid grid-cols-2 gap-4 pt-2">
+                              <div className="flex items-center">
+                                <RadioGroupItem value="Matin" id="matin" className="peer sr-only" />
+                                <Label 
+                                  htmlFor="matin" 
+                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                                >
+                                  <Clock className="mb-2 h-5 w-5" />
+                                  <span className="font-medium">Matin</span>
+                                  <span className="text-xs text-muted-foreground">9h - 12h</span>
+                                </Label>
+                              </div>
+                              
+                              <div className="flex items-center">
+                                <RadioGroupItem value="Après-midi" id="apres-midi" className="peer sr-only" />
+                                <Label 
+                                  htmlFor="apres-midi" 
+                                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-background p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
+                                >
+                                  <Clock className="mb-2 h-5 w-5" />
+                                  <span className="font-medium">Après-midi</span>
+                                  <span className="text-xs text-muted-foreground">14h - 17h</span>
+                                </Label>
+                              </div>
+                            </RadioGroup>
+                        </div>}
                       </div>
                       
                       <Button type="button" className="w-full text-white" onClick={handleNext}>
@@ -185,6 +226,11 @@ const CalendarPage = () => {
                         <div className="grid gap-2">
                           <Label htmlFor="email">Email *</Label>
                           <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre.email@exemple.com" required />
+                        </div>
+                        
+                        <div className="grid gap-2">
+                          <Label htmlFor="phone">Téléphone</Label>
+                          <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="06 XX XX XX XX" />
                         </div>
                         
                         <div className="grid gap-2">
@@ -204,13 +250,13 @@ const CalendarPage = () => {
                     </>}
                 </form>
               </CardContent>
-              {formStep === 0 && date && timeSlot && <CardFooter className="border-t px-6 py-4">
+              {formStep === 0 && date && timePreference && <CardFooter className="border-t px-6 py-4">
                   <p className="text-sm text-center w-full">
                     Vous avez sélectionné le{" "}
                     <span className="font-medium">
                       {format(date, "dd MMMM yyyy", {
                     locale: fr
-                  })} à {timeSlot}
+                  })} ({timePreference})
                     </span>
                   </p>
                 </CardFooter>}
