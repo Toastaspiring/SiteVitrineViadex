@@ -82,7 +82,7 @@ const CalendarSelector = ({
               >
                 <Clock className="mb-2 h-5 w-5" />
                 <span className="font-medium">Matin</span>
-                <span className="text-xs text-muted-foreground">Préférence matinée</span>
+                <span className="text-xs text-muted-foreground">9h - 12h</span>
               </Label>
             </div>
             
@@ -94,7 +94,7 @@ const CalendarSelector = ({
               >
                 <Clock className="mb-2 h-5 w-5" />
                 <span className="font-medium">Après-midi</span>
-                <span className="text-xs text-muted-foreground">Préférence après-midi</span>
+                <span className="text-xs text-muted-foreground">14h - 17h</span>
               </Label>
             </div>
           </RadioGroup>
