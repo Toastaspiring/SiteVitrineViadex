@@ -15,10 +15,20 @@ export interface Contact {
   message: string;
   date: string;
   status: number;
-  date_rdv?: string;
   source?: number;
   raison?: number;
   ip_address?: string;
+  telephone?: string;
+  entreprise?: string;
+}
+
+export interface Meeting {
+  id: number;
+  id_contact: number;
+  date1: string;
+  date2: string;
+  pref1: number; // 1 for morning, 2 for afternoon
+  pref2: number; // 1 for morning, 2 for afternoon
 }
 
 export interface BlogPost {
@@ -62,9 +72,18 @@ export interface ContactRequest {
   date: string;
   status: number;
   message: string;
-  date_rdv?: string;
   source?: number;
   raison?: number;
+  telephone?: string;
+  entreprise?: string;
+}
+
+export interface MeetingRequest {
+  id_contact: number;
+  date1: string;
+  date2: string;
+  pref1: number;
+  pref2: number;
 }
 
 export interface UserRequest {
