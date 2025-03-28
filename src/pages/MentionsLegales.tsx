@@ -15,24 +15,24 @@ const MentionsLegales = () => {
             <section>
               <h2 className="text-xl font-semibold mb-3">1. Informations légales</h2>
               <p>
-                Le site Viadex est édité par la société Viadex, SAS au capital de 10 000 €, 
-                immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro 123 456 789,
-                dont le siège social est situé au 123 Rue de l'Innovation, 75001 Paris.
+                Le site Viadex est édité par la société Viadex, SAS au capital de 5 000 €, 
+                immatriculée au Registre du Commerce et des Sociétés de Paris sous le numéro 941 540 114,
+                dont le siège social est situé au 1 la Pérchardrie, 35760 Saint-Grégoire.
               </p>
               <p className="mt-2">
-                Numéro de TVA intracommunautaire : FR 12 345 678 901
+                Numéro de TVA intracommunautaire : FR 45 941 540 114 
               </p>
               <p className="mt-2">
-                Directeur de la publication : Jean Dupont
+                Directeur de la publication : Jad Marchoudie
               </p>
             </section>
             
             <section>
               <h2 className="text-xl font-semibold mb-3">2. Hébergement</h2>
               <p>
-                Le site Viadex est hébergé par la société Hosting Provider, 
-                SAS au capital de 50 000 €, immatriculée au RCS de Paris sous le numéro 987 654 321,
-                dont le siège social est situé au 456 Avenue du Web, 75002 Paris.
+                Le site Viadex est hébergé par la société OVH (OVHCLOUD), 
+                SAS au capital de 50 000 000 €, immatriculée au RCS de Paris sous le numéro 424 761 419,
+                dont le siège social est situé au 2 rue Kellerman, 59100 Roubaix.
               </p>
             </section>
             
@@ -58,7 +58,7 @@ const MentionsLegales = () => {
               </p>
               <p className="mt-2">
                 Conformément à la loi « Informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous bénéficiez d'un droit d'accès, de rectification et de suppression des informations qui vous concernent, 
-                que vous pouvez exercer en vous adressant à Viadex, 123 Rue de l'Innovation, 75001 Paris ou par email à dpo@viadex.fr.
+                que vous pouvez exercer en vous adressant à Viadex, 1 la Perchardrie, 35760 Saint-Grégoire ou par email à contact@viadex.fr.
               </p>
             </section>
             

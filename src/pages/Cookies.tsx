@@ -14,7 +14,7 @@ const Cookies = () => {
           <div className="space-y-6 text-secondary">
             <section>
               <p className="italic">
-                Dernière mise à jour : 1er juin 2023
+                Dernière mise à jour : 28 Mars 2025
               </p>
               <p className="mt-4">
                 Cette politique de cookies explique ce que sont les cookies, comment Viadex les utilise, et quels sont vos choix concernant les cookies.
@@ -109,10 +109,9 @@ const Cookies = () => {
               </p>
               <p className="mt-2">
                 Viadex<br />
-                123 Rue de l'Innovation<br />
-                75001 Paris<br />
-                Email : privacy@viadex.fr<br />
-                Téléphone : +33 1 23 45 67 89
+                1, la péchardrie<br />
+                35760 Saint-Grégoire<br />
+                Email : contact@viadex.fr<br />
               </p>
             </section>
           </div>

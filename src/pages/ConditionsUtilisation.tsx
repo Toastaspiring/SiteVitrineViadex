@@ -14,7 +14,7 @@ const ConditionsUtilisation = () => {
           <div className="space-y-6 text-secondary">
             <section>
               <p className="italic">
-                Dernière mise à jour : 1er juin 2023
+                Dernière mise à jour : 28 Mars 2025
               </p>
               <p className="mt-4">
                 Bienvenue sur le site web de Viadex. En accédant à ce site, vous acceptez de vous conformer aux présentes conditions d'utilisation et de les respecter. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser ce site.
@@ -98,10 +98,9 @@ const ConditionsUtilisation = () => {
               </p>
               <p className="mt-2">
                 Viadex<br />
-                123 Rue de l'Innovation<br />
-                75001 Paris<br />
+                1, la péchardrie<br />
+                35760 Saint-Grégoire<br />
                 Email : contact@viadex.fr<br />
-                Téléphone : +33 1 23 45 67 89
               </p>
             </section>
           </div>
