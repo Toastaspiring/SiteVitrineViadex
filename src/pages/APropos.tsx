@@ -22,13 +22,16 @@ const APropos = () => {
   }];
   const Partenaire = [{
     name: "Just AI",
-    avatar: "lovable-uploads/partenaire/justAi.png"
+    avatar: "lovable-uploads/partenaire/justAi.png",
+    link: "https://www.justai.co/"
   }, {
     name: "Le Poool",
-    avatar: "lovable-uploads/partenaire/LePool.png"
+    avatar: "lovable-uploads/partenaire/LePool.png",
+    link: "https://lepoool.tech/"
   }, {
     name: "AppInside",
-    avatar: "lovable-uploads/partenaire/coachappinside.png"
+    avatar: "lovable-uploads/partenaire/coachappinside.png",
+    link: "https://www.linkedin.com/company/coachappinside/"
   }];
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -50,8 +53,8 @@ const APropos = () => {
             <h2 className="text-3xl font-bold mb-12 text-center">Nos partenaires</h2>
             
             <div className="grid md:grid-cols-3 gap-8">
-              {Partenaire.map((member, index) => <div key={index} className="bg-white rounded-xl p-6 text-center">
-                  <img src={member.avatar} alt={member.name} className="w-32 h-32 mx-auto mb-4 object-cover" />
+              {Partenaire.map((member, index) => <div key={index} className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md  transition-all">
+                  <a href={member.link}><img src={member.avatar} alt={member.name} className="w-32 h-32 mx-auto mb-4 object-cover" /></a>
                 </div>)}
             </div>
           </div>

@@ -59,7 +59,7 @@ const ContactForm = ({ isShort = false, source = 1 }: ContactFormProps) => {
   return (
     <div className={`bg-white rounded-xl shadow-md p-6 ${isShort ? "w-full" : "max-w-md w-full"}`}>
       <h3 className="text-xl font-bold mb-4">
-        {isShort ? "Obtenez un premier échange gratuit" : "Contactez-nous"}
+        {isShort ? "Obtenez un premier échange" : "Contactez-nous"}
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
