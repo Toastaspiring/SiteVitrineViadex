@@ -49,7 +49,7 @@ export const updateContactStatus = async (id: number, statusId: number): Promise
   }
 };
 
-// Adding a new contact from the contact form
+// Adding a new contact from any form (contact form or appointment form)
 export const addContact = async (contactData: {
   nom: string;
   prenom?: string;
@@ -57,28 +57,39 @@ export const addContact = async (contactData: {
   message: string;
   preferenceContact?: string;
   date_rdv?: string;
+  telephone?: string;
+  entreprise?: string;
   source?: number;
   raison?: number;
 }): Promise<boolean> => {
   console.log("Adding new contact:", contactData);
   
   try {
+    // Construct the request body with all possible fields
+    // Optional fields will be sent as empty strings if not provided
+    const requestBody = {
+      nom: contactData.nom,
+      prenom: contactData.prenom || "",
+      email: contactData.email,
+      message: contactData.message,
+      preferenceContact: contactData.preferenceContact || "",
+      telephone: contactData.telephone || "",
+      entreprise: contactData.entreprise || "",
+      date: new Date().toISOString().replace('T', ' ').substring(0, 19),
+      date_rdv: contactData.date_rdv || "",
+      status: 1, // Default to 'non-traité'
+      source: contactData.source || 1,
+      raison: contactData.raison || 1,
+    };
+    
+    console.log("Sending contact data:", requestBody);
+    
     await fetchApi('/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        nom: contactData.nom,
-        prenom: contactData.prenom,
-        message: contactData.message,
-        preferenceContact: contactData.preferenceContact || "",
-        date: new Date().toISOString().replace('T', ' ').substring(0, 19),
-        date_rdv: contactData.date_rdv,
-        status: 1, // Default to 'non-traité'
-        source: contactData.source || 1,
-        raison: contactData.raison || 1,
-      })
+      body: JSON.stringify(requestBody)
     });
     
     toast.success("Votre message a été envoyé avec succès");

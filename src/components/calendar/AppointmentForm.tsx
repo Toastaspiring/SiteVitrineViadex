@@ -30,10 +30,20 @@ const AppointmentForm = () => {
     const rdvInfo = `${formattedDate} - Préférence: ${timePreference}`;
 
     try {
+      console.log("Submitting appointment form with data:", {
+        nom: name,
+        email: email,
+        message: motif,
+        telephone: phone,
+        preferenceContact: timePreference,
+        date_rdv: rdvInfo
+      });
+
       const success = await addContact({
         nom: name,
         email: email,
         message: motif,
+        telephone: phone,
         preferenceContact: timePreference,
         date_rdv: rdvInfo
       });

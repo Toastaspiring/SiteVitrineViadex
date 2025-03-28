@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "./home/ui/button";
 import { addContact } from "@/services/contactService";
@@ -28,14 +29,18 @@ const ContactForm = ({ isShort = false, source = 1 }: ContactFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Create contact data with correct types
+      // Create contact data with all fields from the form
       const contactData = {
         nom: formData.nom,
         email: formData.email,
         message: formData.message,
+        entreprise: formData.entreprise,
+        telephone: formData.telephone,
         // Convert source to number if it's a string
         source: typeof source === 'string' ? parseInt(source, 10) || 1 : source
       };
+      
+      console.log("Submitting contact form with data:", contactData);
       
       const success = await addContact(contactData);
       
