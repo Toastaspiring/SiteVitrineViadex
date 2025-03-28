@@ -55,9 +55,9 @@ export const addContact = async (contactData: {
   prenom?: string;
   email: string;
   message: string;
+  preferenceContact: string;
   source?: number;
   raison?: number;
-  date_rdv?: string;
 }): Promise<boolean> => {
   console.log("Adding new contact:", contactData);
   
@@ -71,11 +71,11 @@ export const addContact = async (contactData: {
         nom: contactData.nom,
         prenom: contactData.prenom,
         message: contactData.message,
+        preferenceContact: contactData.preferenceContact,
         date: new Date().toISOString().replace('T', ' ').substring(0, 19),
         status: 1, // Default to 'non-traité'
         source: contactData.source || 1,
         raison: contactData.raison || 1,
-        date_rdv: contactData.date_rdv
       })
     });
     
