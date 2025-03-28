@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/home/ui/table";
 import { Button } from "@/components/home/ui/button";
@@ -221,13 +222,6 @@ const ContactList = () => {
                 <h3 className="font-semibold">Message</h3>
                 <p className="mt-1 p-3 bg-secondary/10 rounded-md whitespace-pre-wrap">{selectedContact.message}</p>
               </div>
-              
-              {selectedContact.date_rdv && (
-                <div>
-                  <h3 className="font-semibold">Date de rendez-vous</h3>
-                  <p>{new Date(selectedContact.date_rdv).toLocaleString('fr-FR')}</p>
-                </div>
-              )}
             </div>
           )}
         </DialogContent>

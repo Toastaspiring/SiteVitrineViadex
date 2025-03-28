@@ -20,7 +20,6 @@ export interface Contact {
   ip_address?: string;
   telephone?: string;
   entreprise?: string;
-  date_rdv?: string; // Added missing property
 }
 
 export interface Meeting {
