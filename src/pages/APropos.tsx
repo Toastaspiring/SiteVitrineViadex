@@ -4,21 +4,21 @@ import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 import { Lightbulb, ArrowRight, Users, Handshake, Shield, Check } from "lucide-react";
 
-const NosTalents = () => {
+const NotreEcosystem = () => {
   const team = [{
     name: "Jad Marchoudi",
-    role: "Développeur IA",
-    bio: "Alternant en Bachelor IA à l'EPSI Rennes",
+    role: "Alternant Cybersécurité & Réseaux",
+    bio: "Jad s’assure que chaque projet respecte les bonnes pratiques de cybersécurité, un pilier essentiel dans l’intégration responsable de l’IA.",
     avatar: "lovable-uploads/avatar/jad.jpg"
   }, {
     name: "Vincent Delacroix",
-    role: "CEO & entrepreneur",
-    bio: "Expert en solutions technologiques et sécurité, avec une expérience polyvalente dans la formation",
+    role: "CEO & Expert IA Business",
+    bio: "Fort de 20 ans d’expérience, Vincent accompagne les entreprises avec une approche business de l’IA. Un seul objectif : assurer la réussite concrète et opérationnelle de chaque projet mené.",
     avatar: "lovable-uploads/avatar/Vincent.jpg"
   }, {
     name: "Louis Marec",
-    role: "Développeur IA",
-    bio: "Étudiant passionné d'informatique et de voile à Alternant en Bachelor IA à l'EPSI Rennes'EPSI Rennes.",
+    role: "Alternant Développeur Fullstack",
+    bio: "Louis transforme les idées en outils concrets, robustes et évolutifs, en lien direct avec les besoins opérationnels des entreprises.",
     avatar: "lovable-uploads/avatar/Louis.jpg"
   }];
   const Partenaire = [{
@@ -42,7 +42,7 @@ const NosTalents = () => {
         {/* En-tête */}
         <section className="bg-primary text-white py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Nos Talents</h1>
+            <h1 className="text-4xl font-bold mb-4">Notre Écosystème</h1>
             <p className="text-xl max-w-3xl">
               Découvrez qui nous sommes, notre mission et notre passion pour rendre l'IA accessible à toutes les entreprises.
             </p>
@@ -98,4 +98,4 @@ const NosTalents = () => {
     </div>;
 };
 
-export default NosTalents;
+export default NotreEcosystem;

@@ -27,8 +27,8 @@ const Navigation = () => {
           <Link to="/pourquoi-viadex" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Pourquoi Viadex
           </Link>
-          <Link to="/nos-talents" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
-            Nos Talents
+          <Link to="/notre-ecosystem" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
+            Notre Écosystème
           </Link>
           <Link to="/blog" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Ressources & Blog
