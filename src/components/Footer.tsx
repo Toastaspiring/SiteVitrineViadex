@@ -15,9 +15,9 @@ const Footer = () => {
     {
       title: "Entreprise",
       links: [
-        { name: "Notre Écosystème", path: "/a-propos" },
-        { name: "Notre Mission", path: "/a-propos" },
-        { name: "Équipe", path: "/a-propos" },
+        { name: "Notre Écosystème", path: "/notre-ecosystem" },
+        { name: "Notre Mission", path: "/notre-ecosystem" },
+        { name: "Équipe", path: "/notre-ecosystem" },
         { name: "Contact", path: "/contact" }
       ],
     },
