@@ -15,9 +15,9 @@ const Footer = () => {
     {
       title: "Entreprise",
       links: [
-        { name: "À Propos", path: "/nos-talents" },
-        { name: "Notre Mission", path: "/pourquoi-viadex" },
-        { name: "Équipe", path: "/nos-talents" },
+        { name: "À Propos", path: "/a-propos" },
+        { name: "Notre Mission", path: "/a-propos" },
+        { name: "Équipe", path: "/a-propos" },
         { name: "Contact", path: "/contact" }
       ],
     },

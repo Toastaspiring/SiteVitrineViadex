@@ -28,7 +28,7 @@ const Navigation = () => {
             Pourquoi Viadex
           </Link>
           <Link to="/nos-talents" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
-            Notre Écosystème
+            Nos Talents
           </Link>
           <Link to="/blog" className="text-secondary hover:text-primary transition-colors hover:scale-105 transform">
             Ressources & Blog
