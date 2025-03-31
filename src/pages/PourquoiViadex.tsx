@@ -8,28 +8,28 @@ import { Check } from "lucide-react";
 const PourquoiViadex = () => {
   const forces = [
     {
-      title: "Approche opérationel et métier",
-      description: "Nous croyons que l'IA doit être accessible à tous, pas seulement aux spécialistes. C'est pourquoi notre expérience opérationnel en entreprise nous permet de s'adapter a vos métier.",
+      title: "Une communication claire et pédagogique",
+      description: "Fini le jargon. Nous parlons IA avec simplicité et transparence, pour que vos équipes comprennent, s'approprient et s'engagent.",
       icon: "💬"
     },
     {
-      title: "Solutions IA accessibles et concrètes",
-      description: "Nous identifions des solutions adaptées à vos besoins réels et à votre budget, avec un focus sur le retour sur investissement rapide et mesurable.",
+      title: "Des solutions pragmatiques et accessibles",
+      description: "Nous privilégions des outils à impact rapide (quick wins), des démarches progressives, et un focus permanent sur le ROI. L'IA n'a de valeur que si elle sert vos objectifs métiers et votre organisation.",
       icon: "🔑"
     },
     {
-      title: "Accompagnement pragmatique et personnalisé",
-      description: "Chaque entreprise a ses défis uniques. Notre approche personnalisée garantit que les solutions proposées correspondent parfaitement à vos objectifs spécifiques.",
+      title: "Un accompagnement humain, sur mesure",
+      description: "Chaque entreprise est unique. Nous adaptons nos interventions à votre niveau de maturité, à vos priorités et à vos contraintes, en mobilisant notre réseau de partenaires locaux.",
       icon: "🤝"
     }
   ];
 
   const engagements = [
-    "Clarté et transparence dans nos communications",
-    "Approche pédagogique adaptée à tous les niveaux",
-    "Focus sur des résultats concrets et mesurables",
-    "Respect de vos données et de votre confidentialité",
-    "Accompagnement sur le long terme"
+    `<span class="font-medium">Accessibilité :</span> rendre l'IA simple, concrète et adaptée à tous.`,
+    `<span class="font-medium">Pragmatisme :</span> rester ancrés dans vos enjeux de terrain.</p>`,
+    `<span class="font-medium">Éthique :</span> respecter vos données, vos valeurs, et le cadre réglementaire.</p>`,
+    `<span class="font-medium">Collaboration :</span> avancer ensemble, avec vos équipes et nos partenaires.</p>`,
+    `<span class="font-medium">Exécution :</span> transformer les idées en actions, avec rigueur et méthode.</p>`
   ];
 
   return (
@@ -87,6 +87,39 @@ const PourquoiViadex = () => {
           </div>
         </section>
 
+        {/* Notre Vision et Pourquoi Viadex */}
+        <section className="pt-2 pb-16 px-6 lg:px-8 bg-white">
+          <div className="max-w-7xl mx-auto">
+            
+            <div className="bg-background rounded-xl p-8 shadow-sm">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="md:w-1/2">
+                  <h3 className="text-2xl font-bold mb-4 text-primary">Pourquoi Viadex a été créé ?</h3>
+                  <p className="text-secondary mb-6">
+                  Viadex est né d'un constat simple : malgré un engouement croissant pour l'IA, beaucoup d'entreprises se sentent perdues 
+                  face à un discours trop technique, des outils mal adaptés et une promesse floue.
+                  </p>
+                  <p className="text-secondary mb-6">
+                  Fort de 20 ans d'expérience en innovation et gestion d'entreprise à l'international, notre fondateur a voulu créer une structure 
+                  qui parle le langage des dirigeants, s'appuie sur une vision business et apporte des solutions concrètes.
+                  </p>
+                  <p className="text-secondary">
+                  Nous sommes basés en Bretagne, au plus proche des PME, TPE et ETI du Grand Ouest, et nous avons une mission claire : 
+                  Vous aider à tirer profit de l'IA sans brûler les étapes, sans risques inutiles, et avec un retour sur investissement tangible.
+                  </p>
+                </div>
+                <div className="md:w-1/2">
+                  <img 
+                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                    alt="Équipe travaillant sur des solutions IA" 
+                    className="rounded-xl w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Nos forces */}
         <section className="py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -111,11 +144,14 @@ const PourquoiViadex = () => {
             
             <div className="grid md:grid-cols-2 gap-8">
               {engagements.map((engagement, index) => (
-                <div key={index} className="flex items-start gap-4">
+                <div key={index} className="flex items-center gap-4">
                   <div className="bg-white rounded-full p-2 text-primary flex-shrink-0 mt-1">
                     <Check className="w-5 h-5" />
                   </div>
-                  <p className="text-lg">{engagement}</p>
+                  <p 
+                    className="text-lg"
+                    dangerouslySetInnerHTML={{ __html: engagement }}
+                  ></p>
                 </div>
               ))}
             </div>
