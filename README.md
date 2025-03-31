@@ -34,7 +34,7 @@ https://api.viadex.fr
 
 ### Endpoints
 
-#### 📌 BlogPost
+#### 📌 BlogPosts
 
 **GET `/blogpost`**  
 Récupère tous les articles de blog avec leurs catégories, statuts et sources.
