@@ -12,7 +12,7 @@ import Index from "./pages/Index";
 import Methodologie from "./pages/Methodologie";
 import Formation from "./pages/Formation";
 import PourquoiViadex from "./pages/PourquoiViadex";
-import NosTalents from "./pages/APropos";
+import NotreEcosysteme from "./pages/NotreEcosysteme";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
@@ -31,7 +31,7 @@ const AppRoutes = () => {
       <Route path="/methodologie" element={<Methodologie />} />
       <Route path="/formation" element={<Formation />} />
       <Route path="/pourquoi-viadex" element={<PourquoiViadex />} />
-      <Route path="/nos-talents" element={<NosTalents />} />
+      <Route path="/nos-talents" element={<NotreEcosysteme />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/contact" element={<Contact />} />
