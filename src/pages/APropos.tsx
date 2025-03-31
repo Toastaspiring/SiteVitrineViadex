@@ -3,7 +3,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/home/ui/button";
 import { Link } from "react-router-dom";
 import { Lightbulb, ArrowRight, Users, Handshake, Shield, Check } from "lucide-react";
-const APropos = () => {
+
+const NosTalents = () => {
   const team = [{
     name: "Jad Marchoudi",
     role: "Développeur IA",
@@ -33,6 +34,7 @@ const APropos = () => {
     avatar: "lovable-uploads/partenaire/coachappinside.png",
     link: "https://www.linkedin.com/company/coachappinside/"
   }];
+
   return <div className="min-h-screen bg-background">
       <Navigation />
       
@@ -40,7 +42,7 @@ const APropos = () => {
         {/* En-tête */}
         <section className="bg-primary text-white py-16 px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">À Propos de Viadex</h1>
+            <h1 className="text-4xl font-bold mb-4">Nos Talents</h1>
             <p className="text-xl max-w-3xl">
               Découvrez qui nous sommes, notre mission et notre passion pour rendre l'IA accessible à toutes les entreprises.
             </p>
@@ -95,4 +97,5 @@ const APropos = () => {
       <Footer />
     </div>;
 };
-export default APropos;
+
+export default NosTalents;

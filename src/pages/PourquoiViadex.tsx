@@ -110,8 +110,8 @@ const PourquoiViadex = () => {
                 </div>
                 <div className="md:w-1/2">
                   <img 
-                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-                    alt="Équipe travaillant sur des solutions IA" 
+                    src="https://images.unsplash.com/photo-1661956602944-249bcd04b63f"
+                    alt="Équipe de Viadex travaillant sur des solutions IA" 
                     className="rounded-xl w-full h-auto object-cover"
                   />
                 </div>
