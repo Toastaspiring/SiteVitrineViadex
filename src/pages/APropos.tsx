@@ -7,7 +7,7 @@ import { Lightbulb, ArrowRight, Users, Handshake, Shield, Check } from "lucide-r
 const NotreEcosystem = () => {
   const team = [{
     name: "Jad Marchoudi",
-    role: "Alternant Cybersécurité & Réseaux",
+    role: "Développeur Cybersécurité et DataScience",
     bio: "Jad s’assure que chaque projet respecte les bonnes pratiques de cybersécurité, un pilier essentiel dans l’intégration responsable de l’IA.",
     avatar: "lovable-uploads/avatar/jad.jpg"
   }, {
@@ -17,7 +17,7 @@ const NotreEcosystem = () => {
     avatar: "lovable-uploads/avatar/Vincent.jpg"
   }, {
     name: "Louis Marec",
-    role: "Alternant Développeur Fullstack",
+    role: "Développeur Fullstack BackEnd",
     bio: "Louis transforme les idées en outils concrets, robustes et évolutifs, en lien direct avec les besoins opérationnels des entreprises.",
     avatar: "lovable-uploads/avatar/Louis.jpg"
   }];
